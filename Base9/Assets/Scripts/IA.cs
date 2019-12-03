@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class IA : Player
 {
+    public IA(GameManager manager, string name)
+        : base(manager, name, false)
+    {
+
+    }
+
     public override void BeginTurn()
     {
     }
