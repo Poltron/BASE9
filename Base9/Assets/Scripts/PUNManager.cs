@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Photon.Realtime;
 using Photon.Pun;
 
-public class PUNManager : MonoBehaviourPunCallbacks
+public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
 
     #region Private Serializable Fields
@@ -30,6 +30,13 @@ public class PUNManager : MonoBehaviourPunCallbacks
     [SerializeField]
     private byte maxPlayersPerRoom = 2;
 
+    [Tooltip("Time to find opponent")]
+    [SerializeField]
+    private float timeToFindOpponent;
+    private float timeToFindOpponentTimer;
+    private bool bLookingForOpponent;
+
+    public bool bPlayingAgainstHuman;
     #endregion
 
     #region Private Fields
@@ -50,6 +57,23 @@ public class PUNManager : MonoBehaviourPunCallbacks
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    private void Update()
+    {
+        if (bLookingForOpponent)
+        {
+            timeToFindOpponentTimer += Time.deltaTime;
+
+            if (timeToFindOpponentTimer > timeToFindOpponent)
+            {
+                bLookingForOpponent = false;
+                bPlayingAgainstHuman = false;
+                LogFeedback("Playing against AI");
+                PhotonNetwork.Disconnect();
+                GoToGame();
+            }
+        }
     }
 
     #region Public Methods
@@ -102,6 +126,7 @@ public class PUNManager : MonoBehaviourPunCallbacks
 
         // add new messages as a new line and at the bottom of the log.
         feedbackText.text += System.Environment.NewLine + message;
+        Debug.Log(message);
     }
 
     #endregion
@@ -177,16 +202,33 @@ public class PUNManager : MonoBehaviourPunCallbacks
         // #Critical: We only load if we are the first player, else we rely on  PhotonNetwork.AutomaticallySyncScene to sync our instance scene.
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
-            Debug.Log("We load the 'Room for 1' ");
+            Debug.Log("First player in the room : we load the 'Room for 1' ");
+            timeToFindOpponentTimer = 0;
+            bLookingForOpponent = true;
 
             // #Critical
             // Load the Room Level. 
-            PhotonNetwork.LoadLevel("Game");
+            //PhotonNetwork.LoadLevel("Game");
+        }
+    }
+    
+    public override void OnPlayerEnteredRoom(Photon.Realtime.Player other)
+    {
+        Debug.LogFormat("OnPlayerEnteredRoom() {0}", other.NickName); // not seen if you're the player connecting
 
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            bPlayingAgainstHuman = true;
+            GoToGame();
         }
     }
 
-    #endregion
+    public void GoToGame()
+    {
+        Debug.LogFormat("Loading Game scene");
+        PhotonNetwork.LoadLevel("Game");
+    }
 
+    #endregion
 }
 
