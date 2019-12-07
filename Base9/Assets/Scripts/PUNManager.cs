@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Realtime;
 using Photon.Pun;
+using TMPro;
 
 public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
@@ -24,7 +25,7 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     [Tooltip("The Ui Text to inform the user about the connection progress")]
     [SerializeField]
-    private Text feedbackText;
+    private TextMeshProUGUI feedbackText;
 
     [Tooltip("The maximum number of players per room")]
     [SerializeField]
@@ -98,13 +99,15 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         if (PhotonNetwork.IsConnected)
         {
             LogFeedback("Joining Room...");
+            ScreenLogs("Connected to Master Server.");
             // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinRandomFailed() and we'll create one.
             PhotonNetwork.JoinRandomRoom();
         }
         else
         {
 
-            LogFeedback("Connecting...");
+            LogFeedback("Connecting to Master Server...");
+            ScreenLogs("Connecting to Master Server...");
 
             // #Critical, we must first and foremost connect to Photon Online Server.
             PhotonNetwork.GameVersion = this.gameVersion;
@@ -118,6 +121,15 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     /// <param name="message">Message.</param>
     void LogFeedback(string message)
     {
+        Debug.Log(message);
+    }
+
+    /// <summary>
+    /// Logs the feedback in the UI view for the player, as opposed to inside the Unity Editor for the developer.
+    /// </summary>
+    /// <param name="message">Message.</param>
+    void ScreenLogs(string message)
+    {
         // we do not assume there is a feedbackText defined.
         if (feedbackText == null)
         {
@@ -126,7 +138,6 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
         // add new messages as a new line and at the bottom of the log.
         feedbackText.text += System.Environment.NewLine + message;
-        Debug.Log(message);
     }
 
     #endregion
@@ -148,6 +159,7 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         if (isConnecting)
         {
             LogFeedback("OnConnectedToMaster: Next -> try to Join Random Room");
+            ScreenLogs("Connected to Master Server !");
             Debug.Log("PUN Basics Tutorial/Launcher: OnConnectedToMaster() was called by PUN. Now this client is connected and could join a room.\n Calling: PhotonNetwork.JoinRandomRoom(); Operation will fail if no room found");
 
             // #Critical: The first we try to do is to join a potential existing room. If there is, good, else, we'll be called back with OnJoinRandomFailed()
@@ -165,6 +177,7 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     {
         LogFeedback("<Color=Red>OnJoinRandomFailed</Color>: Next -> Create a new Room");
         Debug.Log("PUN Basics Tutorial/Launcher:OnJoinRandomFailed() was called by PUN. No random room available, so we create one.\nCalling: PhotonNetwork.CreateRoom");
+        
 
         // #Critical: we failed to join a random room, maybe none exists or they are all full. No worries, we create a new room.
         PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = this.maxPlayersPerRoom });
@@ -202,10 +215,12 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         // #Critical: We only load if we are the first player, else we rely on  PhotonNetwork.AutomaticallySyncScene to sync our instance scene.
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
+
             Debug.Log("First player in the room : we load the 'Room for 1' ");
             timeToFindOpponentTimer = 0;
             bLookingForOpponent = true;
-
+            ScreenLogs("Joined room.");
+            ScreenLogs("Waiting for opponent...");
             // #Critical
             // Load the Room Level. 
             //PhotonNetwork.LoadLevel("Game");
@@ -215,7 +230,7 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player other)
     {
         Debug.LogFormat("OnPlayerEnteredRoom() {0}", other.NickName); // not seen if you're the player connecting
-
+        ScreenLogs("Player joined !");
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
             bPlayingAgainstHuman = true;
@@ -225,6 +240,7 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     public void GoToGame()
     {
+        ScreenLogs("Loading game...");
         Debug.LogFormat("Loading Game scene");
         PhotonNetwork.LoadLevel("Game");
     }

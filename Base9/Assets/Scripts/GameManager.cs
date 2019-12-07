@@ -144,17 +144,19 @@ public class GameManager : MonoBehaviour, IPunObservable
         {
             GameEnded(InactivePlayer, ActivePlayer);
         }
-
-        if (activePlayer == 0)
-        {
-            activePlayer = 1;
-        }
         else
         {
-            activePlayer = 0;
-        }
+            if (activePlayer == 0)
+            {
+                activePlayer = 1;
+            }
+            else
+            {
+                activePlayer = 0;
+            }
 
-        StartCoroutine(WaitFor(2.0f, StartActivePlayerTurn)); 
+            StartCoroutine(WaitFor(2.0f, StartActivePlayerTurn));
+        }
     }
 
     public void ThrowDice(int number)
@@ -167,22 +169,6 @@ public class GameManager : MonoBehaviour, IPunObservable
     {
         UIManager.SetWinnerLooser(winner, looser);
         UIManager.ShowEndPanel(true);
-    }
-
-    // HACK FOR ADDLISTENER BUG
-    public void ActivePlayerThrowDice()
-    {
-        ActivePlayer.PlayDice();
-    }
-
-    public void ActivePlayerThrowBonusDice()
-    {
-        ActivePlayer.PlayBonusDice();
-    }
-
-    public void ActivePlayerEndTurn()
-    {
-        ActivePlayer.EndTurn();
     }
 
     public void TogglePause()
@@ -201,5 +187,21 @@ public class GameManager : MonoBehaviour, IPunObservable
         yield return new WaitForSeconds(time);
 
         action();
+    }
+
+    // HACK FOR ADDLISTENER BUG
+    public void ActivePlayerThrowDice()
+    {
+        ActivePlayer.PlayDice();
+    }
+
+    public void ActivePlayerThrowBonusDice()
+    {
+        ActivePlayer.PlayBonusDice();
+    }
+
+    public void ActivePlayerEndTurn()
+    {
+        ActivePlayer.EndTurn();
     }
 }
