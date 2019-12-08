@@ -10,15 +10,6 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
 
     #region Private Serializable Fields
-
-    [Tooltip("Panel for main menu")]
-    [SerializeField]
-    private RectTransform mainMenuPanel;
-
-    [Tooltip("Panel for connection process")]
-    [SerializeField]
-    private RectTransform connectionPanel;
-
     [Tooltip("The user name")]
     [SerializeField]
     private string userName;
@@ -86,14 +77,13 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     /// </summary>
     public void Connect()
     {
+
+
         // we want to make sure the log is clear everytime we connect, we might have several failed attempted if connection failed.
         feedbackText.text = "";
 
         // keep track of the will to join a room, because when we come back from the game we will get a callback that we are connected, so we need to know what to do then
         isConnecting = true;
-
-        mainMenuPanel.gameObject.SetActive(false);
-        connectionPanel.gameObject.SetActive(true);
 
         PhotonNetwork.AutomaticallySyncScene = true;
 
@@ -102,6 +92,7 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         {
             LogFeedback("Joining Room...");
             ScreenLogs("Connected to Master Server.");
+
             // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinRandomFailed() and we'll create one.
             PhotonNetwork.JoinRandomRoom();
         }
@@ -115,6 +106,12 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             PhotonNetwork.GameVersion = this.gameVersion;
             PhotonNetwork.ConnectUsingSettings();
         }
+    }
+
+    public void Disconnect()
+    {
+        Debug.LogFormat("Disconnecting");
+        PhotonNetwork.Disconnect();
     }
 
     /// <summary>

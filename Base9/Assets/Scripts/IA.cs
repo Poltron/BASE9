@@ -6,32 +6,43 @@ using System;
 
 public class IA : Player
 {
-    public IA()
-    { }
-
     public override void BeginTurn()
     {
-        Debug.Log("AI turn begins...");
+        Debug.Log("AI : Begin turn");
         PlayDice();
-        EndTurn();
     }
 
     public override void PlayDice()
     {
-        Debug.Log("play dice1");
+        Debug.Log("AI : Play dice");
         gameManager.ThrowDice(1);
-        Debug.Log("play dice2");
         gameManager.ThrowDice(2);
+
+        int d1 = gameManager.GetDice(1);
+        int d2 = gameManager.GetDice(2);
+        int sum = d1 + d2;
+
+        if (sum < 8)
+        {
+            StartCoroutine(WaitFor(1.0f, PlayBonusDice));
+        }
+        else
+        {
+            StartCoroutine(WaitFor(1.0f, EndTurn));
+        }
     }
 
     public override void PlayBonusDice()
     {
+        Debug.Log("AI : Play bonus dice");
         gameManager.ThrowDice(3);
+
+        StartCoroutine(WaitFor(1.0f, EndTurn));
     }
 
     public override void EndTurn()
     {
-        Debug.Log("AI turn ended.");
+        Debug.Log("AI : End turn");
         gameManager.ActivePlayerTurnEnded();
     }
 }

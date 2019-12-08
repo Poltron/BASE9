@@ -6,13 +6,10 @@ using Photon.Pun;
 
 public class Human : Player
 {
-    public Human()
-    { }
-
     [PunRPC]
     public override void BeginTurn()
     {
-        Debug.Log("Human turn begin...");
+        Debug.Log("Human : Begin turn");
         if (!PhotonNetwork.IsConnected || photonView.IsMine)
         {
             gameManager.UIManager.EnableInputUI(this);
@@ -25,7 +22,7 @@ public class Human : Player
 
     public override void PlayDice()
     {
-        Debug.Log("play dice");
+        Debug.Log("Human : Play dice");
         if (!PhotonNetwork.IsConnected || photonView.IsMine)
         {
             gameManager.ThrowDice(1);
@@ -35,7 +32,7 @@ public class Human : Player
 
     public override void PlayBonusDice()
     {
-        Debug.Log("play bonus dice");
+        Debug.Log("Human : Play bonus dice");
         if (!PhotonNetwork.IsConnected || photonView.IsMine)
         {
             gameManager.ThrowDice(3);
@@ -45,7 +42,7 @@ public class Human : Player
     [PunRPC]
     public override void EndTurn()
     {
-        Debug.Log("Human turn ended.");
+        Debug.Log("Human : End turn");
 
         if (!PhotonNetwork.IsConnected || photonView.IsMine)
         {

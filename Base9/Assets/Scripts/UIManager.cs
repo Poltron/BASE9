@@ -89,9 +89,23 @@ public class UIManager : MonoBehaviour
         Bank4.text = GameManager.GetBank(4).ToString();
         Bank5.text = GameManager.GetBank(5).ToString();
 
-        Dice1Text.text = GameManager.GetDice(1).ToString();
-        Dice2Text.text = GameManager.GetDice(2).ToString();
-        Dice3Text.text = GameManager.GetDice(3).ToString();
+        int dice = GameManager.GetDice(1);
+        if (dice != 0)
+            Dice1Text.text = GameManager.GetDice(1).ToString();
+        else
+            Dice1Text.text = "";
+
+        dice = GameManager.GetDice(2);
+        if (dice != 0)
+            Dice2Text.text = GameManager.GetDice(2).ToString();
+        else
+            Dice2Text.text = "";
+
+        dice = GameManager.GetDice(3);
+        if (dice != 0)
+            Dice3Text.text = GameManager.GetDice(3).ToString();
+        else
+            Dice3Text.text = "";
     }
 
     public void TogglePausePanel()
@@ -110,13 +124,6 @@ public class UIManager : MonoBehaviour
         Looser.text = looser.PlayerName + "looses";
     }
 
-    public void HideDices()
-    {
-        Dice1Text.gameObject.SetActive(false);
-        Dice2Text.gameObject.SetActive(false);
-        Dice3Text.gameObject.SetActive(false);
-    }
-
     public void EnableInputUI(Player player)
     {
         PlayUI.SetActive(true);
@@ -133,24 +140,5 @@ public class UIManager : MonoBehaviour
         PlayDiceButton.onClick.RemoveListener(player.PlayDice);
         PlayBonusDiceButton.onClick.RemoveListener(player.PlayBonusDice);
         EndTurnButton.onClick.RemoveListener(player.EndTurn);
-    }
-
-    public void ShowDice(int number, int value)
-    {
-        switch (number)
-        {
-            case 1:
-                Dice1Text.gameObject.SetActive(true);
-                Dice1Text.text = value.ToString();
-                break;
-            case 2:
-                Dice2Text.gameObject.SetActive(true);
-                Dice2Text.text = value.ToString();
-                break;
-            case 3:
-                Dice3Text.gameObject.SetActive(true);
-                Dice3Text.text = value.ToString();
-                break;
-        }
     }
 }

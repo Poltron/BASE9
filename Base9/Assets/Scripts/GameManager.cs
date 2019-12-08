@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour, IPunObservable
             purses[0] = 15;
             purses[1] = 15;
 
-            StartActivePlayerTurn();
+            ActivePlayer.BeginTurn();
         }
     }
 
@@ -150,10 +150,16 @@ public class GameManager : MonoBehaviour, IPunObservable
         }
     }
 
-    public void StartActivePlayerTurn()
+    public void NextTurn()
     {
-        dices = new int[3];
-        UIManager.HideDices();
+        if (activePlayer == 0)
+        {
+            activePlayer = 1;
+        }
+        else
+        {
+            activePlayer = 0;
+        }
 
         ActivePlayer.BeginTurn();
     }
@@ -174,16 +180,13 @@ public class GameManager : MonoBehaviour, IPunObservable
             {
                 banks[4] += 5;
                 toPay -= 5;
-                banks[toPay - 1] = toPay;
+                banks[toPay - 1] += toPay;
             }
         }
         else // get coins
         {
-            Debug.Log("Jackpot : " + diceSum);
-
             foreach(var dice in dices)
             {
-                Debug.Log("Dice : " + dice);
                 if (dice > 0 && dice < 6)
                 {
                     Debug.Log(dice);
@@ -192,13 +195,14 @@ public class GameManager : MonoBehaviour, IPunObservable
                 }
                 else if (dice == 6)
                 {
-                    Debug.Log("1 + 5");
                     purses[activePlayer] += banks[4] + banks[0];
                     banks[4] = 0;
                     banks[0] = 0;
                 }
             }
         }
+
+        dices = new int[3];
 
         if (purses[activePlayer] <= 0)
         {
@@ -211,16 +215,7 @@ public class GameManager : MonoBehaviour, IPunObservable
         }
         else
         {
-            if (activePlayer == 0)
-            {
-                activePlayer = 1;
-            }
-            else
-            {
-                activePlayer = 0;
-            }
-
-            StartCoroutine(WaitFor(2.0f, StartActivePlayerTurn));
+            StartCoroutine(WaitFor(2.0f, NextTurn));
         }
     }
 
@@ -235,8 +230,6 @@ public class GameManager : MonoBehaviour, IPunObservable
         {
             photonView.RPC("ThrowDice", RpcTarget.MasterClient, number);
         }
-
-        UIManager.ShowDice(number, dices[number - 1]);
     }
 
     [PunRPC]
@@ -253,7 +246,9 @@ public class GameManager : MonoBehaviour, IPunObservable
 
     public void BackToMenu()
     {
-        PhotonNetwork.LeaveRoom();
+        if (PhotonNetwork.IsConnected)
+            PhotonNetwork.Disconnect();
+
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 
