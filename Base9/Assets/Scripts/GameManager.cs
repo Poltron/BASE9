@@ -1,14 +1,21 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
-using Photon.Pun;
 using UnityEngine.UI;
-using System;
 using UnityEngine.SceneManagement;
+
+using Photon.Pun;
 
 public class GameManager : MonoBehaviour, IPunObservable
 {
-    private Player[] players = new Player[2];
+    [SerializeField]
+    private GameObject playerPrefab;
+    [SerializeField]
+    private GameObject aiPrefab;
+
+    private List<Player> players = new List<Player>();
     public Player Player1
     {
         get { return players[0]; }
@@ -19,6 +26,10 @@ public class GameManager : MonoBehaviour, IPunObservable
     }
 
     private int activePlayer;
+    public int ActivePlayerNumber
+    {
+        get { return activePlayer + 1; }
+    }
     public Player ActivePlayer
     {
         get { return players[activePlayer]; }
@@ -46,24 +57,49 @@ public class GameManager : MonoBehaviour, IPunObservable
         return banks[number - 1];
     }
 
+    private int[] purses = new int[2];
+    public int GetPurse(int number)
+    {
+        return purses[number - 1];
+    }
+
     private PUNManager PUNManager;
+    private PhotonView photonView;
     public UIManager UIManager;
 
     void Start()
     {
+        photonView = PhotonView.Get(this);
         PUNManager = FindObjectOfType<PUNManager>();
-        if (PUNManager != null && PUNManager.bPlayingAgainstHuman)
+        // IF WE'RE PLAYING ONLINE
+        if (PUNManager != null && PUNManager.bPlayingOnline)
         {
-            players[0] = new Human(this, "Human Player", true);
-            players[1] = new Human(this, "Human Player", false);
+            GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity, 0);
+            player.GetComponent<Player>().Init("Local Player");
         }
-        else
+        else // IF WE'RE PLAYING LOCAL VS AI
         {
-            players[0] = new Human(this, "Human Player", true);
-            players[1] = new IA(this, "Computer Player");
-        }
+            GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+            player.GetComponent<Player>().Init("Human Player");
 
-        StartActivePlayerTurn();
+            player = Instantiate(aiPrefab, Vector3.zero, Quaternion.identity);
+            player.GetComponent<Player>().Init("Computer Player");
+        }
+    }
+
+    public void RegisterNewPlayer(Player player)
+    {
+        Debug.Log("Register new player !");
+
+        players.Add(player);
+
+        if (players.Count == 2 && (photonView.IsMine || !PhotonNetwork.IsConnected))
+        {
+            purses[0] = 15;
+            purses[1] = 15;
+
+            StartActivePlayerTurn();
+        }
     }
 
     void Update()
@@ -79,14 +115,38 @@ public class GameManager : MonoBehaviour, IPunObservable
         if (stream.IsWriting)
         {
             // We own this player: send the others our data
-            //stream.SendNext(this.IsFiring);
-            //stream.SendNext(this.Health);
+            stream.SendNext(this.dices[0]);
+            stream.SendNext(this.dices[1]);
+            stream.SendNext(this.dices[2]);
+
+            stream.SendNext(this.banks[0]);
+            stream.SendNext(this.banks[1]);
+            stream.SendNext(this.banks[2]);
+            stream.SendNext(this.banks[3]);
+            stream.SendNext(this.banks[4]);
+
+            stream.SendNext(this.purses[0]);
+            stream.SendNext(this.purses[1]);
+
+            stream.SendNext(this.activePlayer);
         }
         else
         {
             // Network player, receive data
-            //this.IsFiring = (bool)stream.ReceiveNext();
-            //this.Health = (float)stream.ReceiveNext();
+            this.dices[0] = (int)stream.ReceiveNext();
+            this.dices[1] = (int)stream.ReceiveNext();
+            this.dices[2] = (int)stream.ReceiveNext();
+
+            this.banks[0] = (int)stream.ReceiveNext();
+            this.banks[1] = (int)stream.ReceiveNext();
+            this.banks[2] = (int)stream.ReceiveNext();
+            this.banks[3] = (int)stream.ReceiveNext();
+            this.banks[4] = (int)stream.ReceiveNext();
+
+            this.purses[0] = (int)stream.ReceiveNext();
+            this.purses[1] = (int)stream.ReceiveNext();
+
+            this.activePlayer = (int)stream.ReceiveNext();
         }
     }
 
@@ -97,7 +157,7 @@ public class GameManager : MonoBehaviour, IPunObservable
 
         ActivePlayer.BeginTurn();
     }
-
+    
     public void ActivePlayerTurnEnded()
     {
         int diceSum = dices[0] + dices[1] + dices[2];
@@ -105,7 +165,7 @@ public class GameManager : MonoBehaviour, IPunObservable
         if (diceSum != 9) // pay coins
         {
             int toPay = Mathf.Abs(diceSum - 9);
-            ActivePlayer.Purse -= toPay;
+            purses[activePlayer] -= toPay;
             if (toPay >= 1 && toPay <= 5)
             {
                 banks[toPay - 1] += toPay;
@@ -127,22 +187,27 @@ public class GameManager : MonoBehaviour, IPunObservable
                 if (dice > 0 && dice < 6)
                 {
                     Debug.Log(dice);
-                    ActivePlayer.Purse += banks[dice - 1];
+                    purses[activePlayer] += banks[dice - 1];
                     banks[dice - 1] = 0;
                 }
                 else if (dice == 6)
                 {
                     Debug.Log("1 + 5");
-                    ActivePlayer.Purse += banks[4] + banks[0];
+                    purses[activePlayer] += banks[4] + banks[0];
                     banks[4] = 0;
                     banks[0] = 0;
                 }
             }
         }
 
-        if (ActivePlayer.Purse <= 0)
+        if (purses[activePlayer] <= 0)
         {
             GameEnded(InactivePlayer, ActivePlayer);
+
+            if (PhotonNetwork.IsConnected && photonView.IsMine)
+            {
+                photonView.RPC("GameEnded", RpcTarget.Others, InactivePlayer, ActivePlayer);
+            }
         }
         else
         {
@@ -159,12 +224,22 @@ public class GameManager : MonoBehaviour, IPunObservable
         }
     }
 
+    [PunRPC]
     public void ThrowDice(int number)
     {
-        dices[number - 1] = UnityEngine.Random.Range(1, 7);
+        if (!PhotonNetwork.IsConnected || photonView.IsMine)
+        {
+            dices[number - 1] = UnityEngine.Random.Range(1, 7);
+        }
+        else
+        {
+            photonView.RPC("ThrowDice", RpcTarget.MasterClient, number);
+        }
+
         UIManager.ShowDice(number, dices[number - 1]);
     }
 
+    [PunRPC]
     public void GameEnded(Player winner, Player looser)
     {
         UIManager.SetWinnerLooser(winner, looser);
@@ -187,21 +262,5 @@ public class GameManager : MonoBehaviour, IPunObservable
         yield return new WaitForSeconds(time);
 
         action();
-    }
-
-    // HACK FOR ADDLISTENER BUG
-    public void ActivePlayerThrowDice()
-    {
-        ActivePlayer.PlayDice();
-    }
-
-    public void ActivePlayerThrowBonusDice()
-    {
-        ActivePlayer.PlayBonusDice();
-    }
-
-    public void ActivePlayerEndTurn()
-    {
-        ActivePlayer.EndTurn();
     }
 }

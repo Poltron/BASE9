@@ -6,11 +6,8 @@ using System;
 
 public class IA : Player
 {
-    public IA(GameManager manager, string name)
-        : base(manager, name, false)
-    {
-
-    }
+    public IA()
+    { }
 
     public override void BeginTurn()
     {

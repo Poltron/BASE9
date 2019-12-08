@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dbb8e7f52733484cb80e176a5867569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: HumanDefaultName
 --- !u!114 &1877335158208734562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,10 +59,10 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 0
+  Synchronization: 1
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 1877335158208734561}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

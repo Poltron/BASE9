@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Player : MonoBehaviour
+using Photon.Pun;
+
+public abstract class Player : MonoBehaviour, IPunObservable
 {
     private string playerName;
     public string PlayerName
@@ -11,15 +13,60 @@ public abstract class Player : MonoBehaviour
     }
 
     protected GameManager gameManager;
-    public bool isLocal;
-    public int Purse;
+    protected PhotonView photonView;
 
-    public Player(GameManager _gameManager, string _playerName, bool _isLocal)
+    public Player()
+    {
+        playerName = "Remote Player";
+    }
+
+    private void Awake()
+    {
+        photonView = PhotonView.Get(this);
+    }
+
+    private void Start()
+    {
+        RegisterPlayer();
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // We own this player: send the others our data
+            //stream.SendNext(this.dices[0]);
+        }
+        else
+        {
+            // Network player, receive data
+            //this.dices[0] = (int)stream.ReceiveNext();
+        }
+    }
+
+    private void RegisterPlayer()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+        if (gameManager != null)
+        {
+            gameManager.RegisterNewPlayer(this);
+        }
+        else
+        {
+            StartCoroutine(WaitFor(1.0f, RegisterPlayer));
+        }
+    }
+
+    public void Init(string _playerName)
     {
         playerName = _playerName;
-        gameManager = _gameManager;
-        isLocal = _isLocal;
-        Purse = 15;
+    }
+
+    public IEnumerator WaitFor(float time, System.Action action)
+    {
+        yield return new WaitForSeconds(time);
+
+        action();
     }
 
     public abstract void BeginTurn();

@@ -15,17 +15,26 @@ public class UIManager : MonoBehaviour
     private GameObject EndUI;
 
     [SerializeField]
-    private Text ActivePlayer;
+    private Image Player1Image;
+    [SerializeField]
+    private Image Player2Image;
+    [SerializeField]
+    private Text Player1Name;
+    [SerializeField]
+    private Text Player2Name;
+
+    [SerializeField]
+    private Text Player1Purse;
+    [SerializeField]
+    private Text Player2Purse;
+
     [SerializeField]
     private Text Dice1Text;
     [SerializeField]
     private Text Dice2Text;
     [SerializeField]
     private Text Dice3Text;
-    [SerializeField]
-    private Text Player1Purse;
-    [SerializeField]
-    private Text Player2Purse;
+
     [SerializeField]
     private Text Bank1;
     [SerializeField]
@@ -53,14 +62,33 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        ActivePlayer.text = GameManager.ActivePlayer.PlayerName;
-        Player1Purse.text = GameManager.Player1.Purse.ToString();
-        Player2Purse.text = GameManager.Player2.Purse.ToString();
+        if (GameManager.ActivePlayerNumber == 1)
+        {
+            Player1Image.color = new Color(Player1Image.color.r, Player1Image.color.g, Player1Image.color.b, 1);
+            Player2Image.color = new Color(Player2Image.color.r, Player2Image.color.g, Player2Image.color.b, 0);
+        }
+        else
+        {
+            Player1Image.color = new Color(Player1Image.color.r, Player1Image.color.g, Player1Image.color.b, 0);
+            Player2Image.color = new Color(Player2Image.color.r, Player2Image.color.g, Player2Image.color.b, 1);
+        }
+
+        if (GameManager.Player1 != null)
+            Player1Name.text = GameManager.Player1.PlayerName;
+        if (GameManager.Player2 != null)
+            Player2Name.text = GameManager.Player2.PlayerName;
+
+        if (GameManager.Player1 != null)
+            Player1Purse.text = GameManager.GetPurse(1).ToString();
+        if (GameManager.Player2 != null)
+            Player2Purse.text = GameManager.GetPurse(2).ToString();
+
         Bank1.text = GameManager.GetBank(1).ToString();
         Bank2.text = GameManager.GetBank(2).ToString();
         Bank3.text = GameManager.GetBank(3).ToString();
         Bank4.text = GameManager.GetBank(4).ToString();
         Bank5.text = GameManager.GetBank(5).ToString();
+
         Dice1Text.text = GameManager.GetDice(1).ToString();
         Dice2Text.text = GameManager.GetDice(2).ToString();
         Dice3Text.text = GameManager.GetDice(3).ToString();
@@ -93,18 +121,18 @@ public class UIManager : MonoBehaviour
     {
         PlayUI.SetActive(true);
         
-        PlayDiceButton.onClick.AddListener(GameManager.ActivePlayerThrowDice);
-        PlayBonusDiceButton.onClick.AddListener(GameManager.ActivePlayerThrowBonusDice);
-        EndTurnButton.onClick.AddListener(GameManager.ActivePlayerEndTurn);
+        PlayDiceButton.onClick.AddListener(player.PlayDice);
+        PlayBonusDiceButton.onClick.AddListener(player.PlayBonusDice);
+        EndTurnButton.onClick.AddListener(player.EndTurn);
     }
 
     public void DisableInputUI(Player player)
     {
         PlayUI.SetActive(false);
 
-        PlayDiceButton.onClick.RemoveListener(GameManager.ActivePlayerThrowDice);
-        PlayBonusDiceButton.onClick.RemoveListener(GameManager.ActivePlayerThrowBonusDice);
-        EndTurnButton.onClick.RemoveListener(GameManager.ActivePlayerEndTurn);
+        PlayDiceButton.onClick.RemoveListener(player.PlayDice);
+        PlayBonusDiceButton.onClick.RemoveListener(player.PlayBonusDice);
+        EndTurnButton.onClick.RemoveListener(player.EndTurn);
     }
 
     public void ShowDice(int number, int value)

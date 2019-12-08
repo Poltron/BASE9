@@ -35,9 +35,9 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     [SerializeField]
     private float timeToFindOpponent;
     private float timeToFindOpponentTimer;
-    private bool bLookingForOpponent;
 
-    public bool bPlayingAgainstHuman;
+    private bool bLookingForOpponent = false;
+    public bool bPlayingOnline = true;
     #endregion
 
     #region Private Fields
@@ -69,7 +69,7 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             if (timeToFindOpponentTimer > timeToFindOpponent)
             {
                 bLookingForOpponent = false;
-                bPlayingAgainstHuman = false;
+                bPlayingOnline = false;
                 LogFeedback("Playing against AI");
                 PhotonNetwork.Disconnect();
                 GoToGame();
@@ -94,6 +94,8 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
         mainMenuPanel.gameObject.SetActive(false);
         connectionPanel.gameObject.SetActive(true);
+
+        PhotonNetwork.AutomaticallySyncScene = true;
 
         // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
         if (PhotonNetwork.IsConnected)
@@ -215,8 +217,7 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         // #Critical: We only load if we are the first player, else we rely on  PhotonNetwork.AutomaticallySyncScene to sync our instance scene.
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
-
-            Debug.Log("First player in the room : we load the 'Room for 1' ");
+            Debug.Log("First player in the room");
             timeToFindOpponentTimer = 0;
             bLookingForOpponent = true;
             ScreenLogs("Joined room.");
@@ -233,7 +234,9 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         ScreenLogs("Player joined !");
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
-            bPlayingAgainstHuman = true;
+            bLookingForOpponent = false;
+
+            bPlayingOnline = true;
             GoToGame();
         }
     }
