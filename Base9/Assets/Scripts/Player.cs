@@ -15,6 +15,11 @@ public abstract class Player : MonoBehaviour, IPunObservable
     protected GameManager gameManager;
     protected PhotonView photonView;
 
+    public bool IsLocal
+    {
+        get { return photonView.IsMine; }
+    }
+
     public Player()
     {
         playerName = "Remote Player";

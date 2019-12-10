@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -9,10 +10,6 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private GameObject PlayUI;
-    [SerializeField]
-    private GameObject PauseUI;
-    [SerializeField]
-    private GameObject EndUI;
 
     [SerializeField]
     private Image Player1Image;
@@ -47,9 +44,11 @@ public class UIManager : MonoBehaviour
     private Text Bank5;
 
     [SerializeField]
-    private Text Winner;
+    private TextMeshProUGUI Winner;
     [SerializeField]
-    private Text Looser;
+    private Color WinColor;
+    [SerializeField]
+    private Color LooseColor;
 
     public Button PlayDiceButton;
     public Button PlayBonusDiceButton;
@@ -108,20 +107,14 @@ public class UIManager : MonoBehaviour
             Dice3Text.text = "";
     }
 
-    public void TogglePausePanel()
+    public void SetWinnerLooser(Player playerWinner, Player playerLooser)
     {
-        PauseUI.SetActive(!PauseUI.activeInHierarchy);
-    }
+        Winner.text = playerWinner.PlayerName + "wins";
 
-    public void ShowEndPanel(bool on)
-    {
-        EndUI.SetActive(on);
-    }
-
-    public void SetWinnerLooser(Player winner, Player looser)
-    {
-        Winner.text = winner.PlayerName + "wins";
-        Looser.text = looser.PlayerName + "looses";
+        if (playerWinner.IsLocal)
+            Winner.color = WinColor;
+        else
+            Winner.color = LooseColor;
     }
 
     public void EnableInputUI(Player player)

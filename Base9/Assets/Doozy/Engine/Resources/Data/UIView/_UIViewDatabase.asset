@@ -16,9 +16,9 @@ MonoBehaviour:
   CategoryNames:
   - Custom
   - Example
-  - General
   - Game
+  - General
   Categories:
   - {fileID: 11400000, guid: b01e98f4801f7124ba39e1dac4debf90, type: 2}
-  - {fileID: 11400000, guid: aa68487852daf294eb4d45927f072974, type: 2}
   - {fileID: 11400000, guid: 22ec6bc640b3f8d418fa14204679fd71, type: 2}
+  - {fileID: 11400000, guid: aa68487852daf294eb4d45927f072974, type: 2}

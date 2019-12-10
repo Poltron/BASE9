@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 using Photon.Pun;
+using Doozy.Engine;
 
 public class GameManager : MonoBehaviour, IPunObservable
 {
@@ -99,14 +100,6 @@ public class GameManager : MonoBehaviour, IPunObservable
             purses[1] = 15;
 
             ActivePlayer.BeginTurn();
-        }
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            TogglePause();
         }
     }
 
@@ -236,12 +229,7 @@ public class GameManager : MonoBehaviour, IPunObservable
     public void GameEnded(Player winner, Player looser)
     {
         UIManager.SetWinnerLooser(winner, looser);
-        UIManager.ShowEndPanel(true);
-    }
-
-    public void TogglePause()
-    {
-        UIManager.TogglePausePanel();
+        GameEventMessage.SendEvent("GameEnded");
     }
 
     public void BackToMenu()
