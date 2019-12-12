@@ -12,7 +12,7 @@ public class Human : Player
         Debug.Log("Human : Begin turn");
         if (!PhotonNetwork.IsConnected || photonView.IsMine)
         {
-            gameManager.UIManager.EnableInputUI(this);
+            gameManager.UIManager.EnablePlayDiceButton(this, true);
         }
         else
         {
@@ -25,6 +25,10 @@ public class Human : Player
         Debug.Log("Human : Play dice");
         if (!PhotonNetwork.IsConnected || photonView.IsMine)
         {
+            gameManager.UIManager.EnablePlayDiceButton(this, false);
+            gameManager.UIManager.EnablePlayBonusDiceButton(this, true);
+            gameManager.UIManager.EnableEndTurnButton(this, true);
+
             gameManager.ThrowDice(1);
             gameManager.ThrowDice(2);
         }
@@ -35,6 +39,8 @@ public class Human : Player
         Debug.Log("Human : Play bonus dice");
         if (!PhotonNetwork.IsConnected || photonView.IsMine)
         {
+            gameManager.UIManager.EnablePlayBonusDiceButton(this, false);
+
             gameManager.ThrowDice(3);
         }
     }
@@ -46,7 +52,8 @@ public class Human : Player
 
         if (!PhotonNetwork.IsConnected || photonView.IsMine)
         {
-            gameManager.UIManager.DisableInputUI(this);
+            gameManager.UIManager.EnablePlayBonusDiceButton(this, false);
+            gameManager.UIManager.EnableEndTurnButton(this, false);
         }
 
         if (!PhotonNetwork.IsConnected || PhotonNetwork.IsMasterClient)

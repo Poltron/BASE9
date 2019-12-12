@@ -7,41 +7,38 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     public GameManager GameManager;
-
-    [SerializeField]
-    private GameObject PlayUI;
-
+    
     [SerializeField]
     private Image Player1Image;
     [SerializeField]
     private Image Player2Image;
     [SerializeField]
-    private Text Player1Name;
+    private TextMeshProUGUI Player1Name;
     [SerializeField]
-    private Text Player2Name;
+    private TextMeshProUGUI Player2Name;
 
     [SerializeField]
-    private Text Player1Purse;
+    private TextMeshProUGUI Player1Purse;
     [SerializeField]
-    private Text Player2Purse;
+    private TextMeshProUGUI Player2Purse;
 
     [SerializeField]
-    private Text Dice1Text;
+    private TextMeshProUGUI Dice1Text;
     [SerializeField]
-    private Text Dice2Text;
+    private TextMeshProUGUI Dice2Text;
     [SerializeField]
-    private Text Dice3Text;
+    private TextMeshProUGUI Dice3Text;
 
     [SerializeField]
-    private Text Bank1;
+    private TextMeshProUGUI Bank1;
     [SerializeField]
-    private Text Bank2;
+    private TextMeshProUGUI Bank2;
     [SerializeField]
-    private Text Bank3;
+    private TextMeshProUGUI Bank3;
     [SerializeField]
-    private Text Bank4;
+    private TextMeshProUGUI Bank4;
     [SerializeField]
-    private Text Bank5;
+    private TextMeshProUGUI Bank5;
 
     [SerializeField]
     private TextMeshProUGUI Winner;
@@ -117,6 +114,36 @@ public class UIManager : MonoBehaviour
             Winner.color = LooseColor;
     }
 
+    public void EnablePlayDiceButton(Player player, bool value)
+    {
+        PlayDiceButton.gameObject.SetActive(value);
+
+        if (value)
+            PlayDiceButton.onClick.AddListener(player.PlayDice);
+        else
+            PlayDiceButton.onClick.RemoveListener(player.PlayDice);
+    }
+
+    public void EnablePlayBonusDiceButton(Player player, bool value)
+    {
+        PlayBonusDiceButton.gameObject.SetActive(value);
+
+        if (value)
+            PlayBonusDiceButton.onClick.AddListener(player.PlayBonusDice);
+        else
+            PlayBonusDiceButton.onClick.RemoveListener(player.PlayBonusDice);
+    }
+
+    public void EnableEndTurnButton(Player player, bool value)
+    {
+        EndTurnButton.gameObject.SetActive(value);
+
+        if (value)
+            EndTurnButton.onClick.AddListener(player.EndTurn);
+        else
+            EndTurnButton.onClick.RemoveListener(player.EndTurn);
+    }
+    /*
     public void EnableInputUI(Player player)
     {
         PlayUI.SetActive(true);
@@ -134,4 +161,5 @@ public class UIManager : MonoBehaviour
         PlayBonusDiceButton.onClick.RemoveListener(player.PlayBonusDice);
         EndTurnButton.onClick.RemoveListener(player.EndTurn);
     }
+    */
 }
