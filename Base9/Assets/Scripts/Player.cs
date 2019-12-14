@@ -17,7 +17,12 @@ public abstract class Player : MonoBehaviour, IPunObservable
 
     public bool IsLocal
     {
-        get { return photonView.IsMine; }
+        get {
+            if (photonView != null)
+                return photonView.IsMine;
+            else
+                return true;
+        }
     }
 
     public Player()

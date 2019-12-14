@@ -96,11 +96,19 @@ public class GameManager : MonoBehaviour, IPunObservable
 
         if (players.Count == 2 && (photonView.IsMine || !PhotonNetwork.IsConnected))
         {
-            purses[0] = 15;
-            purses[1] = 15;
-
-            ActivePlayer.BeginTurn();
+            InitGame();
         }
+    }
+
+    public void InitGame()
+    {
+        purses[0] = 15;
+        purses[1] = 15;
+
+        banks = new int[5];
+        dices = new int[3];
+
+        ActivePlayer.BeginTurn();
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

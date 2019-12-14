@@ -143,23 +143,4 @@ public class UIManager : MonoBehaviour
         else
             EndTurnButton.onClick.RemoveListener(player.EndTurn);
     }
-    /*
-    public void EnableInputUI(Player player)
-    {
-        PlayUI.SetActive(true);
-        
-        PlayDiceButton.onClick.AddListener(player.PlayDice);
-        PlayBonusDiceButton.onClick.AddListener(player.PlayBonusDice);
-        EndTurnButton.onClick.AddListener(player.EndTurn);
-    }
-
-    public void DisableInputUI(Player player)
-    {
-        PlayUI.SetActive(false);
-
-        PlayDiceButton.onClick.RemoveListener(player.PlayDice);
-        PlayBonusDiceButton.onClick.RemoveListener(player.PlayBonusDice);
-        EndTurnButton.onClick.RemoveListener(player.EndTurn);
-    }
-    */
 }
