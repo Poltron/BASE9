@@ -64,6 +64,12 @@ public class GameManager : MonoBehaviour, IPunObservable
         return purses[number - 1];
     }
 
+    private bool bPhase2;
+    public bool IsPhase2()
+    {
+        return bPhase2;
+    }
+
     private PUNManager PUNManager;
     private PhotonView photonView;
     public UIManager UIManager;
@@ -102,8 +108,8 @@ public class GameManager : MonoBehaviour, IPunObservable
 
     public void InitGame()
     {
-        purses[0] = 15;
-        purses[1] = 15;
+        purses[0] = 70;
+        purses[1] = 70;
 
         banks = new int[5];
         dices = new int[3];
@@ -165,10 +171,10 @@ public class GameManager : MonoBehaviour, IPunObservable
         ActivePlayer.BeginTurn();
     }
     
-    public void ActivePlayerTurnEnded()
+    public void ComputeDices()
     {
         int diceSum = dices[0] + dices[1] + dices[2];
-        
+
         if (diceSum != 9) // pay coins
         {
             int toPay = Mathf.Abs(diceSum - 9);
@@ -186,7 +192,7 @@ public class GameManager : MonoBehaviour, IPunObservable
         }
         else // get coins
         {
-            foreach(var dice in dices)
+            foreach (var dice in dices)
             {
                 if (dice > 0 && dice < 6)
                 {
@@ -204,24 +210,64 @@ public class GameManager : MonoBehaviour, IPunObservable
         }
 
         dices = new int[3];
+    }
 
-        if (purses[activePlayer] <= 0)
+    public bool ComputeBanks()
+    {
+        foreach (var bank in banks)
         {
-            GameEnded(InactivePlayer, ActivePlayer);
-
-            if (PhotonNetwork.IsConnected && photonView.IsMine)
+            if (bPhase2)
             {
-                photonView.RPC("GameEnded", RpcTarget.Others, InactivePlayer, ActivePlayer);
+                if (bank != 0)
+                {
+                    return false;
+                }
             }
+            else
+            {
+                if (bank == 0)
+                {
+                    return false;
+                }
+            }
+        }
+        
+        if (bPhase2)
+        {
+            return true;
         }
         else
         {
-            StartCoroutine(WaitFor(2.0f, NextTurn));
+            bPhase2 = true;
+            return false;
         }
     }
 
+    public void ActivePlayerTurnEnded()
+    {
+        ComputeDices();
+        if (purses[activePlayer] <= 0)
+        {
+            EndGame(InactivePlayer, ActivePlayer);
+            return;
+        }
+
+        bool ended = ComputeBanks();
+        if (ended)
+        {
+            if (purses[0] > purses[1])
+                EndGame(Player1, Player2);
+            else
+                EndGame(Player2, Player1);
+
+            return;
+        }
+
+        StartCoroutine(WaitFor(2.0f, NextTurn));
+    }
+
     [PunRPC]
-    public void ThrowDice(int number)
+    public void RPC_ThrowDice(int number)
     {
         if (!PhotonNetwork.IsConnected || photonView.IsMine)
         {
@@ -233,8 +279,18 @@ public class GameManager : MonoBehaviour, IPunObservable
         }
     }
 
+    public void EndGame(Player winner, Player looser)
+    {
+        RPC_GameEnded(winner, looser);
+
+        if (PhotonNetwork.IsConnected && photonView.IsMine)
+        {
+            photonView.RPC("GameEnded", RpcTarget.Others, winner, looser);
+        }
+    }
+
     [PunRPC]
-    public void GameEnded(Player winner, Player looser)
+    public void RPC_GameEnded(Player winner, Player looser)
     {
         UIManager.SetWinnerLooser(winner, looser);
         GameEventMessage.SendEvent("GameEnded");

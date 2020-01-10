@@ -15,8 +15,8 @@ public class IA : Player
     public override void PlayDice()
     {
         Debug.Log("AI : Play dice");
-        gameManager.ThrowDice(1);
-        gameManager.ThrowDice(2);
+        gameManager.RPC_ThrowDice(1);
+        gameManager.RPC_ThrowDice(2);
 
         int d1 = gameManager.GetDice(1);
         int d2 = gameManager.GetDice(2);
@@ -35,7 +35,7 @@ public class IA : Player
     public override void PlayBonusDice()
     {
         Debug.Log("AI : Play bonus dice");
-        gameManager.ThrowDice(3);
+        gameManager.RPC_ThrowDice(3);
 
         StartCoroutine(WaitFor(1.0f, EndTurn));
     }

@@ -41,6 +41,9 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI Bank5;
 
     [SerializeField]
+    private TextMeshProUGUI PhaseText;
+
+    [SerializeField]
     private TextMeshProUGUI Winner;
     [SerializeField]
     private Color WinColor;
@@ -58,6 +61,8 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
+        PhaseText.text = GameManager.IsPhase2() ? "Phase 2" : "Phase 1";
+
         if (GameManager.ActivePlayerNumber == 1)
         {
             Player1Image.color = new Color(Player1Image.color.r, Player1Image.color.g, Player1Image.color.b, 1);

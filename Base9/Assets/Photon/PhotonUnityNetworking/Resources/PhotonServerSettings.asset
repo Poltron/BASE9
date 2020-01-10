@@ -34,9 +34,9 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
-  - ThrowDice
   - BeginTurn
   - EndTurn
-  - GameEnded
+  - RPC_GameEnded
+  - RPC_ThrowDice
   DisableAutoOpenWizard: 1
   ShowSettings: 1

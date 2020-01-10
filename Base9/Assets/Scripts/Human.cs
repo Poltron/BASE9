@@ -29,8 +29,8 @@ public class Human : Player
             gameManager.UIManager.EnablePlayBonusDiceButton(this, true);
             gameManager.UIManager.EnableEndTurnButton(this, true);
 
-            gameManager.ThrowDice(1);
-            gameManager.ThrowDice(2);
+            gameManager.RPC_ThrowDice(1);
+            gameManager.RPC_ThrowDice(2);
         }
     }
 
@@ -41,7 +41,7 @@ public class Human : Player
         {
             gameManager.UIManager.EnablePlayBonusDiceButton(this, false);
 
-            gameManager.ThrowDice(3);
+            gameManager.RPC_ThrowDice(3);
         }
     }
 
