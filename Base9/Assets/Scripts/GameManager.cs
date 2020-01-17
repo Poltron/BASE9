@@ -179,15 +179,21 @@ public class GameManager : MonoBehaviour, IPunObservable
         {
             int toPay = Mathf.Abs(diceSum - 9);
             purses[activePlayer] -= toPay;
+            
             if (toPay >= 1 && toPay <= 5)
             {
-                banks[toPay - 1] += toPay;
+                if (IsBankOpen(toPay - 1))
+                    banks[toPay - 1] += toPay;
             }
             else
             {
-                banks[4] += 5;
+                if (IsBankOpen(4))
+                    banks[4] += 5;
+
                 toPay -= 5;
-                banks[toPay - 1] += toPay;
+
+                if (IsBankOpen(toPay - 1))
+                    banks[toPay - 1] += toPay;
             }
         }
         else // get coins
@@ -210,6 +216,16 @@ public class GameManager : MonoBehaviour, IPunObservable
         }
 
         dices = new int[3];
+    }
+
+    private bool IsBankOpen(int BankIndex)
+    {
+        if (IsPhase2() && banks[BankIndex] == 0)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     public bool ComputeBanks()
