@@ -27,7 +27,7 @@ public abstract class Player : MonoBehaviour, IPunObservable
 
     public Player()
     {
-        playerName = "Remote Player";
+        playerName = "Opponent";
     }
 
     private void Awake()

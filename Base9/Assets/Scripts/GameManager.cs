@@ -82,15 +82,15 @@ public class GameManager : MonoBehaviour, IPunObservable
         if (PUNManager != null && PUNManager.bPlayingOnline)
         {
             GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity, 0);
-            player.GetComponent<Player>().Init("Local Player");
+            player.GetComponent<Player>().Init("You");
         }
         else // IF WE'RE PLAYING LOCAL VS AI
         {
             GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-            player.GetComponent<Player>().Init("Human Player");
+            player.GetComponent<Player>().Init("You");
 
             player = Instantiate(aiPrefab, Vector3.zero, Quaternion.identity);
-            player.GetComponent<Player>().Init("Computer Player");
+            player.GetComponent<Player>().Init("Computer");
         }
     }
 

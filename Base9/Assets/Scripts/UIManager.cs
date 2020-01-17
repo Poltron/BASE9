@@ -50,15 +50,15 @@ public class UIManager : MonoBehaviour
     private Sprite Dice6Sprite;
 
     [SerializeField]
-    private TextMeshProUGUI Bank1;
+    private TextMeshPro Bank1;
     [SerializeField]
-    private TextMeshProUGUI Bank2;
+    private TextMeshPro Bank2;
     [SerializeField]
-    private TextMeshProUGUI Bank3;
+    private TextMeshPro Bank3;
     [SerializeField]
-    private TextMeshProUGUI Bank4;
+    private TextMeshPro Bank4;
     [SerializeField]
-    private TextMeshProUGUI Bank5;
+    private TextMeshPro Bank5;
 
     [SerializeField]
     private TextMeshProUGUI PhaseText;
