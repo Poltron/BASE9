@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour, IPunObservable
         banks = new int[5];
         dices = new int[3];
 
-        ActivePlayer.BeginTurn();
+        StartCoroutine(WaitFor(2.0f, ActivePlayer.BeginTurn));
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -168,13 +168,14 @@ public class GameManager : MonoBehaviour, IPunObservable
             activePlayer = 0;
         }
 
+        UIManager.DisableOperation();
+
         ActivePlayer.BeginTurn();
     }
     
     public void ComputeDices()
     {
         int diceSum = dices[0] + dices[1] + dices[2];
-
         if (diceSum != 9) // pay coins
         {
             int toPay = Mathf.Abs(diceSum - 9);
@@ -216,6 +217,8 @@ public class GameManager : MonoBehaviour, IPunObservable
         }
 
         dices = new int[3];
+
+        UIManager.EnableOperation(diceSum);
     }
 
     private bool IsBankOpen(int BankIndex)
