@@ -18536,6 +18536,7 @@ GameObject:
   - component: {fileID: 957632434}
   - component: {fileID: 957632433}
   - component: {fileID: 957632435}
+  - component: {fileID: 957632436}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -18630,6 +18631,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UsePipelineSettings: 1
+--- !u!95 &957632436
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957632432}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cb2c8b87c62c9e746bc8c2ae13173b39, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &966125395
 GameObject:
   m_ObjectHideFlags: 0
@@ -33711,7 +33731,7 @@ PrefabInstance:
     - target: {fileID: 5153506799886622900, guid: c9aaba3a9195d454b8403dd7c5fa2923,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5153506799886622903, guid: c9aaba3a9195d454b8403dd7c5fa2923,
         type: 3}
