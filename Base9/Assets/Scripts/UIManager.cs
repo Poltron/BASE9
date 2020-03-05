@@ -11,43 +11,20 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Image Player1Image;
     [SerializeField]
-    private Image Player2Image;
-    [SerializeField]
     private TextMeshProUGUI Player1Name;
-    [SerializeField]
-    private TextMeshProUGUI Player2Name;
-
     [SerializeField]
     private TextMeshProUGUI Player1Purse;
     [SerializeField]
+    private GameObject Player1Light;
+
+    [SerializeField]
     private TextMeshProUGUI Player2Purse;
-
     [SerializeField]
-    private TextMeshProUGUI Dice1Text;
+    private Image Player2Image;
     [SerializeField]
-    private TextMeshProUGUI Dice2Text;
+    private TextMeshProUGUI Player2Name;
     [SerializeField]
-    private TextMeshProUGUI Dice3Text;
-
-    [SerializeField]
-    private Image Dice1Image;
-    [SerializeField]
-    private Image Dice2Image;
-    [SerializeField]
-    private Image Dice3Image;
-
-    [SerializeField]
-    private Sprite Dice1Sprite;
-    [SerializeField]
-    private Sprite Dice2Sprite;
-    [SerializeField]
-    private Sprite Dice3Sprite;
-    [SerializeField]
-    private Sprite Dice4Sprite;
-    [SerializeField]
-    private Sprite Dice5Sprite;
-    [SerializeField]
-    private Sprite Dice6Sprite;
+    private GameObject Player2Light;
 
     [SerializeField]
     private TextMeshPro Bank1;
@@ -60,6 +37,34 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TextMeshPro Bank5;
 
+    /*[SerializeField]
+    private RectTransform Dice1Position;
+    [SerializeField]
+    private RectTransform Dice2Position;*/
+
+    [SerializeField]
+    private GameObject Operation;
+    [SerializeField]
+    private TextMeshProUGUI DiceTotal;
+    [SerializeField]
+    private TextMeshProUGUI OperationTotal;
+
+    [SerializeField]
+    private TextMeshProUGUI Dice1Text;
+    [SerializeField]
+    private TextMeshProUGUI Dice2Text;
+    [SerializeField]
+    private TextMeshProUGUI Dice3Text;
+
+    [SerializeField]
+    private Transform Dice1;
+    [SerializeField]
+    private Transform Dice2;
+    [SerializeField]
+    private Transform Dice3;
+    [SerializeField]
+    private Transform EndTurn;
+
     [SerializeField]
     private TextMeshProUGUI PhaseText;
 
@@ -69,10 +74,6 @@ public class UIManager : MonoBehaviour
     private Color WinColor;
     [SerializeField]
     private Color LooseColor;
-
-    public Button PlayDiceButton;
-    public Button PlayBonusDiceButton;
-    public Button EndTurnButton;
 
     void Start()
     {
@@ -85,68 +86,107 @@ public class UIManager : MonoBehaviour
 
         if (GameManager.ActivePlayerNumber == 1)
         {
+            Player1Light.SetActive(true);
+            Player2Light.SetActive(false);
             Player1Image.color = new Color(Player1Image.color.r, Player1Image.color.g, Player1Image.color.b, 1);
             Player2Image.color = new Color(Player2Image.color.r, Player2Image.color.g, Player2Image.color.b, 0);
         }
         else
         {
+            Player1Light.SetActive(false);
+            Player2Light.SetActive(true);
             Player1Image.color = new Color(Player1Image.color.r, Player1Image.color.g, Player1Image.color.b, 0);
             Player2Image.color = new Color(Player2Image.color.r, Player2Image.color.g, Player2Image.color.b, 1);
         }
-
-        if (GameManager.Player1 != null)
-            Player1Name.text = GameManager.Player1.PlayerName;
-        if (GameManager.Player2 != null)
-            Player2Name.text = GameManager.Player2.PlayerName;
 
         if (GameManager.Player1 != null)
             Player1Purse.text = GameManager.GetPurse(1).ToString();
         if (GameManager.Player2 != null)
             Player2Purse.text = GameManager.GetPurse(2).ToString();
 
-        Bank1.text = ShowBankText(1);
-        Bank2.text = ShowBankText(2);
-        Bank3.text = ShowBankText(3);
-        Bank4.text = ShowBankText(4);
-        Bank5.text = ShowBankText(5);
+        TemporaryUI();
+    }
 
-        int dice = GameManager.GetDice(1);
-        if (dice != 0)
+    public void TemporaryUI()
+    {
+        if (GameManager.GetDice(1) != 0)
         {
-            Dice1Image.gameObject.SetActive(true);
             Dice1Text.text = GameManager.GetDice(1).ToString();
-            Dice1Image.sprite = ShowDiceSprite(dice);
+            Dice1Text.gameObject.SetActive(true);
         }
         else
         {
-            Dice1Image.gameObject.SetActive(false);
-            Dice1Text.text = "";
+            Dice1Text.gameObject.SetActive(false);
         }
 
-        dice = GameManager.GetDice(2);
-        if (dice != 0)
+        if (GameManager.GetDice(2) != 0)
         {
-            Dice2Image.gameObject.SetActive(true);
             Dice2Text.text = GameManager.GetDice(2).ToString();
-            Dice2Image.sprite = ShowDiceSprite(dice);
+            Dice2Text.gameObject.SetActive(true);
         }
         else
         {
-            Dice2Image.gameObject.SetActive(false);
-            Dice2Text.text = "";
+            Dice2Text.gameObject.SetActive(false);
         }
 
-        dice = GameManager.GetDice(3);
-        if (dice != 0)
+        if (GameManager.GetDice(3) != 0)
         {
-            Dice3Image.gameObject.SetActive(true);
             Dice3Text.text = GameManager.GetDice(3).ToString();
-            Dice3Image.sprite = ShowDiceSprite(dice);
+            Dice3Text.gameObject.SetActive(true);
         }
         else
         {
-            Dice3Image.gameObject.SetActive(false);
-            Dice3Text.text = "";
+            Dice3Text.gameObject.SetActive(false);
+        }
+
+        if (GameManager.GetBank(1) != 0)
+        {
+            Bank1.text = ShowBankText(1);
+            Bank1.gameObject.SetActive(true);
+        }
+        else
+        {
+            Bank1.gameObject.SetActive(false);
+        }
+
+        if (GameManager.GetBank(2) != 0)
+        {
+            Bank2.text = ShowBankText(2);
+            Bank2.gameObject.SetActive(true);
+        }
+        else
+        {
+            Bank2.gameObject.SetActive(false);
+        }
+
+        if (GameManager.GetBank(3) != 0)
+        {
+            Bank3.text = ShowBankText(3);
+            Bank3.gameObject.SetActive(true);
+        }
+        else
+        {
+            Bank3.gameObject.SetActive(false);
+        }
+
+        if (GameManager.GetBank(4) != 0)
+        {
+            Bank4.text = ShowBankText(4);
+            Bank4.gameObject.SetActive(true);
+        }
+        else
+        {
+            Bank4.gameObject.SetActive(false);
+        }
+
+        if (GameManager.GetBank(5) != 0)
+        {
+            Bank5.text = ShowBankText(5);
+            Bank5.gameObject.SetActive(true);
+        }
+        else
+        {
+            Bank5.gameObject.SetActive(false);
         }
     }
 
@@ -160,34 +200,41 @@ public class UIManager : MonoBehaviour
             Winner.color = LooseColor;
     }
 
-    public void EnablePlayDiceButton(Player player, bool value)
+    public void EnableDice(Player player)
     {
-        PlayDiceButton.gameObject.SetActive(value);
-
-        if (value)
-            PlayDiceButton.onClick.AddListener(player.PlayDice);
-        else
-            PlayDiceButton.onClick.RemoveListener(player.PlayDice);
+        //Camera.main.ScreenToWorldPoint(,);
+        Dice1.gameObject.SetActive(true);
+        Dice2.gameObject.SetActive(true);
     }
 
-    public void EnablePlayBonusDiceButton(Player player, bool value)
+    public void EnablePlayBonusDiceButton(Player player)
     {
-        PlayBonusDiceButton.gameObject.SetActive(value);
-
-        if (value)
-            PlayBonusDiceButton.onClick.AddListener(player.PlayBonusDice);
-        else
-            PlayBonusDiceButton.onClick.RemoveListener(player.PlayBonusDice);
+        Dice3.gameObject.SetActive(true);
+    }
+    public void DisablePlayBonusDiceButton(Player player)
+    {
+        Dice3.gameObject.SetActive(false);
     }
 
-    public void EnableEndTurnButton(Player player, bool value)
+    public void EnableEndTurnButton(Player player)
     {
-        EndTurnButton.gameObject.SetActive(value);
+        EndTurn.gameObject.SetActive(true);
+    }
+    public void DisableEndTurnButton(Player player)
+    {
+        EndTurn.gameObject.SetActive(false);
+    }
 
-        if (value)
-            EndTurnButton.onClick.AddListener(player.EndTurn);
-        else
-            EndTurnButton.onClick.RemoveListener(player.EndTurn);
+    public void EnableOperation(int diceTotal)
+    {
+        Operation.SetActive(true);
+
+        DiceTotal.text = diceTotal.ToString();
+        OperationTotal.text = Mathf.Abs(diceTotal - 9).ToString();
+    }
+    public void DisableOperation()
+    {
+        Operation.SetActive(false);
     }
 
     private string ShowBankText(int BankIndex)
@@ -201,26 +248,5 @@ public class UIManager : MonoBehaviour
         }
 
         return GameManager.GetBank(BankIndex).ToString();
-    }
-
-    private Sprite ShowDiceSprite(int diceNumber)
-    {
-        switch(diceNumber)
-        {
-            case 1:
-                return Dice1Sprite;
-            case 2:
-                return Dice2Sprite;
-            case 3:
-                return Dice3Sprite;
-            case 4:
-                return Dice4Sprite;
-            case 5:
-                return Dice5Sprite;
-            case 6:
-                return Dice6Sprite;
-            default:
-                return null;
-        }
     }
 }
