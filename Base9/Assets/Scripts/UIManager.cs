@@ -249,4 +249,14 @@ public class UIManager : MonoBehaviour
 
         return GameManager.GetBank(BankIndex).ToString();
     }
+
+    private void ShowEndTurn()
+    {
+
+    }
+
+    private void ShowStartTurn()
+    {
+
+    }
 }
