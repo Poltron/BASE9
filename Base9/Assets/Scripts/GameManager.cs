@@ -15,6 +15,20 @@ public class GameManager : MonoBehaviour, IPunObservable
     private GameObject playerPrefab;
     [SerializeField]
     private GameObject aiPrefab;
+    [SerializeField]
+    private GameObject coinPrefab;
+
+    [SerializeField]
+    private int nbOfCoin;
+    [SerializeField]
+    private Transform purse0CoinSpawn;
+    [SerializeField]
+    private Transform purse1CoinSpawn;
+
+    [SerializeField]
+    private List<Transform> purse0Coins;
+    [SerializeField]
+    private List<Transform> purse1Coins;
 
     private List<Player> players = new List<Player>();
     public Player Player1
@@ -108,12 +122,36 @@ public class GameManager : MonoBehaviour, IPunObservable
 
     public void InitGame()
     {
-        purses[0] = 70;
-        purses[1] = 70;
-
         banks = new int[5];
         dices = new int[3];
 
+        StartCoroutine(SpawnCoins());
+    }
+
+    IEnumerator SpawnCoins()
+    {
+        yield return new WaitForSeconds(1.0f);
+
+        int i = 0;
+        while ( i < nbOfCoin)
+        {
+            for (int j = 0; j < 2; ++j)
+            {
+                GameObject coin = Instantiate(coinPrefab, purse0CoinSpawn.transform.position + UnityEngine.Random.insideUnitSphere * 2.75f, Quaternion.identity, purse0CoinSpawn);
+                purse0Coins.Add(coin.transform);
+                GameObject coin2 = Instantiate(coinPrefab, purse1CoinSpawn.transform.position + UnityEngine.Random.insideUnitSphere * 2.75f, Quaternion.identity, purse1CoinSpawn);
+                purse1Coins.Add(coin2.transform);
+                i++;
+            }
+            purses[0] = i;
+            purses[1] = i;
+            Debug.Log(i);
+
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        yield return new WaitForSeconds(2.0f);
+        
         StartCoroutine(WaitFor(2.0f, ActivePlayer.BeginTurn));
     }
 

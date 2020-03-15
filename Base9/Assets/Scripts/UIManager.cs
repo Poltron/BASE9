@@ -192,7 +192,7 @@ public class UIManager : MonoBehaviour
 
     public void SetWinnerLooser(Player playerWinner, Player playerLooser)
     {
-        Winner.text = playerWinner.PlayerName + "wins";
+        Winner.text = playerWinner.PlayerName + " wins";
 
         if (playerWinner.IsLocal)
             Winner.color = WinColor;
