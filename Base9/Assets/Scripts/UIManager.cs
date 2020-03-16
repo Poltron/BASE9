@@ -7,24 +7,20 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     public GameManager GameManager;
-    
-    [SerializeField]
-    private Image Player1Image;
-    [SerializeField]
-    private TextMeshProUGUI Player1Name;
-    [SerializeField]
-    private TextMeshProUGUI Player1Purse;
-    [SerializeField]
-    private GameObject Player1Light;
 
     [SerializeField]
-    private TextMeshProUGUI Player2Purse;
+    private TextMeshPro Player1Purse;
     [SerializeField]
-    private Image Player2Image;
+    private TextMeshPro Player1Name;
     [SerializeField]
-    private TextMeshProUGUI Player2Name;
+    private Animator Player1Light;
+
     [SerializeField]
-    private GameObject Player2Light;
+    private TextMeshPro Player2Purse;
+    [SerializeField]
+    private TextMeshPro Player2Name;
+    [SerializeField]
+    private Animator Player2Light;
 
     [SerializeField]
     private TextMeshPro Bank1;
@@ -37,24 +33,31 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TextMeshPro Bank5;
 
-    /*[SerializeField]
-    private RectTransform Dice1Position;
     [SerializeField]
-    private RectTransform Dice2Position;*/
+    private GameObject OperationLeft;
+    [SerializeField]
+    private TextMeshProUGUI DiceTotalLeft;
+    [SerializeField]
+    private TextMeshProUGUI OperationTotalLeft;
 
     [SerializeField]
-    private GameObject Operation;
+    private GameObject OperationRight;
     [SerializeField]
-    private TextMeshProUGUI DiceTotal;
+    private TextMeshProUGUI DiceTotalRight;
     [SerializeField]
-    private TextMeshProUGUI OperationTotal;
+    private TextMeshProUGUI OperationTotalRight;
 
     [SerializeField]
-    private TextMeshProUGUI Dice1Text;
+    private Animator LeftSidePanel;
     [SerializeField]
-    private TextMeshProUGUI Dice2Text;
+    private Animator RightSidePanel;
+
     [SerializeField]
-    private TextMeshProUGUI Dice3Text;
+    private TextMeshPro Dice1Text;
+    [SerializeField]
+    private TextMeshPro Dice2Text;
+    [SerializeField]
+    private TextMeshPro Dice3Text;
 
     [SerializeField]
     private Transform Dice1;
@@ -84,7 +87,8 @@ public class UIManager : MonoBehaviour
     {
         PhaseText.text = GameManager.IsPhase2() ? "Phase 2" : "Phase 1";
 
-        if (GameManager.ActivePlayerNumber == 1)
+        /*
+        if (GameManager.ActivePlayerNumber == 0)
         {
             Player1Light.SetActive(true);
             Player2Light.SetActive(false);
@@ -98,6 +102,7 @@ public class UIManager : MonoBehaviour
             Player1Image.color = new Color(Player1Image.color.r, Player1Image.color.g, Player1Image.color.b, 0);
             Player2Image.color = new Color(Player2Image.color.r, Player2Image.color.g, Player2Image.color.b, 1);
         }
+        */
 
         if (GameManager.Player1 != null)
             Player1Purse.text = GameManager.GetPurse(1).ToString();
@@ -227,14 +232,80 @@ public class UIManager : MonoBehaviour
 
     public void EnableOperation(int diceTotal)
     {
-        Operation.SetActive(true);
+        if (GameManager.ActivePlayerNumber == 0)
+        {
+            OperationLeft.SetActive(true);
 
-        DiceTotal.text = diceTotal.ToString();
-        OperationTotal.text = Mathf.Abs(diceTotal - 9).ToString();
+            DiceTotalLeft.text = diceTotal.ToString();
+            OperationTotalLeft.text = Mathf.Abs(diceTotal - 9).ToString();
+        }
+        else
+        {
+            OperationRight.SetActive(true);
+
+            DiceTotalRight.text = diceTotal.ToString();
+            OperationTotalRight.text = Mathf.Abs(diceTotal - 9).ToString();
+        }
     }
+
     public void DisableOperation()
     {
-        Operation.SetActive(false);
+        if (GameManager.ActivePlayerNumber == 0)
+        {
+            OperationLeft.SetActive(false);
+        }
+        else
+        {
+            OperationRight.SetActive(false);
+        }
+    }
+
+    private void ShowSidePanel()
+    {
+        if (GameManager.ActivePlayerNumber == 0)
+        {
+            LeftSidePanel.SetBool("Enabled", true);
+        }
+        else
+        {
+            RightSidePanel.SetBool("Enabled", true);
+        }
+    }
+
+    private void HideSidePanel()
+    {
+        if (GameManager.ActivePlayerNumber == 0)
+        {
+            LeftSidePanel.SetBool("Enabled", false);
+        }
+        else
+        {
+            RightSidePanel.SetBool("Enabled", false);
+        }
+    }
+
+    public void ShowLight()
+    {
+        if (GameManager.ActivePlayerNumber == 0)
+        {
+            Player1Light.SetBool("Enabled", true);
+        }
+        else
+        {
+            Player2Light.SetBool("Enabled", true);
+        }
+    }
+
+    public void HideLight()
+    {
+        if (GameManager.ActivePlayerNumber == 0)
+        {
+            Player1Light.SetBool("Enabled", false);
+        }
+        else
+        {
+            Player2Light.SetBool("Enabled", false);
+        }
     }
 
     private string ShowBankText(int BankIndex)
@@ -250,13 +321,16 @@ public class UIManager : MonoBehaviour
         return GameManager.GetBank(BankIndex).ToString();
     }
 
-    private void ShowEndTurn()
+    public void ShowEndTurn()
     {
-
+        DisableOperation();
+        HideSidePanel();
+        HideLight();
     }
 
-    private void ShowStartTurn()
+    public void ShowStartTurn()
     {
-
+        ShowLight();
+        ShowSidePanel();
     }
 }

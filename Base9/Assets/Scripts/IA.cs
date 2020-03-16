@@ -14,6 +14,11 @@ public class IA : Player
 
     public override void PlayDice()
     {
+        StartCoroutine(WaitFor(1.0f, FirstPlay));
+    }
+
+    private void FirstPlay()
+    {
         Debug.Log("AI : Play dice");
         gameManager.RPC_ThrowDice(1);
         gameManager.RPC_ThrowDice(2);

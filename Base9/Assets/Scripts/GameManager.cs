@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour, IPunObservable
     private int activePlayer;
     public int ActivePlayerNumber
     {
-        get { return activePlayer + 1; }
+        get { return activePlayer; }
     }
     public Player ActivePlayer
     {
@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour, IPunObservable
         int i = 0;
         while ( i < nbOfCoin)
         {
-            for (int j = 0; j < 2; ++j)
+            for (int j = 0; j < 5; ++j)
             {
                 GameObject coin = Instantiate(coinPrefab, purse0CoinSpawn.transform.position + UnityEngine.Random.insideUnitSphere * 2.75f, Quaternion.identity, purse0CoinSpawn);
                 purse0Coins.Add(coin.transform);
@@ -151,8 +151,9 @@ public class GameManager : MonoBehaviour, IPunObservable
         }
 
         yield return new WaitForSeconds(2.0f);
-        
-        StartCoroutine(WaitFor(2.0f, ActivePlayer.BeginTurn));
+
+        UIManager.ShowStartTurn();
+        ActivePlayer.BeginTurn();
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -197,6 +198,8 @@ public class GameManager : MonoBehaviour, IPunObservable
 
     public void NextTurn()
     {
+        UIManager.ShowEndTurn();
+
         if (activePlayer == 0)
         {
             activePlayer = 1;
@@ -206,9 +209,8 @@ public class GameManager : MonoBehaviour, IPunObservable
             activePlayer = 0;
         }
 
-        UIManager.DisableOperation();
-
         ActivePlayer.BeginTurn();
+        UIManager.ShowStartTurn();
     }
     
     public void ComputeDices()
