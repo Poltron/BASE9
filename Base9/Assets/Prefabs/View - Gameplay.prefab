@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4603352444071311720}
   - component: {fileID: 4603352444071311727}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Phase_TXT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3967,7 +3967,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 39.15
+  m_fontSize: 37.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4677,7 +4677,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.8366455, y: 0.21182352}
   m_AnchorMax: {x: 1.1456455, y: 0.89435303}
-  m_AnchoredPosition: {x: 260, y: -2.0000076}
+  m_AnchoredPosition: {x: 260, y: -2}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4603352445134008100
@@ -5390,7 +5390,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 38.8
+  m_fontSize: 37.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

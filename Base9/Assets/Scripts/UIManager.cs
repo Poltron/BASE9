@@ -33,24 +33,15 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TextMeshPro Bank5;
 
-    [SerializeField]
-    private GameObject OperationLeft;
-    [SerializeField]
-    private TextMeshProUGUI DiceTotalLeft;
-    [SerializeField]
-    private TextMeshProUGUI OperationTotalLeft;
-
-    [SerializeField]
-    private GameObject OperationRight;
-    [SerializeField]
-    private TextMeshProUGUI DiceTotalRight;
-    [SerializeField]
-    private TextMeshProUGUI OperationTotalRight;
 
     [SerializeField]
     private Animator LeftSidePanel;
     [SerializeField]
+    private TextMeshProUGUI OperationLeft;
+    [SerializeField]
     private Animator RightSidePanel;
+    [SerializeField]
+    private TextMeshProUGUI OperationRight;
 
     [SerializeField]
     private TextMeshPro Dice1Text;
@@ -234,17 +225,17 @@ public class UIManager : MonoBehaviour
     {
         if (GameManager.ActivePlayerNumber == 0)
         {
-            OperationLeft.SetActive(true);
+            OperationLeft.gameObject.SetActive(true);
 
-            DiceTotalLeft.text = diceTotal.ToString();
-            OperationTotalLeft.text = Mathf.Abs(diceTotal - 9).ToString();
+            //DiceTotalLeft.text = diceTotal.ToString();
+            //OperationTotalLeft.text = Mathf.Abs(diceTotal - 9).ToString();
         }
         else
         {
-            OperationRight.SetActive(true);
+            OperationRight.gameObject.SetActive(true);
 
-            DiceTotalRight.text = diceTotal.ToString();
-            OperationTotalRight.text = Mathf.Abs(diceTotal - 9).ToString();
+            //DiceTotalRight.text = diceTotal.ToString();
+            //OperationTotalRight.text = Mathf.Abs(diceTotal - 9).ToString();
         }
     }
 
@@ -252,11 +243,11 @@ public class UIManager : MonoBehaviour
     {
         if (GameManager.ActivePlayerNumber == 0)
         {
-            OperationLeft.SetActive(false);
+            OperationLeft.gameObject.SetActive(false);
         }
         else
         {
-            OperationRight.SetActive(false);
+            OperationRight.gameObject.SetActive(false);
         }
     }
 
