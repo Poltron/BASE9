@@ -11,20 +11,31 @@ using Doozy.Engine;
 
 public class GameManager : MonoBehaviour, IPunObservable
 {
+    [Header("Players")]
     [SerializeField]
     private GameObject playerPrefab;
     [SerializeField]
     private GameObject aiPrefab;
-    [SerializeField]
-    private GameObject coinPrefab;
 
+    [Header("Dice")]
+    [SerializeField]
+    private GameObject dicePrefab;
+    private Dice dice1;
+    private Dice dice2;
+    private Dice dice3;
+    
+
+    [Header("Coins")]
     [SerializeField]
     private int nbOfCoin;
+    [Space]
+    [SerializeField]
+    private GameObject coinPrefab;
     [SerializeField]
     private Transform purse0CoinSpawn;
     [SerializeField]
     private Transform purse1CoinSpawn;
-
+    [Space]
     [SerializeField]
     private List<Transform> purse0Coins;
     [SerializeField]
@@ -86,7 +97,13 @@ public class GameManager : MonoBehaviour, IPunObservable
 
     private PUNManager PUNManager;
     private PhotonView photonView;
-    public UIManager UIManager;
+    private UIManager uiManager;
+    public UIManager UIManager { get { return uiManager; } }
+
+    void Awake()
+    {
+        uiManager = GetComponent<UIManager>();
+    }
 
     void Start()
     {

@@ -61,7 +61,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9089978459314061201
 Transform:
   m_ObjectHideFlags: 0
@@ -105,11 +105,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9089978459314061201}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 9fce32ee04379b044841af5ca7f1e01c,
-        type: 3}
-      propertyPath: m_Name
-      value: FBX_PlaneVFX (1)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9fce32ee04379b044841af5ca7f1e01c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -190,6 +185,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7aac8de616e3583409ea85e2b155bc8f, type: 2}
+    - target: {fileID: -927199367670048503, guid: 9fce32ee04379b044841af5ca7f1e01c,
+        type: 3}
+      propertyPath: m_Name
+      value: FBX_PlaneVFX (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fce32ee04379b044841af5ca7f1e01c, type: 3}
 --- !u!4 &8074913003245344958 stripped
@@ -205,11 +205,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9089978459314061201}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 9fce32ee04379b044841af5ca7f1e01c,
-        type: 3}
-      propertyPath: m_Name
-      value: FBX_PlaneVFX
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9fce32ee04379b044841af5ca7f1e01c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -290,6 +285,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 620c1179d22c9c24e876e631fee2133f, type: 2}
+    - target: {fileID: -927199367670048503, guid: 9fce32ee04379b044841af5ca7f1e01c,
+        type: 3}
+      propertyPath: m_Name
+      value: FBX_PlaneVFX
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fce32ee04379b044841af5ca7f1e01c, type: 3}
 --- !u!4 &971737844216594172 stripped
@@ -305,11 +305,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9089978457260489275}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: fa1bfcd122db99b4aa2ee2b12893242f,
-        type: 3}
-      propertyPath: m_Name
-      value: "FBX_D\xE9 (1)"
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: fa1bfcd122db99b4aa2ee2b12893242f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -390,6 +385,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f7f354185b05fca4596abc7bae84e8a0, type: 2}
+    - target: {fileID: -927199367670048503, guid: fa1bfcd122db99b4aa2ee2b12893242f,
+        type: 3}
+      propertyPath: m_Name
+      value: "FBX_D\xE9 (1)"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa1bfcd122db99b4aa2ee2b12893242f, type: 3}
 --- !u!4 &4277474004037865645 stripped
@@ -405,16 +405,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9089978457260489275}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: fa1bfcd122db99b4aa2ee2b12893242f,
-        type: 3}
-      propertyPath: m_Name
-      value: "FBX_D\xE9"
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: fa1bfcd122db99b4aa2ee2b12893242f,
-        type: 3}
-      propertyPath: m_TagString
-      value: Dice3
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: fa1bfcd122db99b4aa2ee2b12893242f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -495,6 +485,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 096de853e5afb374abe4b046630ec146, type: 2}
+    - target: {fileID: -927199367670048503, guid: fa1bfcd122db99b4aa2ee2b12893242f,
+        type: 3}
+      propertyPath: m_Name
+      value: "FBX_D\xE9"
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: fa1bfcd122db99b4aa2ee2b12893242f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Dice3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa1bfcd122db99b4aa2ee2b12893242f, type: 3}
 --- !u!1 &938994102143969205 stripped
