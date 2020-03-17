@@ -9,11 +9,6 @@ public class IA : Player
     public override void BeginTurn()
     {
         Debug.Log("AI : Begin turn");
-        PlayDice();
-    }
-
-    public override void PlayDice()
-    {
         StartCoroutine(WaitFor(1.0f, FirstPlay));
     }
 
@@ -22,14 +17,17 @@ public class IA : Player
         Debug.Log("AI : Play dice");
         gameManager.RPC_ThrowDice(1);
         gameManager.RPC_ThrowDice(2);
+    }
 
+    public override void TwoDicePlayed()
+    {
         int d1 = gameManager.GetDice(1);
         int d2 = gameManager.GetDice(2);
         int sum = d1 + d2;
 
         if (sum < 8)
         {
-            StartCoroutine(WaitFor(1.0f, PlayBonusDice));
+            StartCoroutine(WaitFor(1.0f, SecondPlay));
         }
         else
         {
@@ -37,11 +35,13 @@ public class IA : Player
         }
     }
 
-    public override void PlayBonusDice()
+    private void SecondPlay()
     {
-        Debug.Log("AI : Play bonus dice");
         gameManager.RPC_ThrowDice(3);
+    }
 
+    public override void ThirdDicePlayed()
+    {
         StartCoroutine(WaitFor(1.0f, EndTurn));
     }
 

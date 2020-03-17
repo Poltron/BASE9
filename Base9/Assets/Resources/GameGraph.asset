@@ -155,7 +155,7 @@ MonoBehaviour:
   m_version: 1
   m_description: 
   m_id: 3f858155-add2-4cd8-a6ce-40bd4b051b5a
-  m_lastModified: 132287618983443197
+  m_lastModified: 132289573273762626
 --- !u!114 &669556782597201455
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -253,8 +253,8 @@ MonoBehaviour:
   m_useUpdate: 0
   m_height: 152
   m_width: 216
-  m_x: 432
-  m_y: 132
+  m_x: 576
+  m_y: 108
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: 3f858155-add2-4cd8-a6ce-40bd4b051b5a
@@ -265,7 +265,10 @@ MonoBehaviour:
   - Category: Game
     InstantAction: 0
     Name: End
-  m_onEnterHideViews: []
+  m_onEnterHideViews:
+  - Category: Game
+    InstantAction: 0
+    Name: Gameplay
   m_onExitShowViews: []
   m_onExitHideViews:
   - Category: Game
@@ -367,6 +370,86 @@ MonoBehaviour:
   - Category: Game
     InstantAction: 0
     Name: Pause
+--- !u!114 &2460949021776228223
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea82279f292f4f6ebe47212017fa5f89, type: 3}
+  m_Name: LoadSceneNode
+  m_EditorClassIdentifier: 
+  ErrorNodeNameIsEmpty: 0
+  ErrorDuplicateNameFoundInGraph: 0
+  m_inputSockets:
+  - m_connectionMode: 1
+    m_connections: []
+    m_connectionPoints:
+    - {x: -2, y: 4}
+    - {x: 202, y: 4}
+    m_direction: 0
+    m_canBeDeleted: 0
+    m_canBeReordered: 0
+    m_curveModifier: 0
+    m_height: 24
+    m_width: 216
+    m_x: 0
+    m_y: 38
+    m_id: eb9870d7-d3f7-4a52-aff1-8fcce1e6da6b
+    m_nodeId: ae235a85-dcc3-468f-89db-d15b8c1d09e0
+    m_socketName: InputSocket_0
+    m_value: '{}'
+    m_valueTypeQualifiedName: Doozy.Engine.Nody.Connections.PassthroughConnection,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_outputSockets:
+  - m_connectionMode: 0
+    m_connections: []
+    m_connectionPoints:
+    - {x: -2, y: 4}
+    - {x: 202, y: 4}
+    m_direction: 1
+    m_canBeDeleted: 0
+    m_canBeReordered: 0
+    m_curveModifier: 0
+    m_height: 24
+    m_width: 216
+    m_x: 0
+    m_y: 62
+    m_id: 5531e84e-c792-4699-8562-7a5c7c9cb8d5
+    m_nodeId: ae235a85-dcc3-468f-89db-d15b8c1d09e0
+    m_socketName: OutputSocket_0
+    m_value: '{}'
+    m_valueTypeQualifiedName: Doozy.Engine.Nody.Connections.PassthroughConnection,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_nodeType: 4
+  m_allowDuplicateNodeName: 0
+  m_allowEmptyNodeName: 0
+  m_canBeDeleted: 1
+  m_debugMode: 0
+  m_useFixedUpdate: 0
+  m_useLateUpdate: 0
+  m_useUpdate: 0
+  m_height: 184
+  m_width: 216
+  m_x: 840
+  m_y: 156
+  m_minimumInputSocketsCount: 1
+  m_minimumOutputSocketsCount: 1
+  m_graphId: 3f858155-add2-4cd8-a6ce-40bd4b051b5a
+  m_id: ae235a85-dcc3-468f-89db-d15b8c1d09e0
+  m_name: Load Scene
+  m_notes: 
+  ErrorNoSceneName: 1
+  ErrorBadBuildIndex: 0
+  GetSceneBy: 0
+  LoadSceneMode: 0
+  AllowSceneActivation: 1
+  SceneActivationDelay: 0.2
+  SceneBuildIndex: 0
+  SceneName: 
 --- !u!114 &5947235747857791104
 MonoBehaviour:
   m_ObjectHideFlags: 1

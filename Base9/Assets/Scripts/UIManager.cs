@@ -78,23 +78,6 @@ public class UIManager : MonoBehaviour
     {
         PhaseText.text = GameManager.IsPhase2() ? "Phase 2" : "Phase 1";
 
-        /*
-        if (GameManager.ActivePlayerNumber == 0)
-        {
-            Player1Light.SetActive(true);
-            Player2Light.SetActive(false);
-            Player1Image.color = new Color(Player1Image.color.r, Player1Image.color.g, Player1Image.color.b, 1);
-            Player2Image.color = new Color(Player2Image.color.r, Player2Image.color.g, Player2Image.color.b, 0);
-        }
-        else
-        {
-            Player1Light.SetActive(false);
-            Player2Light.SetActive(true);
-            Player1Image.color = new Color(Player1Image.color.r, Player1Image.color.g, Player1Image.color.b, 0);
-            Player2Image.color = new Color(Player2Image.color.r, Player2Image.color.g, Player2Image.color.b, 1);
-        }
-        */
-
         if (GameManager.Player1 != null)
             Player1Purse.text = GameManager.GetPurse(1).ToString();
         if (GameManager.Player2 != null)
@@ -105,6 +88,8 @@ public class UIManager : MonoBehaviour
 
     public void TemporaryUI()
     {
+        // dice
+
         if (GameManager.GetDice(1) != 0)
         {
             Dice1Text.text = GameManager.GetDice(1).ToString();
@@ -134,6 +119,8 @@ public class UIManager : MonoBehaviour
         {
             Dice3Text.gameObject.SetActive(false);
         }
+
+        // banks
 
         if (GameManager.GetBank(1) != 0)
         {
@@ -196,18 +183,17 @@ public class UIManager : MonoBehaviour
             Winner.color = LooseColor;
     }
 
-    public void EnableDice(Player player)
+    public void EnableTwoDice(Player player)
     {
-        //Camera.main.ScreenToWorldPoint(,);
         Dice1.gameObject.SetActive(true);
         Dice2.gameObject.SetActive(true);
     }
 
-    public void EnablePlayBonusDiceButton(Player player)
+    public void EnableThirdDiceButton(Player player)
     {
         Dice3.gameObject.SetActive(true);
     }
-    public void DisablePlayBonusDiceButton(Player player)
+    public void DisableThirdDiceButton(Player player)
     {
         Dice3.gameObject.SetActive(false);
     }

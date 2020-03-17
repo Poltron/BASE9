@@ -7,7 +7,6 @@ using Photon.Pun;
 public class Human : Player
 {
     protected bool bListeningForClicks;
-    protected int nbOfDicePlayed;
 
     private void Update()
     {
@@ -32,6 +31,7 @@ public class Human : Player
                             break;
                         case "Dice3":
                             dice = 3;
+                            gameManager.UIManager.DisableEndTurnButton(this);
                             break;
                         case "EndTurn":
                             EndTurn();
@@ -42,18 +42,6 @@ public class Human : Player
                     {
                         hit.transform.parent.parent.gameObject.SetActive(false);
                         gameManager.RPC_ThrowDice(dice);
-
-                        nbOfDicePlayed++;
-                        if (nbOfDicePlayed == 2)
-                        {
-                            gameManager.UIManager.EnablePlayBonusDiceButton(this);
-                            gameManager.UIManager.EnableEndTurnButton(this);
-                        }
-                        else if (nbOfDicePlayed == 3)
-                        {
-                            gameManager.UIManager.DisableEndTurnButton(this);
-                            StartCoroutine(WaitFor(1.0f, EndTurn));
-                        }
                     }
                 }
             }
@@ -63,13 +51,11 @@ public class Human : Player
     [PunRPC]
     public override void BeginTurn()
     {
-        nbOfDicePlayed = 0;
-
         Debug.Log("Human : Begin turn");
         if (!PhotonNetwork.IsConnected || photonView.IsMine)
         {
             bListeningForClicks = true;
-            gameManager.UIManager.EnableDice(this);
+            gameManager.UIManager.EnableTwoDice(this);
             gameManager.UIManager.DisableOperation();
         }
         else
@@ -78,24 +64,16 @@ public class Human : Player
         }
     }
 
-    public override void PlayDice()
+    public override void TwoDicePlayed()
     {
-        Debug.Log("Human : Play dice");
-        if (!PhotonNetwork.IsConnected || photonView.IsMine)
-        {
-            gameManager.UIManager.EnablePlayBonusDiceButton(this);
-            gameManager.UIManager.EnableEndTurnButton(this);
-        }
+        gameManager.UIManager.EnableThirdDiceButton(this);
+        gameManager.UIManager.EnableEndTurnButton(this);
     }
 
-    public override void PlayBonusDice()
+    public override void ThirdDicePlayed()
     {
-        Debug.Log("Human : Play bonus dice");
-        if (!PhotonNetwork.IsConnected || photonView.IsMine)
-        {
-            gameManager.UIManager.DisablePlayBonusDiceButton(this);
-            gameManager.UIManager.DisableEndTurnButton(this);
-        }
+        gameManager.UIManager.DisableEndTurnButton(this);
+        StartCoroutine(WaitFor(1.0f, EndTurn));
     }
 
     [PunRPC]
@@ -105,7 +83,7 @@ public class Human : Player
 
         if (!PhotonNetwork.IsConnected || photonView.IsMine)
         {
-            gameManager.UIManager.DisablePlayBonusDiceButton(this);
+            gameManager.UIManager.DisableThirdDiceButton(this);
             gameManager.UIManager.DisableEndTurnButton(this);
         }
 

@@ -80,7 +80,7 @@ public abstract class Player : MonoBehaviour, IPunObservable
     }
 
     public abstract void BeginTurn();
-    public abstract void PlayDice();
-    public abstract void PlayBonusDice();
+    public abstract void TwoDicePlayed();
+    public abstract void ThirdDicePlayed();
     public abstract void EndTurn();
 }

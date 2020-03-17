@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour, IPunObservable
     [SerializeField]
     private Transform[] diceSpawns;
 
+    private int dicePlayed;
 
     [Header("Coins")]
     [SerializeField]
@@ -142,6 +143,7 @@ public class GameManager : MonoBehaviour, IPunObservable
     {
         banks = new int[5];
         dices = new int[3];
+        dicePlayed = 0;
 
         StartCoroutine(SpawnCoins());
     }
@@ -232,6 +234,7 @@ public class GameManager : MonoBehaviour, IPunObservable
         {
             activePlayer = 0;
         }
+        dicePlayed = 0;
 
         ActivePlayer.BeginTurn();
         UIManager.ShowStartTurn();
@@ -354,13 +357,26 @@ public class GameManager : MonoBehaviour, IPunObservable
     {
         if (!PhotonNetwork.IsConnected || photonView.IsMine)
         {
-            dice[number - 1].Throw(diceSpawns[number - 1]);
-
-            //dices[number - 1] = UnityEngine.Random.Range(1, 7);
+            dice[number - 1].Throw(diceSpawns[UnityEngine.Random.Range(0, diceSpawns.Length-1)]);
         }
         else
         {
             photonView.RPC("ThrowDice", RpcTarget.MasterClient, number);
+        }
+    }
+
+    public void DiceResult(int diceNumber)
+    {
+        dices[diceNumber - 1] = UnityEngine.Random.Range(1, 6);
+        dicePlayed++;
+        Debug.Log(diceNumber + " : " + dices[diceNumber - 1]);
+        if (dicePlayed == 2)
+        {
+            ActivePlayer.TwoDicePlayed();
+        }
+        else if (dicePlayed == 3)
+        {
+            StartCoroutine(WaitFor(1.0f, ActivePlayer.EndTurn));
         }
     }
 
