@@ -18,9 +18,13 @@ public class Dice : MonoBehaviour
     [SerializeField]
     private Transform Side6;
 
+    private Transform _transform;
+    private Rigidbody _rigidbody;
+
     void Awake()
     {
-
+        _transform = transform;
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     void Start()
@@ -30,6 +34,16 @@ public class Dice : MonoBehaviour
 
     void Update()
     {
-        
+
+    }
+
+    public void Throw(Transform spawn)
+    {
+        _transform.position = spawn.position;
+        _transform.rotation = Random.rotation;
+        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.AddForce(spawn.forward * 25, ForceMode.VelocityChange);
+        _rigidbody.AddTorque(Random.onUnitSphere * Random.Range(0, 10), ForceMode.VelocityChange);
+        gameObject.SetActive(true);
     }
 }

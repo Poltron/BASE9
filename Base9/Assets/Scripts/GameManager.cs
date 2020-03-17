@@ -20,10 +20,11 @@ public class GameManager : MonoBehaviour, IPunObservable
     [Header("Dice")]
     [SerializeField]
     private GameObject dicePrefab;
-    private Dice dice1;
-    private Dice dice2;
-    private Dice dice3;
-    
+    [SerializeField]
+    private Dice[] dice;
+    [SerializeField]
+    private Transform[] diceSpawns;
+
 
     [Header("Coins")]
     [SerializeField]
@@ -215,6 +216,12 @@ public class GameManager : MonoBehaviour, IPunObservable
 
     public void NextTurn()
     {
+        for (int i = 0;i < dice.Length;i++)
+        {
+            dice[i].gameObject.SetActive(false);
+            dice[i].transform.position = new Vector3(0, -10, 0);
+        }
+
         UIManager.ShowEndTurn();
 
         if (activePlayer == 0)
@@ -347,7 +354,9 @@ public class GameManager : MonoBehaviour, IPunObservable
     {
         if (!PhotonNetwork.IsConnected || photonView.IsMine)
         {
-            dices[number - 1] = UnityEngine.Random.Range(1, 7);
+            dice[number - 1].Throw(diceSpawns[number - 1]);
+
+            //dices[number - 1] = UnityEngine.Random.Range(1, 7);
         }
         else
         {
