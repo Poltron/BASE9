@@ -44,7 +44,7 @@ public class Dice : MonoBehaviour
     {
         if (bThrown)
         {
-            if (_rigidbody.velocity.magnitude < 0.1f)
+            if (_rigidbody.velocity.magnitude < 0.1f && _rigidbody.angularVelocity.magnitude < 0.1f)
             {
                 bThrown = false;
                 gameManager.DiceResult(number);
