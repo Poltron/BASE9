@@ -29,13 +29,13 @@ MonoBehaviour:
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
+  - BeginTurn
   - ClickRpc
   - DestroyRpc
   - DestroySpaceship
+  - EndTurn
   - Fire
   - RespawnSpaceship
-  - BeginTurn
-  - EndTurn
   - RPC_GameEnded
   - RPC_ThrowDice
   DisableAutoOpenWizard: 1
