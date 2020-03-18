@@ -3,6 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
+public struct DiceSide
+{
+    [SerializeField]
+    public Transform transform;
+    [SerializeField]
+    public int number;
+}
+
 public class Dice : MonoBehaviour
 {
     [SerializeField]
@@ -10,22 +19,14 @@ public class Dice : MonoBehaviour
 
     [Header("Sides")]
     [SerializeField]
-    private Transform Side1;
-    [SerializeField]
-    private Transform Side2;
-    [SerializeField]
-    private Transform Side3;
-    [SerializeField]
-    private Transform Side4;
-    [SerializeField]
-    private Transform Side5;
-    [SerializeField]
-    private Transform Side6;
+    private DiceSide[] sides;
 
     private Transform _transform;
     private Rigidbody _rigidbody;
-    private bool bThrown;
     private GameManager gameManager;
+
+    private bool bThrown = false;
+    private float timeStopped = 0;
 
     void Awake()
     {
@@ -36,7 +37,6 @@ public class Dice : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        Debug.Log("dice awake");
         gameObject.SetActive(false);
     }
 
@@ -46,8 +46,30 @@ public class Dice : MonoBehaviour
         {
             if (_rigidbody.velocity.magnitude < 0.1f && _rigidbody.angularVelocity.magnitude < 0.1f)
             {
-                bThrown = false;
-                gameManager.DiceResult(number);
+                timeStopped += Time.deltaTime;
+
+                if (timeStopped > 0.75f)
+                {
+                    bThrown = false;
+
+                    DiceSide bestSide = sides[0];
+                    float bestSideDot = -1;
+                    foreach (DiceSide side in sides)
+                    {
+                        float dot = Vector3.Dot(Vector3.up, side.transform.position - _transform.position);
+                        if (bestSideDot < dot)
+                        {
+                            bestSideDot = dot;
+                            bestSide = side;
+                        }
+                    }
+
+                    gameManager.DiceResult(number, bestSide.number);
+                }
+            }
+            else
+            {
+                timeStopped = 0;
             }
         }
     }
@@ -61,9 +83,9 @@ public class Dice : MonoBehaviour
 
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.AddForce(spawn.forward * UnityEngine.Random.Range(5, 15), ForceMode.VelocityChange);
-        _rigidbody.AddTorque(UnityEngine.Random.onUnitSphere * UnityEngine.Random.Range(5, 15), ForceMode.VelocityChange);
+        _rigidbody.AddTorque(UnityEngine.Random.onUnitSphere * UnityEngine.Random.Range(4, 12), ForceMode.VelocityChange);
 
-        StartCoroutine(WaitFor(0.5f, SetThrown));
+        StartCoroutine(WaitFor(0.1f, SetThrown));
     }
 
     private void SetThrown()

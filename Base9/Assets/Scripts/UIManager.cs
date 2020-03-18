@@ -212,16 +212,12 @@ public class UIManager : MonoBehaviour
         if (GameManager.ActivePlayerNumber == 0)
         {
             OperationLeft.gameObject.SetActive(true);
-
-            //DiceTotalLeft.text = diceTotal.ToString();
-            //OperationTotalLeft.text = Mathf.Abs(diceTotal - 9).ToString();
+            OperationLeft.text = "9\n-\n" + diceTotal + "\n=\n" + Mathf.Abs(diceTotal - 9).ToString();
         }
         else
         {
             OperationRight.gameObject.SetActive(true);
-
-            //DiceTotalRight.text = diceTotal.ToString();
-            //OperationTotalRight.text = Mathf.Abs(diceTotal - 9).ToString();
+            OperationRight.text = "9\n-\n" + diceTotal + "\n=\n" + Mathf.Abs(diceTotal - 9).ToString();
         }
     }
 

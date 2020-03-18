@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour, IPunObservable
     [Header("Coins")]
     [SerializeField]
     private int nbOfCoin;
+
     [Space]
     [SerializeField]
     private GameObject coinPrefab;
@@ -37,11 +38,94 @@ public class GameManager : MonoBehaviour, IPunObservable
     private Transform purse0CoinSpawn;
     [SerializeField]
     private Transform purse1CoinSpawn;
+    private Transform GetPlayerCoinSpawn(int number)
+    {
+        switch (number)
+        {
+            case 0:
+                return purse0CoinSpawn;
+            case 1:
+                return purse1CoinSpawn;
+        }
+
+        return null;
+    }
+
     [Space]
     [SerializeField]
     private List<Transform> purse0Coins;
     [SerializeField]
     private List<Transform> purse1Coins;
+    private List<Transform> GetPlayerCoins(int number)
+    {
+        switch (number)
+        {
+            case 0:
+                return purse0Coins;
+            case 1:
+                return purse1Coins;
+        }
+
+        return null;
+    }
+
+    [SerializeField]
+    private List<Transform> bank0Coins;
+    [SerializeField]
+    private List<Transform> bank1Coins;
+    [SerializeField]
+    private List<Transform> bank2Coins;
+    [SerializeField]
+    private List<Transform> bank3Coins;
+    [SerializeField]
+    private List<Transform> bank4Coins;
+    private List<Transform> GetBankCoins(int number)
+    {
+        switch(number)
+        {
+            case 0:
+                return bank0Coins;
+            case 1:
+                return bank1Coins;
+            case 2:
+                return bank2Coins;
+            case 3:
+                return bank3Coins;
+            case 4:
+                return bank4Coins;
+        }
+
+        return null;
+    }
+
+    [SerializeField]
+    private Transform bank0CoinSpawn;
+    [SerializeField]
+    private Transform bank1CoinSpawn;
+    [SerializeField]
+    private Transform bank2CoinSpawn;
+    [SerializeField]
+    private Transform bank3CoinSpawn;
+    [SerializeField]
+    private Transform bank4CoinSpawn;
+    private Transform GetBankCoinSpawn(int number)
+    {
+        switch (number)
+        {
+            case 0:
+                return bank0CoinSpawn;
+            case 1:
+                return bank1CoinSpawn;
+            case 2:
+                return bank2CoinSpawn;
+            case 3:
+                return bank3CoinSpawn;
+            case 4:
+                return bank4CoinSpawn;
+        }
+
+        return null;
+    }
 
     private List<Player> players = new List<Player>();
     public Player Player1
@@ -148,6 +232,11 @@ public class GameManager : MonoBehaviour, IPunObservable
         StartCoroutine(SpawnCoins());
     }
 
+    private Vector3 MulVecs(Vector3 a, Vector3 b)
+    {
+        return new Vector3(a.x * b.x, a.y * b.y, a.z * b.z);
+    }
+
     IEnumerator SpawnCoins()
     {
         yield return new WaitForSeconds(1.0f);
@@ -157,9 +246,9 @@ public class GameManager : MonoBehaviour, IPunObservable
         {
             for (int j = 0; j < 5; ++j)
             {
-                GameObject coin = Instantiate(coinPrefab, purse0CoinSpawn.transform.position + UnityEngine.Random.insideUnitSphere * 2.75f, Quaternion.identity, purse0CoinSpawn);
+                GameObject coin = Instantiate(coinPrefab, purse0CoinSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0.5f, 2.75f)), Quaternion.identity, purse0CoinSpawn);
                 purse0Coins.Add(coin.transform);
-                GameObject coin2 = Instantiate(coinPrefab, purse1CoinSpawn.transform.position + UnityEngine.Random.insideUnitSphere * 2.75f, Quaternion.identity, purse1CoinSpawn);
+                GameObject coin2 = Instantiate(coinPrefab, purse1CoinSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0.5f, 2.75f)), Quaternion.identity, purse1CoinSpawn);
                 purse1Coins.Add(coin2.transform);
                 i++;
             }
@@ -246,22 +335,32 @@ public class GameManager : MonoBehaviour, IPunObservable
         if (diceSum != 9) // pay coins
         {
             int toPay = Mathf.Abs(diceSum - 9);
+
             purses[activePlayer] -= toPay;
             
             if (toPay >= 1 && toPay <= 5)
             {
                 if (IsBankOpen(toPay - 1))
+                {
                     banks[toPay - 1] += toPay;
+                    MoveCoins(toPay, GetPlayerCoins(ActivePlayerNumber), GetBankCoins(toPay -1), GetBankCoinSpawn(toPay - 1));
+                }
             }
             else
             {
                 if (IsBankOpen(4))
+                {
                     banks[4] += 5;
+                    MoveCoins(5, GetPlayerCoins(ActivePlayerNumber), GetBankCoins(4), GetBankCoinSpawn(4));
+                }
 
                 toPay -= 5;
 
                 if (IsBankOpen(toPay - 1))
+                {
                     banks[toPay - 1] += toPay;
+                    MoveCoins(toPay, GetPlayerCoins(ActivePlayerNumber), GetBankCoins(toPay - 1), GetBankCoinSpawn(toPay - 1));
+                }
             }
         }
         else // get coins
@@ -270,12 +369,14 @@ public class GameManager : MonoBehaviour, IPunObservable
             {
                 if (dice > 0 && dice < 6)
                 {
-                    Debug.Log(dice);
+                    MoveCoins(banks[dice - 1], GetBankCoins(dice - 1), GetPlayerCoins(ActivePlayerNumber), GetPlayerCoinSpawn(ActivePlayerNumber));
                     purses[activePlayer] += banks[dice - 1];
                     banks[dice - 1] = 0;
                 }
                 else if (dice == 6)
                 {
+                    MoveCoins(banks[4], GetBankCoins(4), GetPlayerCoins(ActivePlayerNumber), GetPlayerCoinSpawn(ActivePlayerNumber));
+                    MoveCoins(banks[0], GetBankCoins(0), GetPlayerCoins(ActivePlayerNumber), GetPlayerCoinSpawn(ActivePlayerNumber));
                     purses[activePlayer] += banks[4] + banks[0];
                     banks[4] = 0;
                     banks[0] = 0;
@@ -286,6 +387,17 @@ public class GameManager : MonoBehaviour, IPunObservable
         dices = new int[3];
 
         UIManager.EnableOperation(diceSum);
+    }
+
+    private void MoveCoins(int number, List<Transform> start, List<Transform> end, Transform endSpawn)
+    {
+        for (int i = 0; i < number; i++)
+        {
+            Transform tr = start[start.Count - 1];
+            start.RemoveAt(start.Count - 1);
+            end.Add(tr);
+            tr.position = endSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0.5f, 2.75f));
+        }
     }
 
     private bool IsBankOpen(int BankIndex)
@@ -365,10 +477,11 @@ public class GameManager : MonoBehaviour, IPunObservable
         }
     }
 
-    public void DiceResult(int diceNumber)
+    public void DiceResult(int diceNumber, int result)
     {
-        dices[diceNumber - 1] = UnityEngine.Random.Range(1, 6);
+        dices[diceNumber - 1] = result;
         dicePlayed++;
+
         Debug.Log(diceNumber + " : " + dices[diceNumber - 1]);
         if (dicePlayed == 2)
         {
