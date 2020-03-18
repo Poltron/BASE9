@@ -83,7 +83,7 @@ public class UIManager : MonoBehaviour
         if (GameManager.Player2 != null)
             Player2Purse.text = GameManager.GetPurse(2).ToString();
 
-        TemporaryUI();
+        //TemporaryUI();
     }
 
     public void TemporaryUI()
