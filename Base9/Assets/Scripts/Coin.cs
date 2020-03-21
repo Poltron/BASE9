@@ -21,8 +21,8 @@ public class Coin : MonoBehaviour
     IEnumerator TP(float time, Vector3 position)
     {
         Instantiate(disappear, coin.position + new Vector3(0, 2, 0), Quaternion.identity);
-        transform.position = position;
         yield return new WaitForSeconds(time);
+        transform.position = position;
         coin.position = position;
         Instantiate(appear, coin.position + new Vector3(0, 2, 0), Quaternion.identity);
     }

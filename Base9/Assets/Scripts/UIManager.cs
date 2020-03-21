@@ -209,15 +209,23 @@ public class UIManager : MonoBehaviour
 
     public void EnableOperation(int diceTotal)
     {
+        string str;
+        if (diceTotal > 9)
+            str = diceTotal + "\n-\n9\n=\n<color=#FF0000>" + Mathf.Abs(diceTotal - 9).ToString() + "</color>";
+        else if (diceTotal < 9)
+            str = "9\n-\n" + diceTotal + "\n=\n<color=#FF0000>" + Mathf.Abs(9 - diceTotal).ToString() + "</color>";
+        else
+            str = "9\n-\n9\n=\n<color=#00FF00>0</color>";
+
         if (GameManager.ActivePlayerNumber == 0)
         {
             OperationLeft.gameObject.SetActive(true);
-            OperationLeft.text = "9\n-\n" + diceTotal + "\n=\n" + Mathf.Abs(diceTotal - 9).ToString();
+            OperationLeft.text = str;
         }
         else
         {
             OperationRight.gameObject.SetActive(true);
-            OperationRight.text = "9\n-\n" + diceTotal + "\n=\n" + Mathf.Abs(diceTotal - 9).ToString();
+            OperationRight.text = str;
         }
     }
 
