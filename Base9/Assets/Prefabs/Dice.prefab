@@ -271,8 +271,8 @@ GameObject:
   - component: {fileID: -7677386117433059673}
   - component: {fileID: 4155309035453975480}
   - component: {fileID: 8976482556852479953}
-  - component: {fileID: 5938515936096947004}
   - component: {fileID: 3781931827229449138}
+  - component: {fileID: 2822460384327545965}
   m_Layer: 0
   m_Name: Dice
   m_TagString: Untagged
@@ -374,19 +374,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5938515936096947004
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4843624821950700017}
-  m_Material: {fileID: 13400000, guid: 65812fb19cfe0c94ab9b506b9e4134e8, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.3592768, y: 2.3592768, z: 2.3592768}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3781931827229449138
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -403,3 +390,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &2822460384327545965
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843624821950700017}
+  m_Material: {fileID: 13400000, guid: 65812fb19cfe0c94ab9b506b9e4134e8, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3937115314576174600, guid: 532168862ec396446a10c39053624d50, type: 3}

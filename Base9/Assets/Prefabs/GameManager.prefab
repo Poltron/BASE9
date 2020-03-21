@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5781406759478334541}
   - component: {fileID: 1846268268480126338}
   - component: {fileID: 9109075080482744381}
+  - component: {fileID: 1098395357}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,11 +46,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8af674a5c185ba4f827d184292c3be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dice1Text: {fileID: 0}
-  Dice2Text: {fileID: 0}
-  PlayDiceButton: {fileID: 0}
-  BonusDiceButton: {fileID: 0}
-  UIManager: {fileID: 0}
+  playerPrefab: {fileID: 1877335158208734563, guid: a5bafbab59162f540b85bf71a035d546,
+    type: 3}
+  aiPrefab: {fileID: 6458505010383566180, guid: bae5d518a5aaa4443a1513fd364983aa,
+    type: 3}
+  dicePrefab: {fileID: 4843624821950700017, guid: ccd1c190d61f8664e847e0f178521b8d,
+    type: 3}
+  dice:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  diceSpawns:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  nbOfCoin: 50
+  coinPrefab: {fileID: 7626728710811715373, guid: e35ed508adba2514c98ad8f78ca2ed0b,
+    type: 3}
+  purse0CoinSpawn: {fileID: 0}
+  purse1CoinSpawn: {fileID: 0}
+  purse0Coins: []
+  purse1Coins: []
+  bank0Coins: []
+  bank1Coins: []
+  bank2Coins: []
+  bank3Coins: []
+  bank4Coins: []
+  bank0CoinSpawn: {fileID: 0}
+  bank1CoinSpawn: {fileID: 0}
+  bank2CoinSpawn: {fileID: 0}
+  bank3CoinSpawn: {fileID: 0}
+  bank4CoinSpawn: {fileID: 0}
 --- !u!114 &1846268268480126338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,4 +114,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 791094cd5e79d8c4b97e0569554dbc37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayUI: {fileID: 0}
+  GameManager: {fileID: 5781406759478334541}
+  Player1Purse: {fileID: 0}
+  Player1Name: {fileID: 0}
+  Player1Light: {fileID: 0}
+  Player2Purse: {fileID: 0}
+  Player2Name: {fileID: 0}
+  Player2Light: {fileID: 0}
+  Bank1: {fileID: 0}
+  Bank2: {fileID: 0}
+  Bank3: {fileID: 0}
+  Bank4: {fileID: 0}
+  Bank5: {fileID: 0}
+  LeftSidePanel: {fileID: 0}
+  OperationLeft: {fileID: 0}
+  RightSidePanel: {fileID: 0}
+  OperationRight: {fileID: 0}
+  Dice1Text: {fileID: 0}
+  Dice2Text: {fileID: 0}
+  Dice3Text: {fileID: 0}
+  Dice1: {fileID: 0}
+  Dice2: {fileID: 0}
+  Dice3: {fileID: 0}
+  EndTurn: {fileID: 0}
+  PhaseText: {fileID: 0}
+  Winner: {fileID: 0}
+  WinColor: {r: 0.58431375, g: 1, b: 0.45882353, a: 1}
+  LooseColor: {r: 1, g: 0.45882356, b: 0.45882356, a: 1}
+--- !u!114 &1098395357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828561347049899239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 880f91393372cd24db7a42bd5605034b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
