@@ -954,7 +954,7 @@ PrefabInstance:
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.273
+      value: 2.42
       objectReference: {fileID: 0}
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
@@ -964,7 +964,7 @@ PrefabInstance:
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: -0.041070756
       objectReference: {fileID: 0}
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
@@ -979,7 +979,7 @@ PrefabInstance:
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99915624
       objectReference: {fileID: 0}
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
@@ -989,7 +989,7 @@ PrefabInstance:
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -4.708
       objectReference: {fileID: 0}
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
@@ -1453,7 +1453,7 @@ PrefabInstance:
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.23
+      value: 3.19
       objectReference: {fileID: 0}
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
@@ -1463,22 +1463,22 @@ PrefabInstance:
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.07201802
+      value: -0.070521325
       objectReference: {fileID: 0}
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0061612558
+      value: -0.015852401
       objectReference: {fileID: 0}
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.08501729
+      value: 0.21874243
       objectReference: {fileID: 0}
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99375427
+      value: 0.97310185
       objectReference: {fileID: 0}
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
@@ -1488,17 +1488,17 @@ PrefabInstance:
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -8.169001
+      value: -7.4880004
       objectReference: {fileID: 0}
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -1.4180001
+      value: -3.568
       objectReference: {fileID: 0}
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 9.8810005
+      value: 25.571001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca60729cd4436fd4b8384bfae5daedae, type: 3}
@@ -2533,7 +2533,7 @@ PrefabInstance:
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.49
+      value: 2.96
       objectReference: {fileID: 0}
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
@@ -2713,7 +2713,7 @@ PrefabInstance:
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.273
+      value: 2.55
       objectReference: {fileID: 0}
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
@@ -8188,24 +8188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f189a86046e2474f9bb6b3bfda111dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1098395356 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5828561347049899239, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1846268268480126336}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1098395357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1098395356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 880f91393372cd24db7a42bd5605034b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1111897588
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8400,7 +8382,7 @@ PrefabInstance:
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.273
+      value: 2.64
       objectReference: {fileID: 0}
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
@@ -8866,7 +8848,7 @@ PrefabInstance:
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.273
+      value: 2.37
       objectReference: {fileID: 0}
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
@@ -10783,7 +10765,7 @@ PrefabInstance:
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.273
+      value: 2.81
       objectReference: {fileID: 0}
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
@@ -11206,58 +11188,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
         type: 3}
-      propertyPath: dice.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: diceSpawns.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: UIManager
+      propertyPath: dice.Array.data[0]
       value: 
-      objectReference: {fileID: 1846268268480126340}
+      objectReference: {fileID: 1062587567}
     - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
         type: 3}
-      propertyPath: aiPrefab
+      propertyPath: dice.Array.data[1]
       value: 
-      objectReference: {fileID: 6458505010383566180, guid: bae5d518a5aaa4443a1513fd364983aa,
-        type: 3}
+      objectReference: {fileID: 158371176}
     - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
         type: 3}
-      propertyPath: playerPrefab
+      propertyPath: dice.Array.data[2]
       value: 
-      objectReference: {fileID: 1877335158208734563, guid: a5bafbab59162f540b85bf71a035d546,
-        type: 3}
-    - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: purse0CoinSpawn
-      value: 
-      objectReference: {fileID: 1928986983}
-    - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: purse1CoinSpawn
-      value: 
-      objectReference: {fileID: 1152305446}
-    - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: coinPrefab
-      value: 
-      objectReference: {fileID: 7626728710811715373, guid: e35ed508adba2514c98ad8f78ca2ed0b,
-        type: 3}
-    - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: nbOfCoin
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: dicePrefab
-      value: 
-      objectReference: {fileID: 4843624821950700017, guid: ccd1c190d61f8664e847e0f178521b8d,
-        type: 3}
+      objectReference: {fileID: 731533720}
     - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
         type: 3}
       propertyPath: diceSpawns.Array.data[0]
@@ -11275,21 +11218,6 @@ PrefabInstance:
       objectReference: {fileID: 174400092}
     - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
         type: 3}
-      propertyPath: dice.Array.data[2]
-      value: 
-      objectReference: {fileID: 731533720}
-    - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: dice.Array.data[1]
-      value: 
-      objectReference: {fileID: 158371176}
-    - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: dice.Array.data[0]
-      value: 
-      objectReference: {fileID: 1062587567}
-    - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
       propertyPath: diceSpawns.Array.data[3]
       value: 
       objectReference: {fileID: 456778443}
@@ -11303,6 +11231,16 @@ PrefabInstance:
       propertyPath: diceSpawns.Array.data[5]
       value: 
       objectReference: {fileID: 2110419754}
+    - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
+        type: 3}
+      propertyPath: purse0CoinSpawn
+      value: 
+      objectReference: {fileID: 1928986983}
+    - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
+        type: 3}
+      propertyPath: purse1CoinSpawn
+      value: 
+      objectReference: {fileID: 1152305446}
     - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
         type: 3}
       propertyPath: bank0CoinSpawn
@@ -11332,11 +11270,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 5828561347049899239, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6746386523475449401, guid: e3a061e6f2564a44a9c04dc63998ffd6,
         type: 3}
@@ -11395,44 +11328,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
         type: 3}
-      propertyPath: PlayUI
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: PlayDiceButton
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: BonusDiceButton
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Dice1Text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Dice2Text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Dice3Text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
       propertyPath: Player1Purse
       value: 
       objectReference: {fileID: 1631631585}
     - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
         type: 3}
+      propertyPath: Player1Name
+      value: 
+      objectReference: {fileID: 791583809}
+    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
+        type: 3}
+      propertyPath: Player1Light
+      value: 
+      objectReference: {fileID: 655775831}
+    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
+        type: 3}
       propertyPath: Player2Purse
       value: 
       objectReference: {fileID: 505484916}
+    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
+        type: 3}
+      propertyPath: Player2Name
+      value: 
+      objectReference: {fileID: 2018070444}
+    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
+        type: 3}
+      propertyPath: Player2Light
+      value: 
+      objectReference: {fileID: 779766809}
     - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
         type: 3}
       propertyPath: Bank1
@@ -11460,160 +11383,24 @@ PrefabInstance:
       objectReference: {fileID: 477044223}
     - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
         type: 3}
-      propertyPath: ActivePlayer
+      propertyPath: LeftSidePanel
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 603109451}
     - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
         type: 3}
-      propertyPath: PlayBonusDiceButton
+      propertyPath: OperationLeft
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 443283693}
     - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
         type: 3}
-      propertyPath: EndTurnButton
+      propertyPath: RightSidePanel
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1482967169}
     - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
         type: 3}
-      propertyPath: GameManager
+      propertyPath: OperationRight
       value: 
-      objectReference: {fileID: 1846268268480126337}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Winner
-      value: 
-      objectReference: {fileID: 1411867714}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Looser
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: EndUI
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: PauseUI
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Player1Name
-      value: 
-      objectReference: {fileID: 791583809}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Player2Name
-      value: 
-      objectReference: {fileID: 2018070444}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Player1Image
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Player2Image
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: WinColor.r
-      value: 0.58431375
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: WinColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: WinColor.b
-      value: 0.45882353
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: LooseColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: LooseColor.g
-      value: 0.45882356
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: LooseColor.b
-      value: 0.45882356
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: LooseColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: WinColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: PhaseText
-      value: 
-      objectReference: {fileID: 2139236273}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Dice1Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 7e77af4296a554940983664bbd83ee66,
-        type: 3}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Dice2Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 86b6371120ff2c04899d3131a22e6e97,
-        type: 3}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Dice3Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 4b3278b2b7b44a54b94b0714768e2a78,
-        type: 3}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Dice4Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: c5964f444917eb1468860a9c2df3090c,
-        type: 3}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Dice5Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 0e234523996ac604c9d71a17a8233c0f,
-        type: 3}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Dice6Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 0d446d12a3f857641b70d8c0d1335aec,
-        type: 3}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Dice1Image
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Dice2Image
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Dice3Image
-      value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1176428953}
     - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
         type: 3}
       propertyPath: Dice1
@@ -11636,95 +11423,16 @@ PrefabInstance:
       objectReference: {fileID: 1159706901740888391}
     - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
         type: 3}
-      propertyPath: Operation
+      propertyPath: PhaseText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2139236273}
     - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
         type: 3}
-      propertyPath: DiceTotal
+      propertyPath: Winner
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: OperationTotal
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Player1Light
-      value: 
-      objectReference: {fileID: 655775831}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: Player2Light
-      value: 
-      objectReference: {fileID: 779766809}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: LeftSidePanel
-      value: 
-      objectReference: {fileID: 603109451}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: RightSidePanel
-      value: 
-      objectReference: {fileID: 1482967169}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: OperationLeft
-      value: 
-      objectReference: {fileID: 443283693}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: DiceTotalLeft
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: OperationTotalLeft
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: OperationRight
-      value: 
-      objectReference: {fileID: 1176428953}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: DiceTotalRight
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-        type: 3}
-      propertyPath: OperationTotalRight
-      value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1411867714}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3a061e6f2564a44a9c04dc63998ffd6, type: 3}
---- !u!114 &1846268268480126337 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1846268268480126336}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1098395356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8af674a5c185ba4f827d184292c3be7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1846268268480126340 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1846268268480126336}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1098395356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 791094cd5e79d8c4b97e0569554dbc37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4094822799620735251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11962,7 +11670,7 @@ PrefabInstance:
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.273
+      value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: 6265036172070696351, guid: ca60729cd4436fd4b8384bfae5daedae,
         type: 3}
