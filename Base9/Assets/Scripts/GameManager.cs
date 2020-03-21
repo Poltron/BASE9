@@ -373,14 +373,6 @@ public class GameManager : MonoBehaviour, IPunObservable
                     purses[activePlayer] += banks[dice - 1];
                     banks[dice - 1] = 0;
                 }
-                else if (dice == 6)
-                {
-                    StartCoroutine(MoveCoins(banks[4], GetBankCoins(4), GetPlayerCoins(ActivePlayerNumber), GetPlayerCoinSpawn(ActivePlayerNumber)));
-                    StartCoroutine(MoveCoins(banks[0], GetBankCoins(0), GetPlayerCoins(ActivePlayerNumber), GetPlayerCoinSpawn(ActivePlayerNumber)));
-                    purses[activePlayer] += banks[4] + banks[0];
-                    banks[4] = 0;
-                    banks[0] = 0;
-                }
             }
         }
 

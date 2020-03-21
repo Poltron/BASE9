@@ -366,3 +366,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coin: {fileID: 8740827020290326718}
+  disappear: {fileID: 7426197668310945864, guid: 136c0762c2c2c4c4790a5f5b8081aa7b,
+    type: 3}
+  appear: {fileID: 8382856188934575554, guid: fc05d05fa0193144393e6a72b04b11c1, type: 3}
