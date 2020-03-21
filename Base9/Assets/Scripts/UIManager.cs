@@ -233,7 +233,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void ShowSidePanel()
+    public void ShowSidePanel()
     {
         if (GameManager.ActivePlayerNumber == 0)
         {
@@ -304,6 +304,5 @@ public class UIManager : MonoBehaviour
     public void ShowStartTurn()
     {
         ShowLight();
-        ShowSidePanel();
     }
 }

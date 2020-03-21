@@ -329,9 +329,15 @@ public class GameManager : MonoBehaviour, IPunObservable
         UIManager.ShowStartTurn();
     }
     
-    public void ComputeDices()
+    IEnumerator ComputeDices()
     {
         int diceSum = dices[0] + dices[1] + dices[2];
+
+        UIManager.ShowSidePanel();
+        UIManager.EnableOperation(diceSum);
+
+        yield return new WaitForSeconds(1.0f);
+
         if (diceSum != 9) // pay coins
         {
             int toPay = Mathf.Abs(diceSum - 9);
@@ -378,7 +384,9 @@ public class GameManager : MonoBehaviour, IPunObservable
 
         dices = new int[3];
 
-        UIManager.EnableOperation(diceSum);
+        yield return new WaitForSeconds(1.0f);
+
+        TurnEnded();
     }
 
     IEnumerator MoveCoins(int number, List<Coin> start, List<Coin> end, Transform endSpawn)
@@ -437,7 +445,11 @@ public class GameManager : MonoBehaviour, IPunObservable
 
     public void ActivePlayerTurnEnded()
     {
-        ComputeDices();
+        StartCoroutine(ComputeDices());
+    }
+
+    public void TurnEnded()
+    { 
         if (purses[activePlayer] <= 0)
         {
             EndGame(InactivePlayer, ActivePlayer);
