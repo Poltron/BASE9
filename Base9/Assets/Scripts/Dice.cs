@@ -52,20 +52,7 @@ public class Dice : MonoBehaviour
                 {
                     bThrown = false;
 
-                    DiceSide bestSide = sides[0];
-                    float bestSideDot = -1;
-                    foreach (DiceSide side in sides)
-                    {
-                        float dot = Vector3.Dot(Vector3.up, side.transform.position - _transform.position);
-                        if (bestSideDot < dot)
-                        {
-                            bestSideDot = dot;
-                            bestSide = side;
-                        }
-                    }
-
-                    _rigidbody.isKinematic = true;
-                    gameManager.DiceResult(number, bestSide.number);
+                    gameManager.DiceResult(number, GetTopFace());
                 }
             }
             else
@@ -82,9 +69,8 @@ public class Dice : MonoBehaviour
 
         gameObject.SetActive(true);
 
-        _rigidbody.isKinematic = false;
         _rigidbody.velocity = Vector3.zero;
-        _rigidbody.AddForce(spawn.forward * UnityEngine.Random.Range(5, 15), ForceMode.VelocityChange);
+        _rigidbody.AddForce(spawn.forward * UnityEngine.Random.Range(10, 20), ForceMode.VelocityChange);
         _rigidbody.AddTorque(UnityEngine.Random.onUnitSphere * UnityEngine.Random.Range(4, 12), ForceMode.VelocityChange);
 
         StartCoroutine(WaitFor(0.1f, SetThrown));
@@ -100,5 +86,23 @@ public class Dice : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         action();
+    }
+
+    public int GetTopFace()
+    {
+
+        DiceSide bestSide = sides[0];
+        float bestSideDot = -1;
+        foreach (DiceSide side in sides)
+        {
+            float dot = Vector3.Dot(Vector3.up, side.transform.position - _transform.position);
+            if (bestSideDot < dot)
+            {
+                bestSideDot = dot;
+                bestSide = side;
+            }
+        }
+
+        return bestSide.number;
     }
 }

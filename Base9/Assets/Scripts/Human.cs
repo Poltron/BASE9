@@ -40,7 +40,7 @@ public class Human : Player
 
                     if (dice != 0)
                     {
-                        hit.transform.parent.parent.gameObject.SetActive(false);
+                        hit.transform.parent.parent.parent.GetComponent<Animator>().SetBool("bEnabled", false);
                         gameManager.RPC_ThrowDice(dice);
                     }
                 }

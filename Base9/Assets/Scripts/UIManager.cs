@@ -44,13 +44,13 @@ public class UIManager : MonoBehaviour
     private TextMeshPro Dice3Text;
 
     [SerializeField]
-    private Transform Dice1;
+    private Animator Dice1;
     [SerializeField]
-    private Transform Dice2;
+    private Animator Dice2;
     [SerializeField]
-    private Transform Dice3;
+    private Animator Dice3;
     [SerializeField]
-    private Transform EndTurn;
+    private Animator EndTurn;
 
     [SerializeField]
     private TextMeshProUGUI PhaseText;
@@ -140,25 +140,29 @@ public class UIManager : MonoBehaviour
     public void EnableTwoDice(Player player)
     {
         Dice1.gameObject.SetActive(true);
+        Dice1.SetBool("bEnabled", true);
         Dice2.gameObject.SetActive(true);
+        Dice2.SetBool("bEnabled", true);
     }
 
     public void EnableThirdDiceButton(Player player)
     {
         Dice3.gameObject.SetActive(true);
+        Dice3.SetBool("bEnabled", true);
     }
     public void DisableThirdDiceButton(Player player)
     {
-        Dice3.gameObject.SetActive(false);
+        Dice3.SetBool("bEnabled", false);
     }
 
     public void EnableEndTurnButton(Player player)
     {
         EndTurn.gameObject.SetActive(true);
+        EndTurn.SetBool("bEnabled", true);
     }
     public void DisableEndTurnButton(Player player)
     {
-        EndTurn.gameObject.SetActive(false);
+        EndTurn.SetBool("bEnabled", false);
     }
 
     public void EnableOperation(int diceTotal)
@@ -172,12 +176,12 @@ public class UIManager : MonoBehaviour
             if (diceTotal > 9)
             {
                 toPay = diceTotal - 9;
-                str = diceTotal + "\n-\n9\n=\n<color=#FF0000>" + Mathf.Abs(toPay).ToString() + "</color>";
+                str = "<color=#FFFF00>" + diceTotal + "</color>\n-\n9\n=\n<color=#FF0000>" + Mathf.Abs(toPay).ToString() + "</color>";
             }
             else if (diceTotal < 9)
             {
                 toPay = 9 - diceTotal;
-                str = "9\n-\n" + diceTotal + "\n=\n<color=#FF0000>" + Mathf.Abs(toPay).ToString() + "</color>";
+                str = "9\n-\n<color=#FFFF00>" + diceTotal + "</color>\n=\n<color=#FF0000>" + Mathf.Abs(toPay).ToString() + "</color>";
             }
 
             while (toPay > 0)
