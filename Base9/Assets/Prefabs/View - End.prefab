@@ -4866,6 +4866,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5063,7 +5064,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285857685
+    rgba: 4285923221
   m_fontColor: {r: 0.58518314, g: 1, b: 0.4575472, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -5082,7 +5083,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 39.55
+  m_fontSize: 50
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8758,7 +8759,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.37032276, y: 0.041117646}
   m_AnchorMax: {x: 0.6216773, y: 0.22500001}
-  m_AnchoredPosition: {x: 2, y: -2.0000305}
+  m_AnchoredPosition: {x: 2, y: -2}
   m_SizeDelta: {x: -2.2299957, y: 6.080002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1612436554862094225

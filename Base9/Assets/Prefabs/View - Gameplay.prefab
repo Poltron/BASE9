@@ -92,7 +92,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 17.4
+  m_fontSize: 48
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3884,7 +3884,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4603352444921697544
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3941,7 +3941,7 @@ MonoBehaviour:
 
     12'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4d0fe781c6dbb3447afbdd0415889092, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 36cbd8c33f404a14f87cc5bf3032782d, type: 2}
   m_sharedMaterial: {fileID: -7975847751055590453, guid: 4d0fe781c6dbb3447afbdd0415889092,
     type: 2}
   m_fontSharedMaterials: []
@@ -3973,8 +3973,8 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 10
-  m_fontSizeMax: 40
-  m_fontStyle: 0
+  m_fontSizeMax: 120
+  m_fontStyle: 1
   m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -4020,7 +4020,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -4849,7 +4849,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.8366455, y: 0.21182352}
   m_AnchorMax: {x: 1.1456455, y: 0.89435303}
-  m_AnchoredPosition: {x: 260, y: -1.9999924}
+  m_AnchoredPosition: {x: 260, y: -2}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4603352445134008100
@@ -4878,7 +4878,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f8aebce691ce1ce4ba9db12a834bb5a1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a2bedf5e93567c140a3a146b6bdd379b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5285,7 +5285,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f8aebce691ce1ce4ba9db12a834bb5a1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a2bedf5e93567c140a3a146b6bdd379b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5487,7 +5487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4603352446005939540
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5536,7 +5536,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "1 \n-\n9\n=\n12"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4d0fe781c6dbb3447afbdd0415889092, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 36cbd8c33f404a14f87cc5bf3032782d, type: 2}
   m_sharedMaterial: {fileID: -7975847751055590453, guid: 4d0fe781c6dbb3447afbdd0415889092,
     type: 2}
   m_fontSharedMaterials: []
@@ -5568,8 +5568,8 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 10
-  m_fontSizeMax: 40
-  m_fontStyle: 0
+  m_fontSizeMax: 120
+  m_fontStyle: 1
   m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -5615,7 +5615,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}

@@ -64,6 +64,7 @@ public class Dice : MonoBehaviour
                         }
                     }
 
+                    _rigidbody.isKinematic = true;
                     gameManager.DiceResult(number, bestSide.number);
                 }
             }
@@ -81,6 +82,7 @@ public class Dice : MonoBehaviour
 
         gameObject.SetActive(true);
 
+        _rigidbody.isKinematic = false;
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.AddForce(spawn.forward * UnityEngine.Random.Range(5, 15), ForceMode.VelocityChange);
         _rigidbody.AddTorque(UnityEngine.Random.onUnitSphere * UnityEngine.Random.Range(4, 12), ForceMode.VelocityChange);

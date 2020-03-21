@@ -53,10 +53,10 @@ public class GameManager : MonoBehaviour, IPunObservable
 
     [Space]
     [SerializeField]
-    private List<Transform> purse0Coins;
+    private List<Coin> purse0Coins;
     [SerializeField]
-    private List<Transform> purse1Coins;
-    private List<Transform> GetPlayerCoins(int number)
+    private List<Coin> purse1Coins;
+    private List<Coin> GetPlayerCoins(int number)
     {
         switch (number)
         {
@@ -70,16 +70,16 @@ public class GameManager : MonoBehaviour, IPunObservable
     }
 
     [SerializeField]
-    private List<Transform> bank0Coins;
+    private List<Coin> bank0Coins;
     [SerializeField]
-    private List<Transform> bank1Coins;
+    private List<Coin> bank1Coins;
     [SerializeField]
-    private List<Transform> bank2Coins;
+    private List<Coin> bank2Coins;
     [SerializeField]
-    private List<Transform> bank3Coins;
+    private List<Coin> bank3Coins;
     [SerializeField]
-    private List<Transform> bank4Coins;
-    private List<Transform> GetBankCoins(int number)
+    private List<Coin> bank4Coins;
+    private List<Coin> GetBankCoins(int number)
     {
         switch(number)
         {
@@ -247,9 +247,9 @@ public class GameManager : MonoBehaviour, IPunObservable
             for (int j = 0; j < 5; ++j)
             {
                 GameObject coin = Instantiate(coinPrefab, purse0CoinSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0.5f, 2.75f)), Quaternion.identity, purse0CoinSpawn);
-                purse0Coins.Add(coin.transform);
+                purse0Coins.Add(coin.GetComponent<Coin>());
                 GameObject coin2 = Instantiate(coinPrefab, purse1CoinSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0.5f, 2.75f)), Quaternion.identity, purse1CoinSpawn);
-                purse1Coins.Add(coin2.transform);
+                purse1Coins.Add(coin2.GetComponent<Coin>());
                 i++;
             }
             purses[0] = i;
@@ -343,7 +343,7 @@ public class GameManager : MonoBehaviour, IPunObservable
                 if (IsBankOpen(toPay - 1))
                 {
                     banks[toPay - 1] += toPay;
-                    MoveCoins(toPay, GetPlayerCoins(ActivePlayerNumber), GetBankCoins(toPay -1), GetBankCoinSpawn(toPay - 1));
+                    StartCoroutine(MoveCoins(toPay, GetPlayerCoins(ActivePlayerNumber), GetBankCoins(toPay -1), GetBankCoinSpawn(toPay - 1)));
                 }
             }
             else
@@ -351,7 +351,7 @@ public class GameManager : MonoBehaviour, IPunObservable
                 if (IsBankOpen(4))
                 {
                     banks[4] += 5;
-                    MoveCoins(5, GetPlayerCoins(ActivePlayerNumber), GetBankCoins(4), GetBankCoinSpawn(4));
+                    StartCoroutine(MoveCoins(5, GetPlayerCoins(ActivePlayerNumber), GetBankCoins(4), GetBankCoinSpawn(4)));
                 }
 
                 toPay -= 5;
@@ -359,7 +359,7 @@ public class GameManager : MonoBehaviour, IPunObservable
                 if (IsBankOpen(toPay - 1))
                 {
                     banks[toPay - 1] += toPay;
-                    MoveCoins(toPay, GetPlayerCoins(ActivePlayerNumber), GetBankCoins(toPay - 1), GetBankCoinSpawn(toPay - 1));
+                    StartCoroutine(MoveCoins(toPay, GetPlayerCoins(ActivePlayerNumber), GetBankCoins(toPay - 1), GetBankCoinSpawn(toPay - 1)));
                 }
             }
         }
@@ -369,14 +369,14 @@ public class GameManager : MonoBehaviour, IPunObservable
             {
                 if (dice > 0 && dice < 6)
                 {
-                    MoveCoins(banks[dice - 1], GetBankCoins(dice - 1), GetPlayerCoins(ActivePlayerNumber), GetPlayerCoinSpawn(ActivePlayerNumber));
+                    StartCoroutine(MoveCoins(banks[dice - 1], GetBankCoins(dice - 1), GetPlayerCoins(ActivePlayerNumber), GetPlayerCoinSpawn(ActivePlayerNumber)));
                     purses[activePlayer] += banks[dice - 1];
                     banks[dice - 1] = 0;
                 }
                 else if (dice == 6)
                 {
-                    MoveCoins(banks[4], GetBankCoins(4), GetPlayerCoins(ActivePlayerNumber), GetPlayerCoinSpawn(ActivePlayerNumber));
-                    MoveCoins(banks[0], GetBankCoins(0), GetPlayerCoins(ActivePlayerNumber), GetPlayerCoinSpawn(ActivePlayerNumber));
+                    StartCoroutine(MoveCoins(banks[4], GetBankCoins(4), GetPlayerCoins(ActivePlayerNumber), GetPlayerCoinSpawn(ActivePlayerNumber)));
+                    StartCoroutine(MoveCoins(banks[0], GetBankCoins(0), GetPlayerCoins(ActivePlayerNumber), GetPlayerCoinSpawn(ActivePlayerNumber)));
                     purses[activePlayer] += banks[4] + banks[0];
                     banks[4] = 0;
                     banks[0] = 0;
@@ -389,14 +389,16 @@ public class GameManager : MonoBehaviour, IPunObservable
         UIManager.EnableOperation(diceSum);
     }
 
-    private void MoveCoins(int number, List<Transform> start, List<Transform> end, Transform endSpawn)
+    IEnumerator MoveCoins(int number, List<Coin> start, List<Coin> end, Transform endSpawn)
     {
         for (int i = 0; i < number; i++)
         {
-            Transform tr = start[start.Count - 1];
+            Coin coin = start[start.Count - 1];
             start.RemoveAt(start.Count - 1);
-            end.Add(tr);
-            tr.position = endSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0.5f, 2.75f));
+            end.Add(coin);
+            coin.Teleport( endSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0f, 2.75f)) );
+
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
