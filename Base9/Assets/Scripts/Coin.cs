@@ -24,6 +24,7 @@ public class Coin : MonoBehaviour
         yield return new WaitForSeconds(time);
         transform.position = position;
         coin.position = position;
+        coin.rotation = Quaternion.identity;
         Instantiate(appear, coin.position + new Vector3(0, 2, 0), Quaternion.identity);
     }
 
