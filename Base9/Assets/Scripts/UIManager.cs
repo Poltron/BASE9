@@ -23,16 +23,9 @@ public class UIManager : MonoBehaviour
     private Animator Player2Light;
 
     [SerializeField]
-    private TextMeshPro Bank1;
+    private TextMeshPro[] BankAmounts;
     [SerializeField]
-    private TextMeshPro Bank2;
-    [SerializeField]
-    private TextMeshPro Bank3;
-    [SerializeField]
-    private TextMeshPro Bank4;
-    [SerializeField]
-    private TextMeshPro Bank5;
-
+    private TextMeshPro[] BankNumbers;
 
     [SerializeField]
     private Animator LeftSidePanel;
@@ -51,13 +44,13 @@ public class UIManager : MonoBehaviour
     private TextMeshPro Dice3Text;
 
     [SerializeField]
-    private Transform Dice1;
+    private Animator Dice1;
     [SerializeField]
-    private Transform Dice2;
+    private Animator Dice2;
     [SerializeField]
-    private Transform Dice3;
+    private Animator Dice3;
     [SerializeField]
-    private Transform EndTurn;
+    private Animator EndTurn;
 
     [SerializeField]
     private TextMeshProUGUI PhaseText;
@@ -120,56 +113,17 @@ public class UIManager : MonoBehaviour
             Dice3Text.gameObject.SetActive(false);
         }
 
-        // banks
-
-        if (GameManager.GetBank(1) != 0)
+        for (int i = 1; i <= 5; i++)
         {
-            Bank1.text = ShowBankText(1);
-            Bank1.gameObject.SetActive(true);
-        }
-        else
-        {
-            Bank1.gameObject.SetActive(false);
-        }
-
-        if (GameManager.GetBank(2) != 0)
-        {
-            Bank2.text = ShowBankText(2);
-            Bank2.gameObject.SetActive(true);
-        }
-        else
-        {
-            Bank2.gameObject.SetActive(false);
-        }
-
-        if (GameManager.GetBank(3) != 0)
-        {
-            Bank3.text = ShowBankText(3);
-            Bank3.gameObject.SetActive(true);
-        }
-        else
-        {
-            Bank3.gameObject.SetActive(false);
-        }
-
-        if (GameManager.GetBank(4) != 0)
-        {
-            Bank4.text = ShowBankText(4);
-            Bank4.gameObject.SetActive(true);
-        }
-        else
-        {
-            Bank4.gameObject.SetActive(false);
-        }
-
-        if (GameManager.GetBank(5) != 0)
-        {
-            Bank5.text = ShowBankText(5);
-            Bank5.gameObject.SetActive(true);
-        }
-        else
-        {
-            Bank5.gameObject.SetActive(false);
+            if (GameManager.GetBank(i) != 0)
+            {
+                BankAmounts[i].text = ShowBankText(i);
+                BankAmounts[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                BankAmounts[i].gameObject.SetActive(false);
+            }
         }
     }
 
@@ -186,39 +140,115 @@ public class UIManager : MonoBehaviour
     public void EnableTwoDice(Player player)
     {
         Dice1.gameObject.SetActive(true);
+        Dice1.SetBool("bEnabled", true);
         Dice2.gameObject.SetActive(true);
+        Dice2.SetBool("bEnabled", true);
     }
 
     public void EnableThirdDiceButton(Player player)
     {
         Dice3.gameObject.SetActive(true);
+        Dice3.SetBool("bEnabled", true);
     }
     public void DisableThirdDiceButton(Player player)
     {
-        Dice3.gameObject.SetActive(false);
+        Dice3.SetBool("bEnabled", false);
     }
 
     public void EnableEndTurnButton(Player player)
     {
         EndTurn.gameObject.SetActive(true);
+        EndTurn.SetBool("bEnabled", true);
     }
     public void DisableEndTurnButton(Player player)
     {
-        EndTurn.gameObject.SetActive(false);
+        EndTurn.SetBool("bEnabled", false);
     }
 
     public void EnableOperation(int diceTotal)
     {
+        string str = "";
+
+        if (diceTotal != 9)
+        {
+            int toPay = 0;
+
+            if (diceTotal > 9)
+            {
+                toPay = diceTotal - 9;
+                str = "<color=#FFFF00>" + diceTotal + "</color>\n-\n9\n=\n<color=#FF0000>" + Mathf.Abs(toPay).ToString() + "</color>";
+            }
+            else if (diceTotal < 9)
+            {
+                toPay = 9 - diceTotal;
+                str = "9\n-\n<color=#FFFF00>" + diceTotal + "</color>\n=\n<color=#FF0000>" + Mathf.Abs(toPay).ToString() + "</color>";
+            }
+
+            while (toPay > 0)
+            {
+                int bankNb = 0;
+                if (toPay > 5)
+                {
+                    bankNb = 4;
+                }
+                else
+                {
+                    bankNb = toPay - 1;
+                }
+
+                StartCoroutine(FadeColorIn(BankNumbers[bankNb], Color.red));
+                toPay -= 5;
+            }
+        }
+        else
+        {
+            str = "9\n-\n9\n=\n<color=#00FF00>0</color>";
+
+            for (int i = 1; i <= 3; i++)
+            {
+                int dice = GameManager.GetDice(i);
+                if (dice != 0 && dice != 6)
+                {
+                    StartCoroutine(FadeColorIn(BankNumbers[dice - 1], Color.green));
+                }
+            }
+        }
+
         if (GameManager.ActivePlayerNumber == 0)
         {
             OperationLeft.gameObject.SetActive(true);
-            OperationLeft.text = "9\n-\n" + diceTotal + "\n=\n" + Mathf.Abs(diceTotal - 9).ToString();
+            OperationLeft.text = str;
         }
         else
         {
             OperationRight.gameObject.SetActive(true);
-            OperationRight.text = "9\n-\n" + diceTotal + "\n=\n" + Mathf.Abs(diceTotal - 9).ToString();
+            OperationRight.text = str;
         }
+    }
+
+    IEnumerator FadeColorIn(TextMeshPro text, Color target)
+    {
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log("cou");
+        Color origin = text.color;
+        float f = 0;
+        for (f = 0; f < 1.0f; f += Time.deltaTime * 2)
+        {
+            Color c = Color.Lerp(origin, target, f);
+            text.color = c;
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForSeconds(1.0f);
+
+        for (f = 0; f < 1.0f; f += Time.deltaTime * 2)
+        {
+            Color c = Color.Lerp(target, origin, f);
+            text.color = c;
+            yield return new WaitForEndOfFrame();
+        }
+
+        text.color = origin;
     }
 
     public void DisableOperation()
@@ -233,7 +263,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void ShowSidePanel()
+    public void ShowSidePanel()
     {
         if (GameManager.ActivePlayerNumber == 0)
         {
@@ -304,6 +334,5 @@ public class UIManager : MonoBehaviour
     public void ShowStartTurn()
     {
         ShowLight();
-        ShowSidePanel();
     }
 }

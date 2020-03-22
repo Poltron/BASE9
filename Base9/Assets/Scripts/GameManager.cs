@@ -329,9 +329,15 @@ public class GameManager : MonoBehaviour, IPunObservable
         UIManager.ShowStartTurn();
     }
     
-    public void ComputeDices()
+    IEnumerator ComputeDices()
     {
         int diceSum = dices[0] + dices[1] + dices[2];
+
+        UIManager.ShowSidePanel();
+        UIManager.EnableOperation(diceSum);
+
+        yield return new WaitForSeconds(1.0f);
+
         if (diceSum != 9) // pay coins
         {
             int toPay = Mathf.Abs(diceSum - 9);
@@ -373,20 +379,14 @@ public class GameManager : MonoBehaviour, IPunObservable
                     purses[activePlayer] += banks[dice - 1];
                     banks[dice - 1] = 0;
                 }
-                else if (dice == 6)
-                {
-                    StartCoroutine(MoveCoins(banks[4], GetBankCoins(4), GetPlayerCoins(ActivePlayerNumber), GetPlayerCoinSpawn(ActivePlayerNumber)));
-                    StartCoroutine(MoveCoins(banks[0], GetBankCoins(0), GetPlayerCoins(ActivePlayerNumber), GetPlayerCoinSpawn(ActivePlayerNumber)));
-                    purses[activePlayer] += banks[4] + banks[0];
-                    banks[4] = 0;
-                    banks[0] = 0;
-                }
             }
         }
 
         dices = new int[3];
 
-        UIManager.EnableOperation(diceSum);
+        yield return new WaitForSeconds(1.0f);
+
+        TurnEnded();
     }
 
     IEnumerator MoveCoins(int number, List<Coin> start, List<Coin> end, Transform endSpawn)
@@ -445,7 +445,11 @@ public class GameManager : MonoBehaviour, IPunObservable
 
     public void ActivePlayerTurnEnded()
     {
-        ComputeDices();
+        StartCoroutine(ComputeDices());
+    }
+
+    public void TurnEnded()
+    { 
         if (purses[activePlayer] <= 0)
         {
             EndGame(InactivePlayer, ActivePlayer);
@@ -508,6 +512,7 @@ public class GameManager : MonoBehaviour, IPunObservable
     [PunRPC]
     public void RPC_GameEnded(Player winner, Player looser)
     {
+        UIManager.HideLight();
         UIManager.SetWinnerLooser(winner, looser);
         GameEventMessage.SendEvent("GameEnded");
     }

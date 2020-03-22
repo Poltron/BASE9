@@ -690,7 +690,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2162115701065885327}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 976ac78a9adc0bd438ebdd2605215e5d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -778,7 +778,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3042346328052985459}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 976ac78a9adc0bd438ebdd2605215e5d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1002,7 +1002,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6476731129713016534}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 976ac78a9adc0bd438ebdd2605215e5d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1544,20 +1544,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1557415318514469322, guid: 4298532974c361e4c8e5da29373c3898,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 2014386662490455663, guid: 4298532974c361e4c8e5da29373c3898,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2014386662490455663, guid: 4298532974c361e4c8e5da29373c3898,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -10.5
       objectReference: {fileID: 0}
     - target: {fileID: 2014386662490455663, guid: 4298532974c361e4c8e5da29373c3898,
         type: 3}
@@ -1583,11 +1573,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5698319004576589593, guid: 4298532974c361e4c8e5da29373c3898,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8741248460863558922, guid: 4298532974c361e4c8e5da29373c3898,
         type: 3}
@@ -1638,11 +1623,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2014386662490455663, guid: 4298532974c361e4c8e5da29373c3898,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -10.5
       objectReference: {fileID: 0}
     - target: {fileID: 2014386662490455663, guid: 4298532974c361e4c8e5da29373c3898,
         type: 3}
