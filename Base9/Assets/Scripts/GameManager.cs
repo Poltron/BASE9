@@ -163,6 +163,7 @@ public class GameManager : MonoBehaviour, IPunObservable
         return dices[number - 1];
     }
 
+    [SerializeField]
     private int[] banks = new int[5];
     public int GetBank(int number)
     {
@@ -175,6 +176,7 @@ public class GameManager : MonoBehaviour, IPunObservable
         return purses[number - 1];
     }
 
+    [SerializeField]
     private bool bPhase2;
     public bool IsPhase2()
     {
@@ -351,6 +353,10 @@ public class GameManager : MonoBehaviour, IPunObservable
                     banks[toPay - 1] += toPay;
                     StartCoroutine(MoveCoins(toPay, GetPlayerCoins(ActivePlayerNumber), GetBankCoins(toPay -1), GetBankCoinSpawn(toPay - 1)));
                 }
+                else
+                {
+                    StartCoroutine(MoveCoins(toPay, GetPlayerCoins(ActivePlayerNumber), null, GetBankCoinSpawn(toPay - 1)));
+                }
             }
             else
             {
@@ -358,6 +364,10 @@ public class GameManager : MonoBehaviour, IPunObservable
                 {
                     banks[4] += 5;
                     StartCoroutine(MoveCoins(5, GetPlayerCoins(ActivePlayerNumber), GetBankCoins(4), GetBankCoinSpawn(4)));
+                }
+                else
+                {
+                    StartCoroutine(MoveCoins(5, GetPlayerCoins(ActivePlayerNumber), null, GetBankCoinSpawn(4)));
                 }
 
                 toPay -= 5;
@@ -367,6 +377,10 @@ public class GameManager : MonoBehaviour, IPunObservable
                     banks[toPay - 1] += toPay;
                     StartCoroutine(MoveCoins(toPay, GetPlayerCoins(ActivePlayerNumber), GetBankCoins(toPay - 1), GetBankCoinSpawn(toPay - 1)));
                 }
+                else
+                {
+                    StartCoroutine(MoveCoins(toPay, GetPlayerCoins(ActivePlayerNumber), null, GetBankCoinSpawn(toPay - 1)));
+                }
             }
         }
         else // get coins
@@ -375,9 +389,19 @@ public class GameManager : MonoBehaviour, IPunObservable
             {
                 if (dice > 0 && dice < 6)
                 {
-                    StartCoroutine(MoveCoins(banks[dice - 1], GetBankCoins(dice - 1), GetPlayerCoins(ActivePlayerNumber), GetPlayerCoinSpawn(ActivePlayerNumber)));
-                    purses[activePlayer] += banks[dice - 1];
-                    banks[dice - 1] = 0;
+                    Debug.Log(dice);
+                    int bankId = dice - 1;
+                    if (IsBankOpen(bankId))
+                    {
+                        StartCoroutine(MoveCoins(banks[bankId], GetBankCoins(bankId), GetPlayerCoins(ActivePlayerNumber), GetPlayerCoinSpawn(ActivePlayerNumber)));
+                        purses[activePlayer] += banks[bankId];
+                        banks[bankId] = 0;
+
+                        if (IsPhase2())
+                        {
+                            UIManager.EnableBankLock(bankId);
+                        }
+                    }
                 }
             }
         }
@@ -395,8 +419,11 @@ public class GameManager : MonoBehaviour, IPunObservable
         {
             Coin coin = start[start.Count - 1];
             start.RemoveAt(start.Count - 1);
-            end.Add(coin);
-            coin.Teleport( endSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0f, 2.75f)) );
+
+            if (end != null)
+                end.Add(coin);
+
+            coin.Teleport( endSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0f, 2.75f)), (end == null));
 
             yield return new WaitForSeconds(0.1f);
         }

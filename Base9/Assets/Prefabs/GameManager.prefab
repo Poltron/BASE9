@@ -63,7 +63,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  nbOfCoin: 50
+  nbOfCoin: 5
   coinPrefab: {fileID: 7626728710811715373, guid: e35ed508adba2514c98ad8f78ca2ed0b,
     type: 3}
   purse0CoinSpawn: {fileID: 0}
@@ -115,24 +115,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameManager: {fileID: 5781406759478334541}
-  Player1Purse: {fileID: 0}
-  Player1Name: {fileID: 0}
-  Player1Light: {fileID: 0}
-  Player2Purse: {fileID: 0}
-  Player2Name: {fileID: 0}
-  Player2Light: {fileID: 0}
-  Bank1: {fileID: 0}
-  Bank2: {fileID: 0}
-  Bank3: {fileID: 0}
-  Bank4: {fileID: 0}
-  Bank5: {fileID: 0}
+  playerUIs:
+  - Purse: {fileID: 0}
+    Name: {fileID: 0}
+    Light: {fileID: 0}
+  - Purse: {fileID: 0}
+    Name: {fileID: 0}
+    Light: {fileID: 0}
+  BankAmounts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  BankNumbers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   LeftSidePanel: {fileID: 0}
   OperationLeft: {fileID: 0}
   RightSidePanel: {fileID: 0}
   OperationRight: {fileID: 0}
-  Dice1Text: {fileID: 0}
-  Dice2Text: {fileID: 0}
-  Dice3Text: {fileID: 0}
   Dice1: {fileID: 0}
   Dice2: {fileID: 0}
   Dice3: {fileID: 0}

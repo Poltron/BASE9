@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
     private TextMeshPro[] BankAmounts;
     [SerializeField]
     private TextMeshPro[] BankNumbers;
+    [SerializeField]
+    private GameObject[] BankLock;
 
     [SerializeField]
     private Animator LeftSidePanel;
@@ -63,9 +65,15 @@ public class UIManager : MonoBehaviour
         PhaseText.text = GameManager.IsPhase2() ? "Phase 2" : "Phase 1";
 
         if (GameManager.Player1 != null)
+        {
             playerUIs[0].Purse.text = GameManager.GetPurse(1).ToString();
+            playerUIs[0].Name.text = GameManager.Player1.PlayerName;
+        }
         if (GameManager.Player2 != null)
+        {
             playerUIs[1].Purse.text = GameManager.GetPurse(2).ToString();
+            playerUIs[1].Name.text = GameManager.Player2.PlayerName;
+        }
 
         //TemporaryUI();
     }
@@ -90,7 +98,7 @@ public class UIManager : MonoBehaviour
     {
         Winner.text = playerWinner.PlayerName + " wins";
 
-        if (playerWinner.IsLocal)
+        if (!playerWinner.IsLocal)
             Winner.color = WinColor;
         else
             Winner.color = LooseColor;
@@ -188,7 +196,7 @@ public class UIManager : MonoBehaviour
     IEnumerator FadeColorIn(TextMeshPro text, Color target)
     {
         yield return new WaitForSeconds(0.5f);
-        Debug.Log("cou");
+
         Color origin = text.color;
         float f = 0;
         for (f = 0; f < 1.0f; f += Time.deltaTime * 2)
@@ -267,6 +275,11 @@ public class UIManager : MonoBehaviour
         }
 
         return GameManager.GetBank(BankIndex).ToString();
+    }
+
+    public void EnableBankLock(int bankId)
+    {
+        BankLock[bankId].SetActive(true);
     }
 
     public void ShowEndTurn()
