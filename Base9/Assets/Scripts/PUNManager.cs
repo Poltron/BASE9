@@ -77,8 +77,6 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     /// </summary>
     public void Connect()
     {
-
-
         // we want to make sure the log is clear everytime we connect, we might have several failed attempted if connection failed.
         feedbackText.text = "";
 
@@ -98,6 +96,7 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         }
         else
         {
+            bLookingForOpponent = true;
 
             LogFeedback("Connecting to Master Server...");
             ScreenLogs("Connecting to Master Server...");
@@ -110,6 +109,9 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     public void Disconnect()
     {
+        bLookingForOpponent = false;
+        timeToFindOpponentTimer = 0;
+
         Debug.LogFormat("Disconnecting");
         PhotonNetwork.Disconnect();
     }

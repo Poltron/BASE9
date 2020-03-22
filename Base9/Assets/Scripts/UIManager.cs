@@ -3,24 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
+
+[Serializable]
+public class PlayerUI
+{
+    public TextMeshPro Purse;
+    public TextMeshPro Name;
+    public Animator Light;
+}
 
 public class UIManager : MonoBehaviour
 {
     public GameManager GameManager;
 
     [SerializeField]
-    private TextMeshPro Player1Purse;
-    [SerializeField]
-    private TextMeshPro Player1Name;
-    [SerializeField]
-    private Animator Player1Light;
-
-    [SerializeField]
-    private TextMeshPro Player2Purse;
-    [SerializeField]
-    private TextMeshPro Player2Name;
-    [SerializeField]
-    private Animator Player2Light;
+    private PlayerUI[] playerUIs;
 
     [SerializeField]
     private TextMeshPro[] BankAmounts;
@@ -35,13 +33,6 @@ public class UIManager : MonoBehaviour
     private Animator RightSidePanel;
     [SerializeField]
     private TextMeshProUGUI OperationRight;
-
-    [SerializeField]
-    private TextMeshPro Dice1Text;
-    [SerializeField]
-    private TextMeshPro Dice2Text;
-    [SerializeField]
-    private TextMeshPro Dice3Text;
 
     [SerializeField]
     private Animator Dice1;
@@ -72,47 +63,15 @@ public class UIManager : MonoBehaviour
         PhaseText.text = GameManager.IsPhase2() ? "Phase 2" : "Phase 1";
 
         if (GameManager.Player1 != null)
-            Player1Purse.text = GameManager.GetPurse(1).ToString();
+            playerUIs[0].Purse.text = GameManager.GetPurse(1).ToString();
         if (GameManager.Player2 != null)
-            Player2Purse.text = GameManager.GetPurse(2).ToString();
+            playerUIs[1].Purse.text = GameManager.GetPurse(2).ToString();
 
         //TemporaryUI();
     }
 
     public void TemporaryUI()
     {
-        // dice
-
-        if (GameManager.GetDice(1) != 0)
-        {
-            Dice1Text.text = GameManager.GetDice(1).ToString();
-            Dice1Text.gameObject.SetActive(true);
-        }
-        else
-        {
-            Dice1Text.gameObject.SetActive(false);
-        }
-
-        if (GameManager.GetDice(2) != 0)
-        {
-            Dice2Text.text = GameManager.GetDice(2).ToString();
-            Dice2Text.gameObject.SetActive(true);
-        }
-        else
-        {
-            Dice2Text.gameObject.SetActive(false);
-        }
-
-        if (GameManager.GetDice(3) != 0)
-        {
-            Dice3Text.text = GameManager.GetDice(3).ToString();
-            Dice3Text.gameObject.SetActive(true);
-        }
-        else
-        {
-            Dice3Text.gameObject.SetActive(false);
-        }
-
         for (int i = 1; i <= 5; i++)
         {
             if (GameManager.GetBank(i) != 0)
@@ -289,26 +248,12 @@ public class UIManager : MonoBehaviour
 
     public void ShowLight()
     {
-        if (GameManager.ActivePlayerNumber == 0)
-        {
-            Player1Light.SetBool("Enabled", true);
-        }
-        else
-        {
-            Player2Light.SetBool("Enabled", true);
-        }
+        playerUIs[GameManager.ActivePlayerNumber].Light.SetBool("Enabled", true);
     }
 
     public void HideLight()
     {
-        if (GameManager.ActivePlayerNumber == 0)
-        {
-            Player1Light.SetBool("Enabled", false);
-        }
-        else
-        {
-            Player2Light.SetBool("Enabled", false);
-        }
+        playerUIs[GameManager.ActivePlayerNumber].Light.SetBool("Enabled", false);
     }
 
     private string ShowBankText(int BankIndex)
