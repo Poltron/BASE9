@@ -236,7 +236,6 @@ public class UIManager : MonoBehaviour
         {
             Color c = Color.Lerp(origin, target, f);
             text.color = c;
-            Debug.Log(c);
             yield return new WaitForEndOfFrame();
         }
 
@@ -246,7 +245,6 @@ public class UIManager : MonoBehaviour
         {
             Color c = Color.Lerp(target, origin, f);
             text.color = c;
-            Debug.Log(c);
             yield return new WaitForEndOfFrame();
         }
 

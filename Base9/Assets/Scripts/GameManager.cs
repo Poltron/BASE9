@@ -512,6 +512,7 @@ public class GameManager : MonoBehaviour, IPunObservable
     [PunRPC]
     public void RPC_GameEnded(Player winner, Player looser)
     {
+        UIManager.HideLight();
         UIManager.SetWinnerLooser(winner, looser);
         GameEventMessage.SendEvent("GameEnded");
     }
