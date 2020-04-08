@@ -49,8 +49,7 @@ public class CameraOrbit : MonoBehaviour
             bOrbiting = false;
             Debug.Log("Touch orbiting ended.");
         }
-
-
+        
         if (Input.GetMouseButtonDown(0))
         {
             if (!EventSystem.current.IsPointerOverGameObject())

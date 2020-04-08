@@ -75,6 +75,16 @@ public class UIManager : MonoBehaviour
             playerUIs[1].Name.text = GameManager.Player2.PlayerName;
         }
 
+        AnimatorClipInfo[] clipInfos = LeftSidePanel.GetCurrentAnimatorClipInfo(0);
+        string clipsPlayed = "";
+        foreach (AnimatorClipInfo clipInfo in clipInfos)
+        {
+            clipsPlayed += clipInfo.clip.name;
+        }
+        Debug.Log(clipsPlayed);
+
+        //Debug.Log("Side_Panel_LEFT_Pop" + clip.IsName("Side_Panel_LEFT_Pop"));
+        //Debug.Log("Side_Panel_LEFT_DePop" + clip.IsName("Side_Panel_LEFT_DePop"));
         //TemporaryUI();
     }
 
