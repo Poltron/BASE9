@@ -351,6 +351,7 @@ public class GameManager : MonoBehaviour, IPunObservable
                 if (IsBankOpen(toPay - 1))
                 {
                     banks[toPay - 1] += toPay;
+                    UIManager.
                     StartCoroutine(MoveCoins(toPay, GetPlayerCoins(ActivePlayerNumber), GetBankCoins(toPay -1), GetBankCoinSpawn(toPay - 1)));
                 }
                 else
