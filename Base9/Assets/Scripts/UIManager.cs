@@ -46,6 +46,8 @@ public class UIManager : MonoBehaviour
     private Animator EndTurn;
 
     [SerializeField]
+    private Animation Phase;
+    [SerializeField]
     private TextMeshProUGUI PhaseText;
 
     [SerializeField]
@@ -57,6 +59,11 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Color LooseColor;
 
+    [SerializeField]
+    private Animation[] Banks;
+    [SerializeField]
+    private Animation BanksParent;
+
     void Start()
     {
 
@@ -64,8 +71,6 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        PhaseText.text = GameManager.IsPhase2() ? "Phase 2" : "Phase 1";
-
         if (GameManager.Player1 != null)
         {
             playerUIs[0].Purse.text = (GameManager.GetPurse(1) < 0 ? "0" : GameManager.GetPurse(1).ToString());
@@ -76,14 +81,6 @@ public class UIManager : MonoBehaviour
             playerUIs[1].Purse.text = (GameManager.GetPurse(2) < 0 ? "0" : GameManager.GetPurse(2).ToString());
             playerUIs[1].Name.text = GameManager.Player2.PlayerName;
         }
-
-        AnimatorClipInfo[] clipInfos = LeftSidePanel.GetCurrentAnimatorClipInfo(0);
-        string clipsPlayed = "";
-        foreach (AnimatorClipInfo clipInfo in clipInfos)
-        {
-            clipsPlayed += clipInfo.clip.name;
-        }
-        Debug.Log(clipsPlayed);
 
         //Debug.Log("Side_Panel_LEFT_Pop" + clip.IsName("Side_Panel_LEFT_Pop"));
         //Debug.Log("Side_Panel_LEFT_DePop" + clip.IsName("Side_Panel_LEFT_DePop"));
@@ -304,7 +301,9 @@ public class UIManager : MonoBehaviour
 
     public void EnableBankLock(int bankId)
     {
+        Debug.Log("Playing BankLock " + bankId);
         BankLock[bankId].SetActive(true);
+        Banks[bankId].Play("TriangleLock");
     }
 
     public void ShowEndTurn()
@@ -317,5 +316,31 @@ public class UIManager : MonoBehaviour
     public void ShowStartTurn()
     {
         ShowLight();
+    }
+
+    public void HighlightBank(int bankIndex, bool bHighlighted)
+    {
+        if (bHighlighted)
+            Banks[bankIndex].Play("TriangleHighlight");
+        else
+            Banks[bankIndex].Play("TriangleHighlightREVERSE");
+    }
+
+    public void ShowPhase2()
+    {
+        BanksParent.Play();
+        StartCoroutine(GameManager.WaitFor(1.0f, Phase2Anim1));
+    }
+
+    private void Phase2Anim1()
+    {
+        Phase.Play();
+        PhaseText.text = "Phase 2";
+        //StartCoroutine(GameManager.WaitFor(1.0f, Phase2Anim2));
+    }
+
+    private void Phase2Anim2()
+    {
+        
     }
 }

@@ -351,7 +351,7 @@ public class GameManager : MonoBehaviour, IPunObservable
                 if (IsBankOpen(toPay - 1))
                 {
                     banks[toPay - 1] += toPay;
-                    UIManager.
+                    StartCoroutine(WaitFor(0.8f, UIManager.HighlightBank, toPay - 1, true));
                     StartCoroutine(MoveCoins(toPay, GetPlayerCoins(ActivePlayerNumber), GetBankCoins(toPay -1), GetBankCoinSpawn(toPay - 1)));
                 }
                 else
@@ -364,6 +364,7 @@ public class GameManager : MonoBehaviour, IPunObservable
                 if (IsBankOpen(4))
                 {
                     banks[4] += 5;
+                    StartCoroutine(WaitFor(0.8f, UIManager.HighlightBank, 4, true));
                     StartCoroutine(MoveCoins(5, GetPlayerCoins(ActivePlayerNumber), GetBankCoins(4), GetBankCoinSpawn(4)));
                 }
                 else
@@ -376,6 +377,7 @@ public class GameManager : MonoBehaviour, IPunObservable
                 if (IsBankOpen(toPay - 1))
                 {
                     banks[toPay - 1] += toPay;
+                    StartCoroutine(WaitFor(0.8f, UIManager.HighlightBank, toPay - 1, true));
                     StartCoroutine(MoveCoins(toPay, GetPlayerCoins(ActivePlayerNumber), GetBankCoins(toPay - 1), GetBankCoinSpawn(toPay - 1)));
                 }
                 else
@@ -396,12 +398,18 @@ public class GameManager : MonoBehaviour, IPunObservable
                     {
                         StartCoroutine(MoveCoins(banks[bankId], GetBankCoins(bankId), GetPlayerCoins(ActivePlayerNumber), GetPlayerCoinSpawn(ActivePlayerNumber)));
                         purses[activePlayer] += banks[bankId];
-                        banks[bankId] = 0;
 
                         if (IsPhase2())
                         {
                             UIManager.EnableBankLock(bankId);
                         }
+
+                        if (banks[bankId] > 0 && !bPhase2)
+                        {
+                            UIManager.HighlightBank(bankId, false);
+                        }
+
+                        banks[bankId] = 0;
                     }
                 }
             }
@@ -483,7 +491,7 @@ public class GameManager : MonoBehaviour, IPunObservable
             EndGame(InactivePlayer, ActivePlayer);
             return;
         }
-
+        bool wasPhase2 = bPhase2;
         bool ended = ComputeBanks();
         if (ended)
         {
@@ -495,7 +503,15 @@ public class GameManager : MonoBehaviour, IPunObservable
             return;
         }
 
-        StartCoroutine(WaitFor(2.0f, NextTurn));
+        if (!wasPhase2 && bPhase2) // play anim for Phase2
+        {
+            StartCoroutine(WaitFor(1.0f, UIManager.ShowPhase2));
+            StartCoroutine(WaitFor(3.0f, NextTurn));
+        }
+        else
+        {
+            StartCoroutine(WaitFor(2.0f, NextTurn));
+        }
     }
 
     [PunRPC]
@@ -572,5 +588,12 @@ public class GameManager : MonoBehaviour, IPunObservable
         yield return new WaitForSeconds(time);
 
         action();
+    }
+
+    public IEnumerator WaitFor(float time, Action<int, bool> action, int param_int, bool param_bool)
+    {
+        yield return new WaitForSeconds(time);
+
+        action(param_int, param_bool);        
     }
 }
