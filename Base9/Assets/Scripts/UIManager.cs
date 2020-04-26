@@ -51,6 +51,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI Winner;
     [SerializeField]
+    private TextMeshProUGUI EndReason;
+    [SerializeField]
     private Color WinColor;
     [SerializeField]
     private Color LooseColor;
@@ -66,12 +68,12 @@ public class UIManager : MonoBehaviour
 
         if (GameManager.Player1 != null)
         {
-            playerUIs[0].Purse.text = GameManager.GetPurse(1).ToString();
+            playerUIs[0].Purse.text = (GameManager.GetPurse(1) < 0 ? "0" : GameManager.GetPurse(1).ToString());
             playerUIs[0].Name.text = GameManager.Player1.PlayerName;
         }
         if (GameManager.Player2 != null)
         {
-            playerUIs[1].Purse.text = GameManager.GetPurse(2).ToString();
+            playerUIs[1].Purse.text = (GameManager.GetPurse(2) < 0 ? "0" : GameManager.GetPurse(2).ToString());
             playerUIs[1].Name.text = GameManager.Player2.PlayerName;
         }
 
@@ -106,12 +108,25 @@ public class UIManager : MonoBehaviour
 
     public void SetWinnerLooser(Player playerWinner, Player playerLooser)
     {
-        Winner.text = playerWinner.PlayerName + " wins";
+        
+        if (playerWinner.PlayerName != "You")
+        {
+            Winner.text = playerWinner.PlayerName + " wins";
+        }
+        else
+        {
+            Winner.text = playerWinner.PlayerName + " win";
+        }
 
         if (!playerWinner.IsLocal)
             Winner.color = WinColor;
         else
             Winner.color = LooseColor;
+    }
+
+    public void SetEndReason(string reason)
+    {
+        EndReason.text = reason;
     }
 
     public void EnableTwoDice(Player player)

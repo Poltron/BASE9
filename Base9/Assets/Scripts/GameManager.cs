@@ -201,15 +201,15 @@ public class GameManager : MonoBehaviour, IPunObservable
         if (PUNManager != null && PUNManager.bPlayingOnline)
         {
             GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity, 0);
-            player.GetComponent<Player>().Init("You");
+            player.GetComponent<Player>().Init("You", 0);
         }
         else // IF WE'RE PLAYING LOCAL VS AI
         {
             GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-            player.GetComponent<Player>().Init("You");
+            player.GetComponent<Player>().Init("You", 0);
 
             player = Instantiate(aiPrefab, Vector3.zero, Quaternion.identity);
-            player.GetComponent<Player>().Init("Computer");
+            player.GetComponent<Player>().Init("Computer", 1);
         }
     }
 
@@ -541,6 +541,20 @@ public class GameManager : MonoBehaviour, IPunObservable
     {
         UIManager.HideLight();
         UIManager.SetWinnerLooser(winner, looser);
+
+        if (GetPlayerCoins(0).Count <= 0)
+        {
+            UIManager.SetEndReason(Player1.PlayerName + " had 0 coins left.");
+        }
+        else if (GetPlayerCoins(1).Count <= 0)
+        {
+            UIManager.SetEndReason(Player2.PlayerName + " had 0 coins left.");
+        }
+        else
+        {
+            UIManager.SetEndReason(winner.PlayerName + " had more coins than " + looser.PlayerName);
+        }
+
         GameEventMessage.SendEvent("GameEnded");
     }
 
