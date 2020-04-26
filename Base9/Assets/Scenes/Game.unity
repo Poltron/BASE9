@@ -188,7 +188,7 @@ Transform:
   - {fileID: 623271750}
   - {fileID: 935244289}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &74163466
 GameObject:
@@ -2554,6 +2554,18 @@ Transform:
   m_Father: {fileID: 1603497706}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &481662336 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2172224255764977462, guid: 7592af2abd6517e4d8da4a77db42cb27,
+    type: 3}
+  m_PrefabInstance: {fileID: 1653945271}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &491916482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2689,8 +2701,7 @@ MonoBehaviour:
   m_text: 70
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f541febd27c4cbf478e399476920335d, type: 2}
-  m_sharedMaterial: {fileID: -3228899116816121466, guid: f541febd27c4cbf478e399476920335d,
-    type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 187465504c5dd2945a2542578c70df74, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2813,7 +2824,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3228899116816121466, guid: f541febd27c4cbf478e399476920335d, type: 2}
+  - {fileID: 2100000, guid: 187465504c5dd2945a2542578c70df74, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4608,8 +4619,7 @@ MonoBehaviour:
   m_text: Player 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f541febd27c4cbf478e399476920335d, type: 2}
-  m_sharedMaterial: {fileID: -3228899116816121466, guid: f541febd27c4cbf478e399476920335d,
-    type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 187465504c5dd2945a2542578c70df74, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4732,7 +4742,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3228899116816121466, guid: f541febd27c4cbf478e399476920335d, type: 2}
+  - {fileID: 2100000, guid: 187465504c5dd2945a2542578c70df74, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13239,8 +13249,7 @@ MonoBehaviour:
   m_text: 70
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f541febd27c4cbf478e399476920335d, type: 2}
-  m_sharedMaterial: {fileID: -3228899116816121466, guid: f541febd27c4cbf478e399476920335d,
-    type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 187465504c5dd2945a2542578c70df74, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -13363,7 +13372,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3228899116816121466, guid: f541febd27c4cbf478e399476920335d, type: 2}
+  - {fileID: 2100000, guid: 187465504c5dd2945a2542578c70df74, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15590,8 +15599,7 @@ MonoBehaviour:
   m_text: Player 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f541febd27c4cbf478e399476920335d, type: 2}
-  m_sharedMaterial: {fileID: -3228899116816121466, guid: f541febd27c4cbf478e399476920335d,
-    type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 187465504c5dd2945a2542578c70df74, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -15714,7 +15722,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3228899116816121466, guid: f541febd27c4cbf478e399476920335d, type: 2}
+  - {fileID: 2100000, guid: 187465504c5dd2945a2542578c70df74, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16428,7 +16436,7 @@ PrefabInstance:
     - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
         type: 3}
       propertyPath: nbOfCoin
-      value: 20
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5781406759478334541, guid: e3a061e6f2564a44a9c04dc63998ffd6,
         type: 3}
@@ -16655,6 +16663,11 @@ PrefabInstance:
       propertyPath: BankLock.Array.data[4]
       value: 
       objectReference: {fileID: 393515360}
+    - target: {fileID: 9109075080482744381, guid: e3a061e6f2564a44a9c04dc63998ffd6,
+        type: 3}
+      propertyPath: EndReason
+      value: 
+      objectReference: {fileID: 481662336}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3a061e6f2564a44a9c04dc63998ffd6, type: 3}
 --- !u!114 &1846268268480126337 stripped

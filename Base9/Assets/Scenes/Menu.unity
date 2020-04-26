@@ -610,6 +610,7 @@ GameObject:
   - component: {fileID: 444610994}
   - component: {fileID: 444610996}
   - component: {fileID: 444610995}
+  - component: {fileID: 444610997}
   m_Layer: 0
   m_Name: Label
   m_TagString: Untagged
@@ -624,7 +625,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444610993}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -683,7 +684,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 90.5
+  m_fontSize: 60.3
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -755,6 +756,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444610993}
   m_CullTransparentMesh: 0
+--- !u!210 &444610997
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444610993}
+  m_Enabled: 1
+  m_SortingLayerID: 72904481
+  m_SortingLayer: 1
+  m_SortingOrder: 0
 --- !u!4 &445117614 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 7f32356c1c829284ab8f3d08802f15c1,
@@ -1139,7 +1151,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 85.05
+  m_fontSize: 56.7
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1657,7 +1669,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 82.15
+  m_fontSize: 56.3
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1

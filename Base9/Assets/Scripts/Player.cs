@@ -12,6 +12,12 @@ public abstract class Player : MonoBehaviour, IPunObservable
         get { return playerName; }
     }
 
+    private int id;
+    public int Id
+    {
+        get { return id; }
+    }
+
     protected GameManager gameManager;
     protected PhotonView photonView;
 
@@ -67,9 +73,10 @@ public abstract class Player : MonoBehaviour, IPunObservable
         }
     }
 
-    public void Init(string _playerName)
+    public void Init(string _playerName, int _id)
     {
         playerName = _playerName;
+        id = _id;
     }
 
     public IEnumerator WaitFor(float time, System.Action action)
