@@ -64,6 +64,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Animation BanksParent;
 
+    [SerializeField]
+    private Animation Base9Animation;
+
     void Start()
     {
 
@@ -324,6 +327,11 @@ public class UIManager : MonoBehaviour
             Banks[bankIndex].Play("TriangleHighlight");
         else
             Banks[bankIndex].Play("TriangleHighlightREVERSE");
+    }
+
+    public void Base9Anim()
+    {
+        Base9Animation.Play();
     }
 
     public void ShowPhase2()

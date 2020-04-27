@@ -388,6 +388,8 @@ public class GameManager : MonoBehaviour, IPunObservable
         }
         else // get coins
         {
+            UIManager.Base9Anim();
+
             foreach (var dice in dices)
             {
                 if (dice > 0 && dice < 6)
