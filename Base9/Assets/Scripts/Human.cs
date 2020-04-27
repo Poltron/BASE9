@@ -66,8 +66,15 @@ public class Human : Player
 
     public override void TwoDicePlayed()
     {
-        gameManager.UIManager.EnableThirdDiceButton(this);
-        gameManager.UIManager.EnableEndTurnButton(this);
+        if (gameManager.AreTwoFirstDices9())
+        {
+            EndTurn();
+        }
+        else
+        {
+            gameManager.UIManager.EnableThirdDiceButton(this);
+            gameManager.UIManager.EnableEndTurnButton(this);
+        }
     }
 
     public override void ThirdDicePlayed()

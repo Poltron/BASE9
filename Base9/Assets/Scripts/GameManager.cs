@@ -234,6 +234,16 @@ public class GameManager : MonoBehaviour, IPunObservable
         StartCoroutine(SpawnCoins());
     }
 
+    public bool AreTwoFirstDices9()
+    {
+        return ( (dices[0] + dices[1]) == 9 );
+    }
+
+    public bool AreTwoFirstDicesSuperiorTo9()
+    {
+        return ((dices[0] + dices[1]) > 9);
+    }
+
     private Vector3 MulVecs(Vector3 a, Vector3 b)
     {
         return new Vector3(a.x * b.x, a.y * b.y, a.z * b.z);
@@ -388,7 +398,7 @@ public class GameManager : MonoBehaviour, IPunObservable
         }
         else // get coins
         {
-            UIManager.Base9Anim();
+            //UIManager.Base9Anim();
 
             foreach (var dice in dices)
             {
