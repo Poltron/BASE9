@@ -398,7 +398,9 @@ public class GameManager : MonoBehaviour, IPunObservable
         }
         else // get coins
         {
-            //UIManager.Base9Anim();
+            UIManager.Base9Anim();
+
+            yield return new WaitForSeconds(2.5f);
 
             foreach (var dice in dices)
             {

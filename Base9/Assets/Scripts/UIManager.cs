@@ -35,6 +35,10 @@ public class UIManager : MonoBehaviour
     private Animator RightSidePanel;
     [SerializeField]
     private TextMeshProUGUI OperationRight;
+    [SerializeField]
+    private Color GreenColor;
+    [SerializeField]
+    private Color RedColor;
 
     [SerializeField]
     private Animator Dice1;
@@ -188,7 +192,7 @@ public class UIManager : MonoBehaviour
                     bankNb = toPay - 1;
                 }
 
-                StartCoroutine(FadeColorIn(BankNumbers[bankNb], Color.red));
+                StartCoroutine(FadeColorIn(BankNumbers[bankNb], RedColor));
                 toPay -= 5;
             }
         }
@@ -201,7 +205,7 @@ public class UIManager : MonoBehaviour
                 int dice = GameManager.GetDice(i);
                 if (dice != 0 && dice != 6)
                 {
-                    StartCoroutine(FadeColorIn(BankNumbers[dice - 1], Color.green));
+                    StartCoroutine(FadeColorIn(BankNumbers[dice - 1], GreenColor));
                 }
             }
         }
