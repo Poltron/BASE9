@@ -550,7 +550,7 @@ public class GameManager : MonoBehaviour, IPunObservable
         }
         else
         {
-            photonView.RPC("ThrowDice", RpcTarget.MasterClient, number);
+            photonView.RPC("RPC_ThrowDice", RpcTarget.MasterClient, number);
         }
     }
 
@@ -576,7 +576,7 @@ public class GameManager : MonoBehaviour, IPunObservable
 
         if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
-            photonView.RPC("GameEnded", RpcTarget.Others, winner, looser);
+            photonView.RPC("RPC_GameEnded", RpcTarget.Others, winner, looser);
         }
     }
 
