@@ -258,10 +258,23 @@ public class GameManager : MonoBehaviour, IPunObservable
         {
             for (int j = 0; j < 5; ++j)
             {
-                GameObject coin = Instantiate(coinPrefab, purse0CoinSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0.5f, 2.75f)), Quaternion.identity, purse0CoinSpawn);
+                GameObject coin, coin2;
+                if (PUNManager.bPlayingOnline)
+                {
+                    coin = PhotonNetwork.Instantiate(coinPrefab.name, purse0CoinSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0.5f, 2.75f)), Quaternion.identity);
+                    coin.transform.parent = purse0CoinSpawn;
+                    coin2 = PhotonNetwork.Instantiate(coinPrefab.name, purse1CoinSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0.5f, 2.75f)), Quaternion.identity);
+                    coin2.transform.parent = purse1CoinSpawn;
+                }
+                else
+                {
+                    coin = Instantiate(coinPrefab, purse0CoinSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0.5f, 2.75f)), Quaternion.identity, purse0CoinSpawn);
+                    coin2 = Instantiate(coinPrefab, purse1CoinSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0.5f, 2.75f)), Quaternion.identity, purse1CoinSpawn);
+                }
+
                 purse0Coins.Add(coin.GetComponent<Coin>());
-                GameObject coin2 = Instantiate(coinPrefab, purse1CoinSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0.5f, 2.75f)), Quaternion.identity, purse1CoinSpawn);
                 purse1Coins.Add(coin2.GetComponent<Coin>());
+
                 i++;
             }
             purses[0] = i;
