@@ -225,6 +225,11 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             // Load the Room Level. 
             //PhotonNetwork.LoadLevel("Game");
         }
+        else if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            timeToFindOpponentTimer = 0;
+            bLookingForOpponent = false;
+        }
     }
     
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player other)
