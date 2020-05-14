@@ -14,6 +14,7 @@ Animation:
   - {fileID: 7400000, guid: a1732445de5d30e4fa8f85161436d229, type: 2}
   - {fileID: 7400000, guid: 3b7713c037063f14d9a1672cad4b0a18, type: 2}
   - {fileID: 7400000, guid: 29ad8f89562a9c74693c9b5d796b7851, type: 2}
+  - {fileID: 7400000, guid: 34f48a8ddbe4b544088199524d0ff4c7, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -32,6 +33,7 @@ Animation:
   - {fileID: 7400000, guid: a1732445de5d30e4fa8f85161436d229, type: 2}
   - {fileID: 7400000, guid: 3b7713c037063f14d9a1672cad4b0a18, type: 2}
   - {fileID: 7400000, guid: 29ad8f89562a9c74693c9b5d796b7851, type: 2}
+  - {fileID: 7400000, guid: 34f48a8ddbe4b544088199524d0ff4c7, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -50,6 +52,7 @@ Animation:
   - {fileID: 7400000, guid: a1732445de5d30e4fa8f85161436d229, type: 2}
   - {fileID: 7400000, guid: 3b7713c037063f14d9a1672cad4b0a18, type: 2}
   - {fileID: 7400000, guid: 29ad8f89562a9c74693c9b5d796b7851, type: 2}
+  - {fileID: 7400000, guid: 34f48a8ddbe4b544088199524d0ff4c7, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -120,6 +123,7 @@ Animation:
   - {fileID: 7400000, guid: a1732445de5d30e4fa8f85161436d229, type: 2}
   - {fileID: 7400000, guid: 3b7713c037063f14d9a1672cad4b0a18, type: 2}
   - {fileID: 7400000, guid: 29ad8f89562a9c74693c9b5d796b7851, type: 2}
+  - {fileID: 7400000, guid: 34f48a8ddbe4b544088199524d0ff4c7, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -138,6 +142,7 @@ Animation:
   - {fileID: 7400000, guid: a1732445de5d30e4fa8f85161436d229, type: 2}
   - {fileID: 7400000, guid: 3b7713c037063f14d9a1672cad4b0a18, type: 2}
   - {fileID: 7400000, guid: 29ad8f89562a9c74693c9b5d796b7851, type: 2}
+  - {fileID: 7400000, guid: 34f48a8ddbe4b544088199524d0ff4c7, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
