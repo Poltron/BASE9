@@ -259,7 +259,7 @@ public class GameManager : MonoBehaviour, IPunObservable
             for (int j = 0; j < 5; ++j)
             {
                 GameObject coin, coin2;
-                if (PUNManager.bPlayingOnline)
+                if (PUNManager != null && PUNManager.bPlayingOnline)
                 {
                     coin = PhotonNetwork.Instantiate(coinPrefab.name, purse0CoinSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0.5f, 2.75f)), Quaternion.identity);
                     coin.transform.parent = purse0CoinSpawn;

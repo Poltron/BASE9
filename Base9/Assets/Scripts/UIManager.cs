@@ -205,7 +205,8 @@ public class UIManager : MonoBehaviour
                 int dice = GameManager.GetDice(i);
                 if (dice != 0 && dice != 6)
                 {
-                    StartCoroutine(FadeColorIn(BankNumbers[dice - 1], GreenColor));
+                    FlashGreenBank(dice - 1);
+                    //StartCoroutine(FadeColorIn(BankNumbers[dice - 1], GreenColor));
                 }
             }
         }
@@ -333,7 +334,12 @@ public class UIManager : MonoBehaviour
             Banks[bankIndex].Play("TriangleHighlightREVERSE");
     }
 
-    public void Base9Anim()
+    public void FlashGreenBank(int bankIndex)
+    {
+        Banks[bankIndex].Play("TriangleBase9GREEN");
+    }
+
+        public void Base9Anim()
     {
         Base9Animation.Play();
     }
