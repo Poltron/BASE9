@@ -187,6 +187,8 @@ public class GameManager : MonoBehaviour, IPunObservable
     private PhotonView photonView;
     private UIManager uiManager;
     public UIManager UIManager { get { return uiManager; } }
+    private UIManager soundManager;
+    public UIManager SoundManager { get { return soundManager; } }
 
     void Awake()
     {
