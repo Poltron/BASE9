@@ -564,10 +564,18 @@ public class GameManager : MonoBehaviour, IPunObservable
         Debug.Log(diceNumber + " : " + dices[diceNumber - 1]);
         if (dicePlayed == 2)
         {
+            dices[0] = dice[0].GetTopFace();
+            dices[1] = dice[1].GetTopFace();
+            dices[2] = 0;
+
             ActivePlayer.TwoDicePlayed();
         }
         else if (dicePlayed == 3)
         {
+            dices[0] = dice[0].GetTopFace();
+            dices[1] = dice[1].GetTopFace();
+            dices[2] = dice[2].GetTopFace();
+
             StartCoroutine(WaitFor(1.0f, ActivePlayer.EndTurn));
         }
     }
