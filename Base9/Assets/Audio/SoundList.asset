@@ -12,3 +12,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91df3a8cc4f35c442812cdbd9670cd7c, type: 3}
   m_Name: SoundList
   m_EditorClassIdentifier: 
+  cues:
+  - name: 0
+    clip: {fileID: 6776607246624579678, guid: 8e19253635481874caf2a9a0c92e309b, type: 3}
+  - name: 1
+    clip: {fileID: 6776607246624579678, guid: 196e14e2716bc494aa48342c7ace8ec6, type: 3}
+  - name: 2
+    clip: {fileID: 6776607246624579678, guid: fae4ba06f10a8514eb9fc9dc2b6e41d0, type: 3}
+  - name: 3
+    clip: {fileID: 6776607246624579678, guid: 399a1ce3f71c439438b2021aa63cf749, type: 3}
+  - name: 4
+    clip: {fileID: 6776607246624579678, guid: ac7d1864ffd76a14a99434edfab78d90, type: 3}
+  - name: 5
+    clip: {fileID: 6776607246624579678, guid: 425a4e62a7d13fd4a826865c04d1efcb, type: 3}
+  - name: 6
+    clip: {fileID: 6776607246624579678, guid: af67bf13e34467f40a028ffedb1484a2, type: 3}
+  - name: 7
+    clip: {fileID: 6776607246624579678, guid: 8898db0027e433b4aadce2aac2d9a5b1, type: 3}
+  - name: 8
+    clip: {fileID: 6776607246624579678, guid: 7f22585afa8c27346a2359809d74acd8, type: 3}
+  - name: 9
+    clip: {fileID: 6776607246624579678, guid: f13d9a0a6b8788346b7640fc67a64099, type: 3}
+  - name: 10
+    clip: {fileID: 6776607246624579678, guid: 62234b24a58d68c4f82e8b0bec11c803, type: 3}
+  - name: 11
+    clip: {fileID: 6776607246624579678, guid: 134b1963333991547b9a9f3a011bbb26, type: 3}
+  - name: 12
+    clip: {fileID: 6776607246624579678, guid: 46a88089ec7828d4bb50393dcf9d94c7, type: 3}
+  - name: 13
+    clip: {fileID: 6776607246624579678, guid: a567e206fa819bf4a9be8bc671bea971, type: 3}
+  - name: 14
+    clip: {fileID: 6776607246624579678, guid: 3c15316ae46a6e74b8613345b2541d5c, type: 3}
+  - name: 15
+    clip: {fileID: 6776607246624579678, guid: e6b058e0c7261a240b2db973632c0fd7, type: 3}
+  - name: 16
+    clip: {fileID: 6776607246624579678, guid: f89fee1fdc967684a89fb11eef7bb27a, type: 3}
+  - name: 23
+    clip: {fileID: 6776607246624579678, guid: a2a975feb4e33c849883186de6713a6c, type: 3}
+  - name: 24
+    clip: {fileID: 6776607246624579678, guid: 1d010e9652704f34ca6f33776068f40e, type: 3}
+  - name: 25
+    clip: {fileID: 6776607246624579678, guid: 1c00e61ed4bf6ff4d8fdbcfdc951b0af, type: 3}
+  ambients:
+  - name: 17
+    clip: {fileID: 6776607246624579678, guid: 9a23a7d29c840384e93d0b7ea7c4da4f, type: 3}
+  musics:
+  - name: 18
+    clip: {fileID: 6776607246624579678, guid: 5ede3bda15936fa4087d7d9457e71c2d, type: 3}
+  - name: 19
+    clip: {fileID: 6776607246624579678, guid: 8397fcc633d21114a9e926f3422ceb2a, type: 3}
+  - name: 20
+    clip: {fileID: 6776607246624579678, guid: 668cd3bce42dcbb4895d70d3f841e56d, type: 3}

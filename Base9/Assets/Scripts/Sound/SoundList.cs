@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public enum SoundName
@@ -9,8 +10,10 @@ public enum SoundName
     Dice_Hit_Ground,
     Dice_Hit_Wood,
     Dice_Hit_Dice,
-    Panel_Show,
-    Panel_Close,
+    Panel_Show_Left,
+    Panel_Show_Right,
+    Panel_Close_Left,
+    Panel_Close_Right,
     Coin_Swap,
     Coin_Gain,
     Coin_Hit_Ground,
@@ -24,19 +27,28 @@ public enum SoundName
     Ambiance_Loop,
     Musique_Loop_Phase1,
     Musique_Loop_Phase2,
-    Musique_Loop_Menu
+    Musique_Loop_Menu,
+    Click_Button,
+    Connecting,
+    Game_Start
 }
 
-
-public struct SoundCue
+[Serializable]
+public struct SoundPrefab
 {
     public SoundName name;
-    public AudioClip clip;
+    public GameObject clip;
 }
 
 [CreateAssetMenu(fileName = "SoundList", menuName = "ScriptableObjects/SoundList", order = 1)]
 public class SoundList : ScriptableObject
 {
+    [SerializeField]
+    public SoundPrefab[] cues;
 
-    public SoundCue[] cues;
+    [SerializeField]
+    public SoundPrefab[] ambients;
+
+    [SerializeField]
+    public SoundPrefab[] musics;
 }
