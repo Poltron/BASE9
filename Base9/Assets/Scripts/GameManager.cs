@@ -251,6 +251,11 @@ public class GameManager : MonoBehaviour, IPunObservable
         return new Vector3(a.x * b.x, a.y * b.y, a.z * b.z);
     }
 
+    public Transform GetRandomDiceSpawn()
+    {
+        return diceSpawns[UnityEngine.Random.Range(0, diceSpawns.Length - 1)];
+    }
+
     IEnumerator SpawnCoins()
     {
         yield return new WaitForSeconds(1.0f);
@@ -548,7 +553,7 @@ public class GameManager : MonoBehaviour, IPunObservable
     {
         if (!PhotonNetwork.IsConnected || photonView.IsMine)
         {
-            dice[number - 1].Throw(diceSpawns[UnityEngine.Random.Range(0, diceSpawns.Length-1)]);
+            dice[number - 1].Throw(GetRandomDiceSpawn());
         }
         else
         {

@@ -59,6 +59,11 @@ public class Dice : MonoBehaviour
             {
                 timeStopped = 0;
             }
+
+            if (_transform.position.y < -10)
+            {
+                Throw(gameManager.GetRandomDiceSpawn());
+            }
         }
     }
 
