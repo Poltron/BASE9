@@ -66,7 +66,7 @@ public class Human : Player
 
     public override void TwoDicePlayed()
     {
-        if (gameManager.AreTwoFirstDices9())
+        if (gameManager.AreTwoFirstDices9() || gameManager.AreTwoFirstDicesSuperiorTo9())
         {
             EndTurn();
         }

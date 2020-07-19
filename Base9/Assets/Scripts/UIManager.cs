@@ -115,10 +115,12 @@ public class UIManager : MonoBehaviour
         
         if (playerWinner.PlayerName != "You")
         {
+            SoundManager.Instance.PlaySoundCue(SoundName.Jingle_Loose, Vector3.zero);
             Winner.text = playerWinner.PlayerName + " wins";
         }
         else
         {
+            SoundManager.Instance.PlaySoundCue(SoundName.Jingle_Win, Vector3.zero);
             Winner.text = playerWinner.PlayerName + " win";
         }
 
@@ -199,7 +201,7 @@ public class UIManager : MonoBehaviour
         else
         {
             str = "9\n-\n9\n=\n<color=#00FF00>0</color>";
-
+            
             for (int i = 1; i <= 3; i++)
             {
                 int dice = GameManager.GetDice(i);
@@ -208,6 +210,7 @@ public class UIManager : MonoBehaviour
                     FlashGreenBank(dice - 1);
                     //StartCoroutine(FadeColorIn(BankNumbers[dice - 1], GreenColor));
                 }
+                
             }
         }
 
@@ -265,10 +268,12 @@ public class UIManager : MonoBehaviour
         if (GameManager.ActivePlayerNumber == 0)
         {
             LeftSidePanel.SetBool("Enabled", true);
+            SoundManager.Instance.PlaySoundCue(SoundName.Panel_Show_Left, Vector3.zero);
         }
         else
         {
             RightSidePanel.SetBool("Enabled", true);
+            SoundManager.Instance.PlaySoundCue(SoundName.Panel_Show_Right, Vector3.zero);
         }
     }
 
@@ -277,10 +282,12 @@ public class UIManager : MonoBehaviour
         if (GameManager.ActivePlayerNumber == 0)
         {
             LeftSidePanel.SetBool("Enabled", false);
+            SoundManager.Instance.PlaySoundCue(SoundName.Panel_Close_Left, Vector3.zero);
         }
         else
         {
             RightSidePanel.SetBool("Enabled", false);
+            SoundManager.Instance.PlaySoundCue(SoundName.Panel_Close_Right, Vector3.zero);
         }
     }
 
@@ -312,6 +319,8 @@ public class UIManager : MonoBehaviour
         Debug.Log("Playing BankLock " + bankId);
         BankLock[bankId].SetActive(true);
         Banks[bankId].Play("TriangleLock");
+
+        SoundManager.Instance.PlaySoundCue(SoundName.Tile_Lock, Vector3.zero);
     }
 
     public void ShowEndTurn()
@@ -339,9 +348,10 @@ public class UIManager : MonoBehaviour
         Banks[bankIndex].Play("TriangleBase9GREEN");
     }
 
-        public void Base9Anim()
+    public void Base9Anim()
     {
         Base9Animation.Play();
+        SoundManager.Instance.PlaySoundCue(SoundName.Jingle_Base9, Vector3.zero);
     }
 
     public void ShowPhase2()
@@ -352,6 +362,7 @@ public class UIManager : MonoBehaviour
 
     private void Phase2Anim1()
     {
+        SoundManager.Instance.PlaySoundCue(SoundName.Phase2_Start, Vector3.zero);
         Phase.Play();
         PhaseText.text = "Phase 2";
         //StartCoroutine(GameManager.WaitFor(1.0f, Phase2Anim2));

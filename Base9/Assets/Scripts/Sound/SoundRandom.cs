@@ -9,6 +9,9 @@ public class SoundRandom : MonoBehaviour
 
     private AudioSource _audioSource;
 
+    private bool bInitialized;
+    public bool IsInitialized {  get { return bInitialized; } }
+
     void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -16,6 +19,13 @@ public class SoundRandom : MonoBehaviour
 
     void Start()
     {
+        if (!IsInitialized)
+            Initialize();
+    }
+
+    public void Initialize()
+    {
+        bInitialized = true;
         _audioSource.clip = clips[UnityEngine.Random.Range(0, clips.Length - 1)];
     }
 }

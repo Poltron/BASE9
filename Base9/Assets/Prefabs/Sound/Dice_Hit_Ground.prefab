@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6776607246624579672}
   - component: {fileID: 1693924713575581226}
+  - component: {fileID: 9122106987216536986}
   - component: {fileID: 3350928942446561028}
   m_Layer: 0
   m_Name: Dice_Hit_Ground
@@ -50,6 +51,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 29cc0146a09fd80409b76ccb7f2da7ac, type: 3}
   - {fileID: 8300000, guid: e38eb22545f659f49ba9fe35b9ff26d8, type: 3}
   - {fileID: 8300000, guid: b1c414ecd1ecfd64e88edbcbe2b354f3, type: 3}
+--- !u!114 &9122106987216536986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6776607246624579678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f190e4011a821428473d2bc131410c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &3350928942446561028
 AudioSource:
   m_ObjectHideFlags: 0

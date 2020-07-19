@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6776607246624579672}
   - component: {fileID: 7003929168802580504}
+  - component: {fileID: 7203518668134750545}
   - component: {fileID: 3350928942446561028}
   m_Layer: 0
   m_Name: Coin_Swap
@@ -50,6 +51,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f03a4377bd5ab264a857474df66bb972, type: 3}
   - {fileID: 8300000, guid: d9c916953e6554646b9baf56b31fa4da, type: 3}
   - {fileID: 8300000, guid: 6d5c642ea5d6ab540a27fe0e650028d0, type: 3}
+--- !u!114 &7203518668134750545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6776607246624579678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f190e4011a821428473d2bc131410c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &3350928942446561028
 AudioSource:
   m_ObjectHideFlags: 0

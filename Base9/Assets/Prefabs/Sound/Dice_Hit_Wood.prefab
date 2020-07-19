@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6776607246624579672}
   - component: {fileID: -1658278866959544737}
+  - component: {fileID: 6687490986608125206}
   - component: {fileID: 3350928942446561028}
   m_Layer: 0
   m_Name: Dice_Hit_Wood
@@ -50,6 +51,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1db3fd529019eb446afc7444876e6b93, type: 3}
   - {fileID: 8300000, guid: 4161b33aa702e2a43b003b9593ef3c76, type: 3}
   - {fileID: 8300000, guid: 4b698b55cf5f6654da7051be47b1b201, type: 3}
+--- !u!114 &6687490986608125206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6776607246624579678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f190e4011a821428473d2bc131410c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &3350928942446561028
 AudioSource:
   m_ObjectHideFlags: 0

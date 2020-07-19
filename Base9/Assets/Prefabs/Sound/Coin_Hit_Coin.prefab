@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6776607246624579672}
   - component: {fileID: 3562917018767727282}
+  - component: {fileID: -3450913535549701837}
   - component: {fileID: 3350928942446561028}
   m_Layer: 0
   m_Name: Coin_Hit_Coin
@@ -55,6 +56,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1dabd28e08e2e3240b44f7030e03c05b, type: 3}
   - {fileID: 8300000, guid: 47a3e2e7776874740aab12730f1efe1d, type: 3}
   - {fileID: 8300000, guid: 55bdb0b2a4a7f4f4485a6c56105321ae, type: 3}
+--- !u!114 &-3450913535549701837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6776607246624579678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f190e4011a821428473d2bc131410c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &3350928942446561028
 AudioSource:
   m_ObjectHideFlags: 0

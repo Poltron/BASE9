@@ -62,8 +62,12 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
                 bLookingForOpponent = false;
                 bPlayingOnline = false;
                 LogFeedback("Playing against AI");
+                ScreenLogs("Game Found !");
                 PhotonNetwork.Disconnect();
-                GoToGame();
+
+                SoundManager.Instance.RemoveCue(SoundName.Connecting);
+                SoundManager.Instance.PlaySoundCue(SoundName.Game_Start, Vector3.zero);
+                DG.Tweening.DOVirtual.DelayedCall(2.0f, GoToGame);
             }
         }
     }
@@ -238,10 +242,13 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         ScreenLogs("Player joined !");
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
+            SoundManager.Instance.RemoveCue(SoundName.Connecting);
+            SoundManager.Instance.PlaySoundCue(SoundName.Game_Start, Vector3.zero);
             bLookingForOpponent = false;
 
             bPlayingOnline = true;
-            GoToGame();
+
+            DG.Tweening.DOVirtual.DelayedCall(1.0f, GoToGame);
         }
     }
 

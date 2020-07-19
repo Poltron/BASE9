@@ -31,7 +31,7 @@ public class Coin : MonoBehaviour
     {
         Debug.Log("tp destroy : " + destroy);
         Instantiate(disappear, coin.position + new Vector3(0, 2, 0), Quaternion.identity);
-
+        SoundManager.Instance.PlaySoundCue(SoundName.Coin_Swap, transform.position);
         yield return new WaitForSeconds(time);
 
         transform.position = position;
@@ -46,6 +46,7 @@ public class Coin : MonoBehaviour
 
             animator.SetBool("bDestroy", true);
 
+            SoundManager.Instance.PlaySoundCue(SoundName.Coin_Destroy, transform.position);
             yield return new WaitForSeconds(1.0f);
             Destroy(gameObject);
         }

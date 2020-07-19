@@ -229,6 +229,8 @@ public class GameManager : MonoBehaviour, IPunObservable
 
     public void InitGame()
     {
+        Debug.Log("Init Game");
+
         banks = new int[5];
         dices = new int[3];
         dicePlayed = 0;

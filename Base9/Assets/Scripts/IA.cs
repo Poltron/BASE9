@@ -16,6 +16,12 @@ public class IA : Player
     {
         Debug.Log("AI : Play dice");
         gameManager.RPC_ThrowDice(1);
+
+        DG.Tweening.DOVirtual.DelayedCall(1.0f, PlayDice2);
+    }
+
+    private void PlayDice2()
+    {
         gameManager.RPC_ThrowDice(2);
     }
 

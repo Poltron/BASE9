@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6776607246624579672}
   - component: {fileID: -4391585956732509775}
+  - component: {fileID: -8268902506205521061}
   - component: {fileID: 3350928942446561028}
   m_Layer: 0
   m_Name: Dice_Launch
@@ -47,6 +48,18 @@ MonoBehaviour:
   clips:
   - {fileID: 8300000, guid: 3ff54eca07594c24699fc64eb11af284, type: 3}
   - {fileID: 8300000, guid: 8afd94501a92dd546b76f9c1f085824f, type: 3}
+--- !u!114 &-8268902506205521061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6776607246624579678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f190e4011a821428473d2bc131410c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &3350928942446561028
 AudioSource:
   m_ObjectHideFlags: 0

@@ -54,12 +54,12 @@ MonoBehaviour:
   - name: 25
     clip: {fileID: 6776607246624579678, guid: 1c00e61ed4bf6ff4d8fdbcfdc951b0af, type: 3}
   ambients:
-  - name: 17
+  - name: 19
     clip: {fileID: 6776607246624579678, guid: 9a23a7d29c840384e93d0b7ea7c4da4f, type: 3}
   musics:
-  - name: 18
-    clip: {fileID: 6776607246624579678, guid: 5ede3bda15936fa4087d7d9457e71c2d, type: 3}
-  - name: 19
-    clip: {fileID: 6776607246624579678, guid: 8397fcc633d21114a9e926f3422ceb2a, type: 3}
   - name: 20
+    clip: {fileID: 6776607246624579678, guid: 5ede3bda15936fa4087d7d9457e71c2d, type: 3}
+  - name: 21
+    clip: {fileID: 6776607246624579678, guid: 8397fcc633d21114a9e926f3422ceb2a, type: 3}
+  - name: 22
     clip: {fileID: 6776607246624579678, guid: 668cd3bce42dcbb4895d70d3f841e56d, type: 3}

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6776607246624579672}
   - component: {fileID: -3869332432039983173}
+  - component: {fileID: -7494788901396008683}
   - component: {fileID: 3350928942446561028}
   m_Layer: 0
   m_Name: Dice_Hit_Dice
@@ -50,6 +51,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a5e2690c163a6984e929da7870920b52, type: 3}
   - {fileID: 8300000, guid: 24eb054c096da5d43abc4fa462eb7ad0, type: 3}
   - {fileID: 8300000, guid: d0df6793913991c4790d6dc45aea49b7, type: 3}
+--- !u!114 &-7494788901396008683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6776607246624579678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f190e4011a821428473d2bc131410c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &3350928942446561028
 AudioSource:
   m_ObjectHideFlags: 0
@@ -60,7 +73,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1db83d0957f6b2a45a1b193896e0a4f9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
