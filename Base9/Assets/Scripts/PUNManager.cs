@@ -67,7 +67,9 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
                 SoundManager.Instance.RemoveCue(SoundName.Connecting);
                 SoundManager.Instance.PlaySoundCue(SoundName.Game_Start, Vector3.zero);
-                DG.Tweening.DOVirtual.DelayedCall(2.0f, GoToGame);
+
+                DG.Tweening.DOVirtual.DelayedCall(1.0f, ChangeSoundtracks);
+                DG.Tweening.DOVirtual.DelayedCall(2.0f, GoToLocalGame);
             }
         }
     }
@@ -244,19 +246,37 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         {
             SoundManager.Instance.RemoveCue(SoundName.Connecting);
             SoundManager.Instance.PlaySoundCue(SoundName.Game_Start, Vector3.zero);
-            bLookingForOpponent = false;
 
+            DG.Tweening.DOVirtual.DelayedCall(1.0f, ChangeSoundtracks);
+
+            bLookingForOpponent = false;
             bPlayingOnline = true;
 
-            DG.Tweening.DOVirtual.DelayedCall(1.0f, GoToGame);
+            DG.Tweening.DOVirtual.DelayedCall(2.0f, GoToPhotonGame);
         }
     }
 
-    public void GoToGame()
+    private void ChangeSoundtracks()
+    {
+        Debug.Log("ChangeSoundtracks");
+        SoundManager.Instance.PlayAmbient(SoundName.Ambiance_Loop, Vector3.zero);
+        SoundManager.Instance.PlayMusic(SoundName.Musique_Loop_Phase1, Vector3.zero);
+    }
+
+    public void GoToLocalGame()
     {
         ScreenLogs("Loading game...");
         Debug.LogFormat("Loading Game scene");
-        PhotonNetwork.LoadLevel("Game");
+
+        LevelLoader.Instance.LoadNextLevel(1, false);
+    }
+
+    public void GoToPhotonGame()
+    {
+        ScreenLogs("Loading game...");
+        Debug.LogFormat("Loading Game scene");
+
+        LevelLoader.Instance.LoadNextLevel(1, true);
     }
 
     #endregion

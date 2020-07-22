@@ -41,13 +41,7 @@ public class SoundManager : MonoBehaviour
 
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Menu")
         {
-            Debug.Log(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-            PlayAmbient(SoundName.Ambiance_Loop, Vector3.zero);
             PlayMusic(SoundName.Musique_Loop_Menu, Vector3.zero);
-        }
-        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Game")
-        {
-            PlayMusic(SoundName.Musique_Loop_Phase1, Vector3.zero);
         }
     }
 
@@ -101,6 +95,9 @@ public class SoundManager : MonoBehaviour
         if (!GetSoundFromSoundList(sound, soundList.cues, out soundPrefab))
             return null;
 
+        if (sound == SoundName.Coin_Destroy)
+            Debug.Log("sound destroy");
+
         // Instantiate the cue
         GameObject go = Instantiate(soundPrefab.clip, position, Quaternion.identity);
         OneShotThenDestroy oneShot = go.GetComponent<OneShotThenDestroy>();
@@ -116,8 +113,8 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource PlayMusic(SoundName sound, Vector3 position)
     {
-        if (music == null)
-            Destroy(music);
+        if (music != null)
+            Destroy(music.gameObject);
 
         SoundPrefab soundPrefab;
         // Find the sound cue
@@ -125,7 +122,7 @@ public class SoundManager : MonoBehaviour
             return null;
 
         // Instantiate the cue
-        GameObject go = Instantiate(soundPrefab.clip, position, Quaternion.identity, transform);
+        GameObject go = Instantiate(soundPrefab.clip, position, Quaternion.identity);
 
         // Register it
         AudioSource source = go.GetComponent<AudioSource>();
@@ -136,8 +133,8 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource PlayAmbient(SoundName sound, Vector3 position)
     {
-        if (ambient == null)
-            Destroy(ambient);
+        if (ambient != null)
+            Destroy(ambient.gameObject);
 
         SoundPrefab soundPrefab;
         // Find the sound cue
@@ -145,8 +142,8 @@ public class SoundManager : MonoBehaviour
             return null;
 
         // Instantiate the cue
-        GameObject go = Instantiate(soundPrefab.clip, position, Quaternion.identity, transform);
-
+        GameObject go = Instantiate(soundPrefab.clip, position, Quaternion.identity);
+        
         // Register it
         AudioSource source = go.GetComponent<AudioSource>();
         ambient = source;

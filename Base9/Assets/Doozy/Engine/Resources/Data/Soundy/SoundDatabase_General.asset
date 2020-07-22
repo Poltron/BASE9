@@ -16,6 +16,7 @@ MonoBehaviour:
   OutputAudioMixerGroup: {fileID: 0}
   SoundNames:
   - No Sound
+  - New Sound Group
   - No Sound
   Database:
   - {fileID: 3481797036663571598}

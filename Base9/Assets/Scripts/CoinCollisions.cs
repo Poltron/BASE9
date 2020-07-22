@@ -31,5 +31,10 @@ public class CoinCollisions : MonoBehaviour
             Debug.Log("Wood");
             SoundManager.Instance.PlaySoundCue(SoundName.Coin_Hit_Ground, transform.position);
         }
+        else if (point.otherCollider.gameObject.layer == LayerMask.NameToLayer("Felt"))
+        {
+            Debug.Log("Felt");
+            SoundManager.Instance.PlaySoundCue(SoundName.Coin_Hit_Ground, transform.position);
+        }
     }
 }
