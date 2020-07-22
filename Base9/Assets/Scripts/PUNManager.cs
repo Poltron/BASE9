@@ -29,6 +29,8 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     private bool bLookingForOpponent = false;
     public bool bPlayingOnline = true;
+    public bool bPlayingVSAI = false;
+    public bool bPlayingVSLocal = false;
     #endregion
 
     #region Private Fields
@@ -61,6 +63,8 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             {
                 bLookingForOpponent = false;
                 bPlayingOnline = false;
+                bPlayingVSAI = true;
+                
                 LogFeedback("Playing against AI");
                 ScreenLogs("Game Found !");
                 PhotonNetwork.Disconnect();
@@ -277,6 +281,17 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         Debug.LogFormat("Loading Game scene");
 
         LevelLoader.Instance.LoadNextLevel(1, true);
+    }
+
+    public void PlayVSLocal()
+    {
+        bPlayingOnline = false;
+        bPlayingVSLocal = true;
+
+        SoundManager.Instance.PlaySoundCue(SoundName.Game_Start, Vector3.zero);
+
+        DG.Tweening.DOVirtual.DelayedCall(1.0f, ChangeSoundtracks);
+        DG.Tweening.DOVirtual.DelayedCall(2.0f, GoToLocalGame);
     }
 
     #endregion
