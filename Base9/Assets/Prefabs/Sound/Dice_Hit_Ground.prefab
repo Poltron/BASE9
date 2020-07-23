@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f190e4011a821428473d2bc131410c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 0}
 --- !u!82 &3350928942446561028
 AudioSource:
   m_ObjectHideFlags: 0
@@ -75,7 +76,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.702
   m_Pitch: 1
   Loop: 0
   Mute: 0
