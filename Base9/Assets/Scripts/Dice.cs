@@ -25,6 +25,9 @@ public class Dice : MonoBehaviour
     private Rigidbody _rigidbody;
     private GameManager gameManager;
 
+    [SerializeField]
+    private AnimationCurve volumeCurve;
+
     private bool bThrown = false;
     private float timeStopped = 0;
 
@@ -140,22 +143,21 @@ public class Dice : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         ContactPoint point = collision.GetContact(0);
-        Debug.Log("OnCollisionEnter " + LayerMask.LayerToName(point.otherCollider.gameObject.layer));
 
         if (point.otherCollider.gameObject.layer == LayerMask.NameToLayer("Dice"))
         {
-            Debug.Log("Dice");
-            SoundManager.Instance.PlaySoundCue(SoundName.Dice_Hit_Dice, transform.position);
+            AudioSource source = SoundManager.Instance.PlaySoundCue(SoundName.Dice_Hit_Dice, transform.position);
+            source.volume = volumeCurve.Evaluate(_rigidbody.velocity.magnitude);
         }
         else if (point.otherCollider.gameObject.layer == LayerMask.NameToLayer("Wood"))
         {
-            Debug.Log("Wood");
-            SoundManager.Instance.PlaySoundCue(SoundName.Dice_Hit_Wood, transform.position);
+            AudioSource source = SoundManager.Instance.PlaySoundCue(SoundName.Dice_Hit_Wood, transform.position);
+            source.volume = volumeCurve.Evaluate(_rigidbody.velocity.magnitude);
         }
         else if (point.otherCollider.gameObject.layer == LayerMask.NameToLayer("Felt"))
         {
-            Debug.Log("Felt");
-            SoundManager.Instance.PlaySoundCue(SoundName.Dice_Hit_Ground, transform.position);
+            AudioSource source = SoundManager.Instance.PlaySoundCue(SoundName.Dice_Hit_Ground, transform.position);
+            source.volume = volumeCurve.Evaluate(_rigidbody.velocity.magnitude);
         }
     }
 }

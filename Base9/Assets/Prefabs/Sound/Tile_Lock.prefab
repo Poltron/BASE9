@@ -49,6 +49,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 83ddcde93ab8711429425b18b1fa73ab, type: 3}
   - {fileID: 8300000, guid: fb28a983f97e2f546acc555d53d17424, type: 3}
   - {fileID: 8300000, guid: b89723204c7071d4a803438d91a074d7, type: 3}
+  randomMinPitch: 0.8
+  randomMaxPitch: 1.2
 --- !u!114 &-8816601306900788503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f190e4011a821428473d2bc131410c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 0}
 --- !u!82 &3350928942446561028
 AudioSource:
   m_ObjectHideFlags: 0

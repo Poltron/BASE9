@@ -329,6 +329,39 @@ MonoBehaviour:
     number: 5
   - transform: {fileID: 1494412463}
     number: 6
+  volumeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0007124349
+      value: -0.0010326639
+      inSlope: 0.18915685
+      outSlope: 0.18915685
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.08438572
+    - serializedVersion: 3
+      time: 4.4642124
+      value: 0.7008455
+      inSlope: 0.10009613
+      outSlope: 0.10009613
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 10
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!33 &4155309035453975480
 MeshFilter:
   m_ObjectHideFlags: 0

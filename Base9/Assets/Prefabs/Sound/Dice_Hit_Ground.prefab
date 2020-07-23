@@ -51,6 +51,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 29cc0146a09fd80409b76ccb7f2da7ac, type: 3}
   - {fileID: 8300000, guid: e38eb22545f659f49ba9fe35b9ff26d8, type: 3}
   - {fileID: 8300000, guid: b1c414ecd1ecfd64e88edbcbe2b354f3, type: 3}
+  randomMinPitch: 0.8
+  randomMaxPitch: 1.2
 --- !u!114 &9122106987216536986
 MonoBehaviour:
   m_ObjectHideFlags: 0

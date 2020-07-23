@@ -66,7 +66,6 @@ public class SoundManager : MonoBehaviour
         {
             if (cue.cue == source)
             {
-                Debug.Log("RemoveBySource : " + cue.name + " destroyed");
                 cues.Remove(cue);
                 Destroy(cue.cue.gameObject);
                 return;
@@ -80,7 +79,6 @@ public class SoundManager : MonoBehaviour
         {
             if (cue.name == name)
             {
-                Debug.Log("RemoveByName : " + cue.name + " destroyed");
                 cues.Remove(cue);
                 Destroy(cue.cue.gameObject);
                 return;
@@ -94,9 +92,6 @@ public class SoundManager : MonoBehaviour
         // Find the sound cue
         if (!GetSoundFromSoundList(sound, soundList.cues, out soundPrefab))
             return null;
-
-        if (sound == SoundName.Coin_Destroy)
-            Debug.Log("sound destroy");
 
         // Instantiate the cue
         GameObject go = Instantiate(soundPrefab.clip, position, Quaternion.identity);

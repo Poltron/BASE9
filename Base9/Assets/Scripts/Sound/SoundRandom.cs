@@ -7,6 +7,12 @@ public class SoundRandom : MonoBehaviour
     [SerializeField]
     private AudioClip[] clips;
 
+    [SerializeField]
+    private float randomMinPitch = 1;
+
+    [SerializeField]
+    private float randomMaxPitch = 1;
+
     private AudioSource _audioSource;
 
     private bool bInitialized;
@@ -27,5 +33,6 @@ public class SoundRandom : MonoBehaviour
     {
         bInitialized = true;
         _audioSource.clip = clips[UnityEngine.Random.Range(0, clips.Length - 1)];
+        _audioSource.pitch = UnityEngine.Random.Range(randomMinPitch, randomMaxPitch);
     }
 }

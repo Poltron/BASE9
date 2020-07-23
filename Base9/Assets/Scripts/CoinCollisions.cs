@@ -19,21 +19,17 @@ public class CoinCollisions : MonoBehaviour
     void OnCollisionEnter(Collision coll)
     {
         ContactPoint point = coll.GetContact(0);
-        Debug.Log("OnCollisionEnter " + LayerMask.LayerToName(point.otherCollider.gameObject.layer));
 
         if (point.otherCollider.gameObject.layer == LayerMask.NameToLayer("Coin"))
         {
-            Debug.Log("Dice");
             SoundManager.Instance.PlaySoundCue(SoundName.Coin_Hit_Coin, transform.position);
         }
         else if (point.otherCollider.gameObject.layer == LayerMask.NameToLayer("Wood"))
         {
-            Debug.Log("Wood");
             SoundManager.Instance.PlaySoundCue(SoundName.Coin_Hit_Ground, transform.position);
         }
         else if (point.otherCollider.gameObject.layer == LayerMask.NameToLayer("Felt"))
         {
-            Debug.Log("Felt");
             SoundManager.Instance.PlaySoundCue(SoundName.Coin_Hit_Ground, transform.position);
         }
     }

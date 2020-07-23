@@ -139,14 +139,18 @@ public class UIManager : MonoBehaviour
     {
         Dice1.gameObject.SetActive(true);
         Dice1.SetBool("bEnabled", true);
+        SoundManager.Instance.PlaySoundCue(SoundName.Dice_Idle, Vector3.zero);
+
         Dice2.gameObject.SetActive(true);
         Dice2.SetBool("bEnabled", true);
+        SoundManager.Instance.PlaySoundCue(SoundName.Dice_Idle, Vector3.zero);
     }
 
     public void EnableThirdDiceButton(Player player)
     {
         Dice3.gameObject.SetActive(true);
         Dice3.SetBool("bEnabled", true);
+        SoundManager.Instance.PlaySoundCue(SoundName.Dice_Idle, Vector3.zero);
     }
     public void DisableThirdDiceButton(Player player)
     {

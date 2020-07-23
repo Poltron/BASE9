@@ -41,6 +41,9 @@ public class Human : Player
                     if (dice != 0)
                     {
                         hit.transform.parent.parent.parent.GetComponent<Animator>().SetBool("bEnabled", false);
+
+                        SoundManager.Instance.RemoveCue(SoundName.Dice_Idle);
+
                         gameManager.RPC_ThrowDice(dice);
                     }
                 }
