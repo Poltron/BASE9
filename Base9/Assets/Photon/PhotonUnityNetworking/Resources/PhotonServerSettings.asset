@@ -39,4 +39,4 @@ MonoBehaviour:
   - RPC_GameEnded
   - RPC_ThrowDice
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
+  ShowSettings: 1
