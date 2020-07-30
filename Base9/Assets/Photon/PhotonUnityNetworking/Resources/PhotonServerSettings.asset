@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: 96727177-052e-4305-8ede-1ac12ba5e0ca
+    AppIdRealtime: 
     AppIdChat: 
     AppIdVoice: 
     AppVersion: 
@@ -39,4 +39,4 @@ MonoBehaviour:
   - RPC_GameEnded
   - RPC_ThrowDice
   DisableAutoOpenWizard: 1
-  ShowSettings: 1
+  ShowSettings: 0
