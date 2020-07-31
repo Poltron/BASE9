@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: c3c694ab67acadb4d9c12e898ed53468,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -970,8 +970,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb9a2c64b8756d4d96522e19bde0f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 0
+  name: 23
   action: 0
+  randomMinPitch: 0.8
+  randomMaxPitch: 1.2
 --- !u!114 &245161637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,8 +986,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb9a2c64b8756d4d96522e19bde0f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 0
+  name: 23
   action: 0
+  randomMinPitch: 0.8
+  randomMaxPitch: 1.2
 --- !u!1 &256068181
 GameObject:
   m_ObjectHideFlags: 0
@@ -16446,6 +16450,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -7975847751055590453, guid: 4d0fe781c6dbb3447afbdd0415889092,
         type: 2}
+    - target: {fileID: 4603352444921697544, guid: 05b5b6e1a1817224c827cdc2d09ef5c6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4603352444968236139, guid: 05b5b6e1a1817224c827cdc2d09ef5c6,
         type: 3}
       propertyPath: m_Name
@@ -16576,7 +16585,7 @@ PrefabInstance:
     - target: {fileID: 4603352445276929635, guid: 05b5b6e1a1817224c827cdc2d09ef5c6,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -272.00003
+      value: -272
       objectReference: {fileID: 0}
     - target: {fileID: 4603352445986581244, guid: 05b5b6e1a1817224c827cdc2d09ef5c6,
         type: 3}
@@ -16631,8 +16640,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb9a2c64b8756d4d96522e19bde0f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 0
+  name: 23
   action: 0
+  randomMinPitch: 0.8
+  randomMaxPitch: 1.2
 --- !u!95 &1482967169 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4603352445134008101, guid: 05b5b6e1a1817224c827cdc2d09ef5c6,
@@ -17862,11 +17873,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1612436554862094236, guid: 7592af2abd6517e4d8da4a77db42cb27,
+        type: 3}
+      propertyPath: m_Name
+      value: Button - MainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 1612436554862094238, guid: 7592af2abd6517e4d8da4a77db42cb27,
         type: 3}
       propertyPath: OnClick.OnTrigger.Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1846268268480126337}
+    - target: {fileID: 1612436554862094238, guid: 7592af2abd6517e4d8da4a77db42cb27,
+        type: 3}
+      propertyPath: ButtonName
+      value: Unnamed
+      objectReference: {fileID: 0}
     - target: {fileID: 2172224255764977462, guid: 7592af2abd6517e4d8da4a77db42cb27,
         type: 3}
       propertyPath: m_fontAsset
@@ -17938,6 +17959,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 0
   action: 0
+  randomMinPitch: 1
+  randomMaxPitch: 1
 --- !u!114 &1653945276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17950,8 +17973,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb9a2c64b8756d4d96522e19bde0f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 0
+  name: 23
   action: 0
+  randomMinPitch: 0.8
+  randomMaxPitch: 1.2
 --- !u!1 &1675391056
 GameObject:
   m_ObjectHideFlags: 0

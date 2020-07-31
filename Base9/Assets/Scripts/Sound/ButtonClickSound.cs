@@ -13,10 +13,15 @@ public class ButtonClickSound : MonoBehaviour
 {
     [SerializeField]
     private SoundName name;
-
     [SerializeField]
     private ActionButton action;
-    
+
+    [SerializeField]
+    private float randomMinPitch = 1f;
+    [SerializeField]
+    private float randomMaxPitch = 1f;
+
+
     private Button button;
 
     void Start()
@@ -28,8 +33,13 @@ public class ButtonClickSound : MonoBehaviour
     void OnClick()
     {
         if (action == ActionButton.Play)
-            SoundManager.Instance.PlaySoundCue(name, Vector3.zero);
+        {
+            float pitch = UnityEngine.Random.Range(randomMinPitch, randomMaxPitch);
+            SoundManager.Instance.PlaySoundCue(name, Vector3.zero, pitch);
+        }
         else if (action == ActionButton.Stop)
+        {
             SoundManager.Instance.RemoveCue(name);
+        }
     }
 }

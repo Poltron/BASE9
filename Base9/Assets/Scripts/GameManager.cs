@@ -187,8 +187,8 @@ public class GameManager : MonoBehaviour, IPunObservable
     private PhotonView photonView;
     private UIManager uiManager;
     public UIManager UIManager { get { return uiManager; } }
-    private UIManager soundManager;
-    public UIManager SoundManager { get { return soundManager; } }
+    private SoundManager soundManager;
+    public SoundManager SoundManager { get { return soundManager; } }
 
     void Awake()
     {
@@ -634,7 +634,7 @@ public class GameManager : MonoBehaviour, IPunObservable
         if (PhotonNetwork.IsConnected)
             PhotonNetwork.Disconnect();
 
-        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        LevelLoader.Instance.LoadNextLevel(0, false);
     }
 
     public IEnumerator WaitFor(float time, Action action)

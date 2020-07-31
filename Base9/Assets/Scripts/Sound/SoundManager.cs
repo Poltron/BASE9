@@ -41,7 +41,7 @@ public class SoundManager : MonoBehaviour
 
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Menu")
         {
-            PlayMusic(SoundName.Musique_Loop_Menu, Vector3.zero);
+            PlayMusic(SoundName.Musique_Loop_Menu);
         }
     }
 
@@ -86,7 +86,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public AudioSource PlaySoundCue(SoundName sound, Vector3 position)
+    public AudioSource PlaySoundCue(SoundName sound, Vector3 position, float pitch = 1)
     {
         SoundPrefab soundPrefab;
         // Find the sound cue
@@ -106,10 +106,15 @@ public class SoundManager : MonoBehaviour
         return source;
     }
 
-    public AudioSource PlayMusic(SoundName sound, Vector3 position)
+    public void StopMusic()
     {
         if (music != null)
             Destroy(music.gameObject);
+    }
+
+    public AudioSource PlayMusic(SoundName sound)
+    {
+        StopMusic();
 
         SoundPrefab soundPrefab;
         // Find the sound cue
@@ -117,7 +122,7 @@ public class SoundManager : MonoBehaviour
             return null;
 
         // Instantiate the cue
-        GameObject go = Instantiate(soundPrefab.clip, position, Quaternion.identity);
+        GameObject go = Instantiate(soundPrefab.clip, Vector3.zero, Quaternion.identity);
 
         // Register it
         AudioSource source = go.GetComponent<AudioSource>();
@@ -126,10 +131,15 @@ public class SoundManager : MonoBehaviour
         return source;
     }
 
-    public AudioSource PlayAmbient(SoundName sound, Vector3 position)
+    public void StopAmbient()
     {
         if (ambient != null)
             Destroy(ambient.gameObject);
+    }
+
+    public AudioSource PlayAmbient(SoundName sound)
+    {
+        StopAmbient();
 
         SoundPrefab soundPrefab;
         // Find the sound cue
@@ -137,7 +147,7 @@ public class SoundManager : MonoBehaviour
             return null;
 
         // Instantiate the cue
-        GameObject go = Instantiate(soundPrefab.clip, position, Quaternion.identity);
+        GameObject go = Instantiate(soundPrefab.clip, Vector3.zero, Quaternion.identity);
         
         // Register it
         AudioSource source = go.GetComponent<AudioSource>();

@@ -33,10 +33,16 @@ public class LevelLoader : MonoBehaviour
     {
         transitionAnimator.SetTrigger("Start");
 
+        if (level == 0)
+        {
+            SoundManager.Instance.StopAmbient();
+            SoundManager.Instance.PlayMusic(SoundName.Musique_Loop_Menu);
+        }
+
         yield return new WaitForSeconds(1.0f);
 
         if (photon)
-            Photon.Pun.PhotonNetwork.LoadLevel("Game");
+            Photon.Pun.PhotonNetwork.LoadLevel(level);
         else
             SceneManager.LoadScene(level);
     }

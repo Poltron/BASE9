@@ -259,12 +259,14 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             DG.Tweening.DOVirtual.DelayedCall(2.0f, GoToPhotonGame);
         }
     }
+    #endregion
+
 
     private void ChangeSoundtracks()
     {
         Debug.Log("ChangeSoundtracks");
-        SoundManager.Instance.PlayAmbient(SoundName.Ambiance_Loop, Vector3.zero);
-        SoundManager.Instance.PlayMusic(SoundName.Musique_Loop_Phase1, Vector3.zero);
+        SoundManager.Instance.PlayAmbient(SoundName.Ambiance_Loop);
+        SoundManager.Instance.PlayMusic(SoundName.Musique_Loop_Phase1);
     }
 
     public void GoToLocalGame()
@@ -293,7 +295,5 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         DG.Tweening.DOVirtual.DelayedCall(1.0f, ChangeSoundtracks);
         DG.Tweening.DOVirtual.DelayedCall(2.0f, GoToLocalGame);
     }
-
-    #endregion
 }
 
