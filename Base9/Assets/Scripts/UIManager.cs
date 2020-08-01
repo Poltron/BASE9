@@ -376,4 +376,9 @@ public class UIManager : MonoBehaviour
     {
         
     }
+
+    public void EnableFBButton()
+    {
+
+    }
 }
