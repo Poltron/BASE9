@@ -11,8 +11,7 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     #region Private Serializable Fields
     [Tooltip("The user name")]
-    [SerializeField]
-    private string userName;
+    public string userName;
 
     [Tooltip("The Ui Text to inform the user about the connection progress")]
     [SerializeField]
@@ -294,6 +293,12 @@ public class PUNManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
         DG.Tweening.DOVirtual.DelayedCall(1.0f, ChangeSoundtracks);
         DG.Tweening.DOVirtual.DelayedCall(2.0f, GoToLocalGame);
+    }
+
+    public void SetPlayerName(string name)
+    {
+        userName = name;
+        PhotonNetwork.LocalPlayer.NickName = name;
     }
 }
 

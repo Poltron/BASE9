@@ -29,7 +29,6 @@ public class Coin : MonoBehaviour
 
     IEnumerator TP(float time, Vector3 position, bool destroy)
     {
-        Debug.Log("tp destroy : " + destroy);
         Instantiate(disappear, coin.position + new Vector3(0, 2, 0), Quaternion.identity);
         SoundManager.Instance.PlaySoundCue(SoundName.Coin_Swap, transform.position);
         yield return new WaitForSeconds(time);

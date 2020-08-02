@@ -20,7 +20,6 @@ public class Base9Anim : MonoBehaviour
 
     public void LaunchParticles()
     {
-        Debug.Log("PArticles!!!");
         Woah.Play();
     }
 }

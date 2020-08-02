@@ -6,6 +6,9 @@ using Facebook.Unity;
 public class FacebookManager : MonoBehaviour
 {
     [SerializeField]
+    private PUNManager PUNManager;
+
+    [SerializeField]
     private UnityEngine.UI.Button fbConnect;
     [SerializeField]
     private UnityEngine.UI.Button fbDisconnect;
@@ -79,11 +82,13 @@ public class FacebookManager : MonoBehaviour
         {
             foreach (string key in graphResult.ResultDictionary.Keys)
             {
-                Debug.Log(key + " : " + graphResult.ResultDictionary[key].ToString());
+                string value = graphResult.ResultDictionary[key].ToString();
+                Debug.Log(key + " : " + value);
                 if (key == "first_name")
                 {
-                    userName.text = graphResult.ResultDictionary[key].ToString();
+                    userName.text = value;
                     userName.gameObject.SetActive(true);
+                    PUNManager.SetPlayerName(value);
                 }
             }
         }

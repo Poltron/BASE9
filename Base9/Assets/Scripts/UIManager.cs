@@ -112,22 +112,18 @@ public class UIManager : MonoBehaviour
 
     public void SetWinnerLooser(Player playerWinner, Player playerLooser)
     {
-        
-        if (playerWinner.PlayerName != "You")
-        {
-            SoundManager.Instance.PlaySoundCue(SoundName.Jingle_Loose, Vector3.zero);
-            Winner.text = playerWinner.PlayerName + " wins";
-        }
-        else
+        if (playerWinner.IsLocal)
         {
             SoundManager.Instance.PlaySoundCue(SoundName.Jingle_Win, Vector3.zero);
-            Winner.text = playerWinner.PlayerName + " win";
+            Winner.color = WinColor;
+        }
+        else
+        {
+            SoundManager.Instance.PlaySoundCue(SoundName.Jingle_Loose, Vector3.zero);
+            Winner.color = LooseColor;
         }
 
-        if (!playerWinner.IsLocal)
-            Winner.color = WinColor;
-        else
-            Winner.color = LooseColor;
+        Winner.text = playerWinner.PlayerName + " wins";
     }
 
     public void SetEndReason(string reason)

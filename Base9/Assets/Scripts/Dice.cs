@@ -136,7 +136,6 @@ public class Dice : MonoBehaviour
                 bestSide = side;
             }
         }
-        Debug.Log(bestSideDot);
         return bestSideDot < 0.99f;
     }
 

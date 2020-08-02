@@ -18,8 +18,6 @@ public class Human : Player
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-                    Debug.Log(hit.transform.gameObject.name + " " + hit.transform.tag);
-
                     int dice = 0;
                     switch (hit.transform.tag)
                     {
@@ -54,7 +52,7 @@ public class Human : Player
     [PunRPC]
     public override void BeginTurn()
     {
-        Debug.Log("Human : Begin turn");
+        Debug.Log("Human " + PlayerName + " : Begin turn");
         if (!PhotonNetwork.IsConnected || photonView.IsMine)
         {
             bListeningForClicks = true;

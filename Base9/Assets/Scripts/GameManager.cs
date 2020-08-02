@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour, IPunObservable
     }
     public Player Player2
     {
-        get { return players[1]; }
+        get { if (players.Count > 1) return players[1]; else return null; }
     }
 
     private int activePlayer;
@@ -203,7 +203,7 @@ public class GameManager : MonoBehaviour, IPunObservable
         if (PUNManager != null && PUNManager.bPlayingOnline)
         {
             GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity, 0);
-            player.GetComponent<Player>().Init("You", 0);
+            player.GetComponent<Player>().Init(PUNManager.userName, 0);
         }
         else if (PUNManager != null && PUNManager.bPlayingVSLocal) // IF WE'RE PLAYING VS LOCAL PLAYER
         {
@@ -216,12 +216,10 @@ public class GameManager : MonoBehaviour, IPunObservable
         else //if ( (PUNManager != null && PUNManager.bPlayingVSAI) || (!PUNManager.bPlayingVSLocal && !PUNManager.bPlayingOnline) ) // IF WE'RE PLAYING VS AI
         {
             GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-            player.GetComponent<Player>().Init("You", 0);
+            player.GetComponent<Player>().Init(PUNManager.userName, 0);
 
             player = Instantiate(aiPrefab, Vector3.zero, Quaternion.identity);
             player.GetComponent<Player>().Init("Computer", 1);
-
-            Debug.Log("VSAI");
         }
     }
 
