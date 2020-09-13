@@ -627,6 +627,13 @@ public class GameManager : MonoBehaviour, IPunObservable
         GameEventMessage.SendEvent("GameEnded");
     }
 
+    public void GameEndBeforeMenu()
+    {
+#if UNITY_ANDROID
+        UIManager.ShowRatingPrompt(true);
+#endif
+    }
+
     public void BackToMenu()
     {
         if (PhotonNetwork.IsConnected)

@@ -18,6 +18,9 @@ public class UIManager : MonoBehaviour
     public GameManager GameManager;
 
     [SerializeField]
+    private GameObject RatingPopUp;
+
+    [SerializeField]
     private PlayerUI[] playerUIs;
 
     [SerializeField]
@@ -124,6 +127,19 @@ public class UIManager : MonoBehaviour
         }
 
         Winner.text = playerWinner.PlayerName + " wins";
+    }
+
+    public void ShowRatingPrompt(bool enabled)
+    {
+        if (enabled)
+            RatingPopUp.SetActive(enabled);
+        else
+            RatingPopUp.SetActive(enabled);
+    }
+
+    public void OpenRatingPrompt()
+    {
+        Application.OpenURL("market://details?id=" + Application.identifier);
     }
 
     public void SetEndReason(string reason)
