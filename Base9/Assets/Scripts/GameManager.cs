@@ -216,8 +216,11 @@ public class GameManager : MonoBehaviour, IPunObservable
         else //if ( (PUNManager != null && PUNManager.bPlayingVSAI) || (!PUNManager.bPlayingVSLocal && !PUNManager.bPlayingOnline) ) // IF WE'RE PLAYING VS AI
         {
             GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-            player.GetComponent<Player>().Init(PUNManager.userName, 0);
+            string name = "Player";
+            if (PUNManager != null)
+                name = PUNManager.userName;
 
+            player.GetComponent<Player>().Init(name, 0);
             player = Instantiate(aiPrefab, Vector3.zero, Quaternion.identity);
             player.GetComponent<Player>().Init("Computer", 1);
         }
@@ -373,6 +376,7 @@ public class GameManager : MonoBehaviour, IPunObservable
     
     IEnumerator ComputeDices()
     {
+        Debug.Log("compute dices");
         int diceSum = dices[0] + dices[1] + dices[2];
 
         UIManager.ShowSidePanel();
@@ -380,8 +384,11 @@ public class GameManager : MonoBehaviour, IPunObservable
 
         yield return new WaitForSeconds(1.0f);
 
+        bool longWaitNextTurn = false;
+
         if (diceSum != 9) // pay coins
         {
+            longWaitNextTurn = true;
             int toPay = Mathf.Abs(diceSum - 9);
 
             purses[activePlayer] -= toPay;
@@ -440,8 +447,12 @@ public class GameManager : MonoBehaviour, IPunObservable
                     int bankId = dice - 1;
                     if (IsBankOpen(bankId))
                     {
-                        StartCoroutine(MoveCoins(banks[bankId], GetBankCoins(bankId), GetPlayerCoins(ActivePlayerNumber), GetPlayerCoinSpawn(ActivePlayerNumber)));
-                        purses[activePlayer] += banks[bankId];
+                        if (banks[bankId] > 0)
+                        {
+                            longWaitNextTurn = true;
+                            StartCoroutine(MoveCoins(banks[bankId], GetBankCoins(bankId), GetPlayerCoins(ActivePlayerNumber), GetPlayerCoinSpawn(ActivePlayerNumber)));
+                            purses[activePlayer] += banks[bankId];
+                        }
 
                         if (IsPhase2())
                         {
@@ -461,9 +472,12 @@ public class GameManager : MonoBehaviour, IPunObservable
 
         dices = new int[3];
 
-        yield return new WaitForSeconds(1.0f);
+        if (longWaitNextTurn)
+        {
+            yield return new WaitForSeconds(1.0f);
+        }
 
-        TurnEnded();
+        TurnEnded(longWaitNextTurn);
     }
 
     IEnumerator MoveCoins(int number, List<Coin> start, List<Coin> end, Transform endSpawn)
@@ -528,8 +542,9 @@ public class GameManager : MonoBehaviour, IPunObservable
         StartCoroutine(ComputeDices());
     }
 
-    public void TurnEnded()
-    { 
+    public void TurnEnded(bool longWait = true)
+    {
+        Debug.Log("turn ended");
         if (purses[activePlayer] <= 0)
         {
             EndGame(InactivePlayer, ActivePlayer);
@@ -554,7 +569,10 @@ public class GameManager : MonoBehaviour, IPunObservable
         }
         else
         {
-            StartCoroutine(WaitFor(2.0f, NextTurn));
+            if (longWait)
+                StartCoroutine(WaitFor(2.0f, NextTurn));
+            else
+                StartCoroutine(WaitFor(0.5f, NextTurn));
         }
     }
 

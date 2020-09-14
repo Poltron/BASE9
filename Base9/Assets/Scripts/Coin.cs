@@ -22,9 +22,20 @@ public class Coin : MonoBehaviour
     [SerializeField]
     GameObject appear;
 
+    private Vector3 spawnPos;
+
     public void Teleport(Vector3 position, bool destroy)
     {
+        spawnPos = position;
         StartCoroutine(TP(0.5f, position, destroy));
+    }
+
+    public void Respawn()
+    {
+        transform.position = spawnPos;
+        coin.position = spawnPos;
+        coin.rotation = Quaternion.identity;
+        Instantiate(appear, spawnPos + new Vector3(0, 2, 0), Quaternion.identity);
     }
 
     IEnumerator TP(float time, Vector3 position, bool destroy)

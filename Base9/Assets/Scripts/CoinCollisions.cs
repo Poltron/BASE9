@@ -4,17 +4,8 @@ using UnityEngine;
 
 public class CoinCollisions : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    private Coin coin;
 
     void OnCollisionEnter(Collision coll)
     {
@@ -31,6 +22,11 @@ public class CoinCollisions : MonoBehaviour
         else if (point.otherCollider.gameObject.layer == LayerMask.NameToLayer("Felt"))
         {
             SoundManager.Instance.PlaySoundCue(SoundName.Coin_Hit_Ground, transform.position);
+        }
+        else if (point.otherCollider.gameObject.tag == "Killzone")
+        {
+            Debug.Log(coin.gameObject.name + " touched killzone");
+            coin.Respawn();
         }
     }
 }

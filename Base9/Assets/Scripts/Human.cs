@@ -88,6 +88,7 @@ public class Human : Player
     public override void EndTurn()
     {
         Debug.Log("Human : End turn");
+        bListeningForClicks = false;
 
         if (!PhotonNetwork.IsConnected || photonView.IsMine)
         {

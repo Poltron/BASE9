@@ -22,7 +22,14 @@ public class FacebookManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FB.Init(OnInitCompleted);
+        if (FB.IsInitialized)
+        {
+            OnInitCompleted();
+        }
+        else
+        {
+            FB.Init(OnInitCompleted);
+        }
     }
 
     void OnInitCompleted()

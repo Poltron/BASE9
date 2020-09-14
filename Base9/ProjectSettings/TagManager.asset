@@ -8,6 +8,7 @@ TagManager:
   - Dice2
   - Dice3
   - EndTurn
+  - Killzone
   layers:
   - Default
   - TransparentFX
