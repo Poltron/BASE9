@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     private GameObject aiPrefab = default;
 
     [Header("Dice")]
-    [SerializeField]
+    [SerializeField] 
     private GameObject dicePrefab = default;
     [SerializeField]
     private Dice[] dice = default;
