@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoundRandom : MonoBehaviour
 {
     [SerializeField]
-    private AudioClip[] clips;
+    private AudioClip[] clips = default;
 
     [SerializeField]
     private float randomMinPitch = 1;

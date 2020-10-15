@@ -15,18 +15,18 @@ public struct DiceSide
 public class Dice : MonoBehaviour
 {
     [SerializeField]
-    private int number;
+    private int number = default;
 
     [Header("Sides")]
     [SerializeField]
-    private DiceSide[] sides;
+    private DiceSide[] sides = default;
 
     private Transform _transform;
     private Rigidbody _rigidbody;
     private GameManager gameManager;
 
     [SerializeField]
-    private AnimationCurve volumeCurve;
+    private AnimationCurve volumeCurve = default;
 
     private bool bThrown = false;
     private float timeStopped = 0;
@@ -57,7 +57,7 @@ public class Dice : MonoBehaviour
 
                     if (IsDiceBroken()) // throw dice again if not perfectly flat
                     {
-                        gameManager.RPC_ThrowDice(number);
+                        gameManager.ThrowDice(number);
                     }
                     else
                     {

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6746386523475449401}
   - component: {fileID: 5781406759478334541}
-  - component: {fileID: 1846268268480126338}
   - component: {fileID: 9109075080482744381}
   - component: {fileID: 1098395357}
   m_Layer: 0
@@ -46,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8af674a5c185ba4f827d184292c3be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: {fileID: 11400000, guid: 20353e3403235dc449ec178d641dc550, type: 2}
   playerPrefab: {fileID: 1877335158208734563, guid: a5bafbab59162f540b85bf71a035d546,
     type: 3}
   aiPrefab: {fileID: 6458505010383566180, guid: bae5d518a5aaa4443a1513fd364983aa,
@@ -83,28 +83,6 @@ MonoBehaviour:
   bank4CoinSpawn: {fileID: 0}
   banks: 0000000000000000000000000000000000000000
   bPhase2: 0
---- !u!114 &1846268268480126338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5828561347049899239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 5781406759478334541}
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &9109075080482744381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameManager: {fileID: 5781406759478334541}
+  RatingPopUp: {fileID: 0}
   playerUIs:
   - Purse: {fileID: 0}
     Name: {fileID: 0}
@@ -147,6 +126,8 @@ MonoBehaviour:
   OperationLeft: {fileID: 0}
   RightSidePanel: {fileID: 0}
   OperationRight: {fileID: 0}
+  GreenColor: {r: 0.3194192, g: 0.6886792, b: 0.04223035, a: 1}
+  RedColor: {r: 0.6981132, g: 0.1284265, b: 0.1284265, a: 1}
   Dice1: {fileID: 0}
   Dice2: {fileID: 0}
   Dice3: {fileID: 0}
@@ -155,8 +136,8 @@ MonoBehaviour:
   PhaseText: {fileID: 0}
   Winner: {fileID: 0}
   EndReason: {fileID: 0}
-  WinColor: {r: 0.58431375, g: 1, b: 0.45882353, a: 1}
-  LooseColor: {r: 1, g: 0.45882356, b: 0.45882356, a: 1}
+  WinColor: {r: 0.31764707, g: 0.6901961, b: 0.043137256, a: 1}
+  LooseColor: {r: 0.7019608, g: 0.12941177, b: 0.12941177, a: 1}
   Banks:
   - {fileID: 0}
   - {fileID: 0}
@@ -164,6 +145,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   BanksParent: {fileID: 0}
+  Base9Animation: {fileID: 0}
 --- !u!114 &1098395357
 MonoBehaviour:
   m_ObjectHideFlags: 0

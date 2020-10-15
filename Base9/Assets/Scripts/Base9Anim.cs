@@ -5,7 +5,7 @@ using UnityEngine;
 public class Base9Anim : MonoBehaviour
 {
     [SerializeField]
-    private ParticleSystem Woah;
+    private ParticleSystem Woah = default;
 
     void Start()
     {

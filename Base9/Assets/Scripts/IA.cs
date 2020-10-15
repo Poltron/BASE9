@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 using System;
 
 public class IA : Player
@@ -15,14 +14,14 @@ public class IA : Player
     private void FirstPlay()
     {
         Debug.Log("AI : Play dice");
-        gameManager.RPC_ThrowDice(1);
+        gameManager.ThrowDice(1);
 
         DG.Tweening.DOVirtual.DelayedCall(1.0f, PlayDice2);
     }
 
     private void PlayDice2()
     {
-        gameManager.RPC_ThrowDice(2);
+        gameManager.ThrowDice(2);
     }
 
     public override void TwoDicePlayed()
@@ -43,7 +42,7 @@ public class IA : Player
 
     private void SecondPlay()
     {
-        gameManager.RPC_ThrowDice(3);
+        gameManager.ThrowDice(3);
     }
 
     public override void ThirdDicePlayed()

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
     [SerializeField]
-    Animator transitionAnimator;
+    private Animator transitionAnimator = default;
 
     private static LevelLoader instance;
     public static LevelLoader Instance { get { return instance; } }
@@ -24,12 +24,12 @@ public class LevelLoader : MonoBehaviour
         }
     }
 
-    public void LoadNextLevel(int level, bool photon)
+    public void LoadNextLevel(int level)
     {
-        StartCoroutine(LoadLevel(level, photon));
+        StartCoroutine(LoadLevel(level));
     }
 
-    IEnumerator LoadLevel(int level, bool photon)
+    IEnumerator LoadLevel(int level)
     {
         transitionAnimator.SetTrigger("Start");
 
@@ -41,9 +41,6 @@ public class LevelLoader : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
-        if (photon)
-            Photon.Pun.PhotonNetwork.LoadLevel(level);
-        else
-            SceneManager.LoadScene(level);
+        SceneManager.LoadScene(level);
     }
 }

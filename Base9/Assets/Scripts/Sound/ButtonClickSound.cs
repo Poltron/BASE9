@@ -12,9 +12,9 @@ public enum ActionButton
 public class ButtonClickSound : MonoBehaviour
 {
     [SerializeField]
-    private SoundName name;
+    private SoundName name = default;
     [SerializeField]
-    private ActionButton action;
+    private ActionButton action = default;
 
     [SerializeField]
     private float randomMinPitch = 1f;

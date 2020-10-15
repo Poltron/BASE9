@@ -18,61 +18,61 @@ public class UIManager : MonoBehaviour
     public GameManager GameManager;
 
     [SerializeField]
-    private GameObject RatingPopUp;
+    private GameObject RatingPopUp = default;
 
     [SerializeField]
-    private PlayerUI[] playerUIs;
+    private PlayerUI[] playerUIs = default;
 
     [SerializeField]
-    private TextMeshPro[] BankAmounts;
+    private TextMeshPro[] BankAmounts = default;
     [SerializeField]
-    private TextMeshPro[] BankNumbers;
+    private TextMeshPro[] BankNumbers = default;
     [SerializeField]
-    private GameObject[] BankLock;
+    private GameObject[] BankLock = default;
 
     [SerializeField]
-    private Animator LeftSidePanel;
+    private Animator LeftSidePanel = default;
     [SerializeField]
-    private TextMeshProUGUI OperationLeft;
+    private TextMeshProUGUI OperationLeft = default;
     [SerializeField]
-    private Animator RightSidePanel;
+    private Animator RightSidePanel = default;
     [SerializeField]
-    private TextMeshProUGUI OperationRight;
+    private TextMeshProUGUI OperationRight = default;
     [SerializeField]
-    private Color GreenColor;
+    private Color GreenColor = default;
     [SerializeField]
-    private Color RedColor;
+    private Color RedColor = default;
 
     [SerializeField]
-    private Animator Dice1;
+    private Animator Dice1 = default;
     [SerializeField]
-    private Animator Dice2;
+    private Animator Dice2 = default;
     [SerializeField]
-    private Animator Dice3;
+    private Animator Dice3 = default;
     [SerializeField]
-    private Animator EndTurn;
+    private Animator EndTurn = default;
 
     [SerializeField]
-    private Animation Phase;
+    private Animation Phase = default;
     [SerializeField]
-    private TextMeshProUGUI PhaseText;
+    private TextMeshProUGUI PhaseText = default;
 
     [SerializeField]
-    private TextMeshProUGUI Winner;
+    private TextMeshProUGUI Winner = default;
     [SerializeField]
-    private TextMeshProUGUI EndReason;
+    private TextMeshProUGUI EndReason = default;
     [SerializeField]
-    private Color WinColor;
+    private Color WinColor = default;
     [SerializeField]
-    private Color LooseColor;
+    private Color LooseColor = default;
 
     [SerializeField]
-    private Animation[] Banks;
+    private Animation[] Banks = default;
     [SerializeField]
-    private Animation BanksParent;
+    private Animation BanksParent = default;
 
     [SerializeField]
-    private Animation Base9Animation;
+    private Animation Base9Animation = default;
 
     void Start()
     {
@@ -115,16 +115,17 @@ public class UIManager : MonoBehaviour
 
     public void SetWinnerLooser(Player playerWinner, Player playerLooser)
     {
-        if (playerWinner.IsLocal)
-        {
+        /*if (playerWinner.IsLocal)
+        {*/
             SoundManager.Instance.PlaySoundCue(SoundName.Jingle_Win, Vector3.zero);
             Winner.color = WinColor;
-        }
+        /*}
         else
         {
             SoundManager.Instance.PlaySoundCue(SoundName.Jingle_Loose, Vector3.zero);
             Winner.color = LooseColor;
         }
+        */
 
         Winner.text = playerWinner.PlayerName + " wins";
     }

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1877335158208734560}
   - component: {fileID: 1877335158208734561}
-  - component: {fileID: 1877335158208734562}
   m_Layer: 0
   m_Name: HumanPlayer
   m_TagString: Untagged
@@ -44,25 +43,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dbb8e7f52733484cb80e176a5867569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1877335158208734562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877335158208734563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 1
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 1877335158208734561}
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0

@@ -21,7 +21,7 @@ public class SoundManager : MonoBehaviour
     private AudioSource ambient;
 
     [SerializeField]
-    private SoundList soundList;
+    private SoundList soundList = default;
 
     private static SoundManager instance;
     public static SoundManager Instance { get { return instance; } }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class CoinCollisions : MonoBehaviour
 {
     [SerializeField]
-    private Coin coin;
+    private Coin coin = default;
 
     void OnCollisionEnter(Collision coll)
     {

@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using Photon.Pun;
-
-public abstract class Player : MonoBehaviour, IPunObservable
+public abstract class Player : MonoBehaviour
 {
     private string playerName;
     public string PlayerName
@@ -19,45 +17,15 @@ public abstract class Player : MonoBehaviour, IPunObservable
     }
 
     protected GameManager gameManager;
-    protected PhotonView photonView;
-
-    public bool IsLocal
-    {
-        get {
-            if (photonView != null)
-                return photonView.IsMine;
-            else
-                return true;
-        }
-    }
 
     public Player()
     {
         playerName = "Opponent";
     }
 
-    private void Awake()
-    {
-        photonView = PhotonView.Get(this);
-    }
-
     private void Start()
     {
         RegisterPlayer();
-    }
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            // We own this player: send the others our data
-            //stream.SendNext(this.dices[0]);
-        }
-        else
-        {
-            // Network player, receive data
-            //this.dices[0] = (int)stream.ReceiveNext();
-        }
     }
 
     private void RegisterPlayer()

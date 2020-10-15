@@ -5,22 +5,22 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     [SerializeField]
-    Transform coin;
+    private Transform _coin = default;
 
     [SerializeField]
-    Rigidbody rigidbody;
+    private Rigidbody _rigidbody = default;
 
     [SerializeField]
-    BoxCollider collider;
+    private BoxCollider _collider = default;
 
     [SerializeField]
-    Animator animator;
+    private Animator _animator = default;
 
     [SerializeField]
-    GameObject disappear;
+    private GameObject _disappear = default;
 
     [SerializeField]
-    GameObject appear;
+    private GameObject _appear = default;
 
     private Vector3 spawnPos;
 
@@ -33,33 +33,32 @@ public class Coin : MonoBehaviour
     public void Respawn()
     {
         transform.position = spawnPos;
-        coin.position = spawnPos;
-        coin.rotation = Quaternion.identity;
-        Instantiate(appear, spawnPos + new Vector3(0, 2, 0), Quaternion.identity);
+        _coin.position = spawnPos;
+        _coin.rotation = Quaternion.identity;
+        Instantiate(_appear, spawnPos + new Vector3(0, 2, 0), Quaternion.identity);
     }
 
     IEnumerator TP(float time, Vector3 position, bool destroy)
     {
-        Instantiate(disappear, coin.position + new Vector3(0, 2, 0), Quaternion.identity);
+        Instantiate(_disappear, _coin.position + new Vector3(0, 2, 0), Quaternion.identity);
         SoundManager.Instance.PlaySoundCue(SoundName.Coin_Swap, transform.position);
         yield return new WaitForSeconds(time);
 
         transform.position = position;
-        coin.position = position;
-        coin.rotation = Quaternion.identity;
-        Instantiate(appear, coin.position + new Vector3(0, 2, 0), Quaternion.identity);
+        _coin.position = position;
+        _coin.rotation = Quaternion.identity;
+        Instantiate(_appear, _coin.position + new Vector3(0, 2, 0), Quaternion.identity);
 
         if (destroy)
         {
-            rigidbody.isKinematic = true;
-            collider.isTrigger = true;
+            _rigidbody.isKinematic = true;
+            _collider.isTrigger = true;
 
-            animator.SetBool("bDestroy", true);
+            _animator.SetBool("bDestroy", true);
 
             SoundManager.Instance.PlaySoundCue(SoundName.Coin_Destroy, transform.position);
             yield return new WaitForSeconds(1.0f);
             Destroy(gameObject);
         }
     }
-
 }

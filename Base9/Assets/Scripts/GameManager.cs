@@ -6,38 +6,40 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-using Photon.Pun;
 using Doozy.Engine;
 
-public class GameManager : MonoBehaviour, IPunObservable
+public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private GameState gameState = default;
+
     [Header("Players")]
     [SerializeField]
-    private GameObject playerPrefab;
+    private GameObject playerPrefab = default;
     [SerializeField]
-    private GameObject aiPrefab;
+    private GameObject aiPrefab = default;
 
     [Header("Dice")]
     [SerializeField]
-    private GameObject dicePrefab;
+    private GameObject dicePrefab = default;
     [SerializeField]
-    private Dice[] dice;
+    private Dice[] dice = default;
     [SerializeField]
-    private Transform[] diceSpawns;
+    private Transform[] diceSpawns = default;
 
     private int dicePlayed;
 
     [Header("Coins")]
     [SerializeField]
-    private int nbOfCoin;
+    private int nbOfCoin = default;
 
     [Space]
     [SerializeField]
-    private GameObject coinPrefab;
+    private GameObject coinPrefab = default;
     [SerializeField]
-    private Transform purse0CoinSpawn;
+    private Transform purse0CoinSpawn = default;
     [SerializeField]
-    private Transform purse1CoinSpawn;
+    private Transform purse1CoinSpawn = default;
     private Transform GetPlayerCoinSpawn(int number)
     {
         switch (number)
@@ -53,9 +55,9 @@ public class GameManager : MonoBehaviour, IPunObservable
 
     [Space]
     [SerializeField]
-    private List<Coin> purse0Coins;
+    private List<Coin> purse0Coins = default;
     [SerializeField]
-    private List<Coin> purse1Coins;
+    private List<Coin> purse1Coins = default;
     private List<Coin> GetPlayerCoins(int number)
     {
         switch (number)
@@ -70,15 +72,15 @@ public class GameManager : MonoBehaviour, IPunObservable
     }
 
     [SerializeField]
-    private List<Coin> bank0Coins;
+    private List<Coin> bank0Coins = default;
     [SerializeField]
-    private List<Coin> bank1Coins;
+    private List<Coin> bank1Coins = default;
     [SerializeField]
-    private List<Coin> bank2Coins;
+    private List<Coin> bank2Coins = default;
     [SerializeField]
-    private List<Coin> bank3Coins;
+    private List<Coin> bank3Coins = default;
     [SerializeField]
-    private List<Coin> bank4Coins;
+    private List<Coin> bank4Coins = default;
     private List<Coin> GetBankCoins(int number)
     {
         switch(number)
@@ -99,15 +101,15 @@ public class GameManager : MonoBehaviour, IPunObservable
     }
 
     [SerializeField]
-    private Transform bank0CoinSpawn;
+    private Transform bank0CoinSpawn = default;
     [SerializeField]
-    private Transform bank1CoinSpawn;
+    private Transform bank1CoinSpawn = default;
     [SerializeField]
-    private Transform bank2CoinSpawn;
+    private Transform bank2CoinSpawn = default;
     [SerializeField]
-    private Transform bank3CoinSpawn;
+    private Transform bank3CoinSpawn = default;
     [SerializeField]
-    private Transform bank4CoinSpawn;
+    private Transform bank4CoinSpawn = default;
     private Transform GetBankCoinSpawn(int number)
     {
         switch (number)
@@ -177,18 +179,14 @@ public class GameManager : MonoBehaviour, IPunObservable
     }
 
     [SerializeField]
-    private bool bPhase2;
+    private bool bPhase2 = default;
     public bool IsPhase2()
     {
         return bPhase2;
     }
 
-    private PUNManager PUNManager;
-    private PhotonView photonView;
     private UIManager uiManager;
     public UIManager UIManager { get { return uiManager; } }
-    private SoundManager soundManager;
-    public SoundManager SoundManager { get { return soundManager; } }
 
     void Awake()
     {
@@ -197,15 +195,15 @@ public class GameManager : MonoBehaviour, IPunObservable
 
     void Start()
     {
-        photonView = PhotonView.Get(this);
-        PUNManager = FindObjectOfType<PUNManager>();
-        // IF WE'RE PLAYING ONLINE
-        if (PUNManager != null && PUNManager.bPlayingOnline)
+        if (gameState.gameMode == GameMode.AI)
         {
-            GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity, 0);
-            player.GetComponent<Player>().Init(PUNManager.userName, 0);
+            GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+            string name = "Player";
+            player.GetComponent<Player>().Init(name, 0);
+            player = Instantiate(aiPrefab, Vector3.zero, Quaternion.identity);
+            player.GetComponent<Player>().Init("Computer", 1);
         }
-        else if (PUNManager != null && PUNManager.bPlayingVSLocal) // IF WE'RE PLAYING VS LOCAL PLAYER
+        else if (gameState.gameMode == GameMode.Local)
         {
             GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
             player.GetComponent<Player>().Init("Player 1", 0);
@@ -213,26 +211,18 @@ public class GameManager : MonoBehaviour, IPunObservable
             player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
             player.GetComponent<Player>().Init("Player 2", 1);
         }
-        else //if ( (PUNManager != null && PUNManager.bPlayingVSAI) || (!PUNManager.bPlayingVSLocal && !PUNManager.bPlayingOnline) ) // IF WE'RE PLAYING VS AI
+        else if (gameState.gameMode == GameMode.Online)
         {
-            GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-            string name = "Player";
-            if (PUNManager != null)
-                name = PUNManager.userName;
-
-            player.GetComponent<Player>().Init(name, 0);
-            player = Instantiate(aiPrefab, Vector3.zero, Quaternion.identity);
-            player.GetComponent<Player>().Init("Computer", 1);
+            Debug.Log("GameMode Online not available.");
         }
     }
-
     public void RegisterNewPlayer(Player player)
     {
         Debug.Log("Register new player !");
 
         players.Add(player);
 
-        if (players.Count == 2 && (photonView.IsMine || !PhotonNetwork.IsConnected))
+        if (players.Count == 2)
         {
             InitGame();
         }
@@ -279,18 +269,8 @@ public class GameManager : MonoBehaviour, IPunObservable
             for (int j = 0; j < 5; ++j)
             {
                 GameObject coin, coin2;
-                if (PUNManager != null && PUNManager.bPlayingOnline)
-                {
-                    coin = PhotonNetwork.Instantiate(coinPrefab.name, purse0CoinSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0.5f, 2.75f)), Quaternion.identity);
-                    coin.transform.parent = purse0CoinSpawn;
-                    coin2 = PhotonNetwork.Instantiate(coinPrefab.name, purse1CoinSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0.5f, 2.75f)), Quaternion.identity);
-                    coin2.transform.parent = purse1CoinSpawn;
-                }
-                else
-                {
-                    coin = Instantiate(coinPrefab, purse0CoinSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0.5f, 2.75f)), Quaternion.identity, purse0CoinSpawn);
-                    coin2 = Instantiate(coinPrefab, purse1CoinSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0.5f, 2.75f)), Quaternion.identity, purse1CoinSpawn);
-                }
+                coin = Instantiate(coinPrefab, purse0CoinSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0.5f, 2.75f)), Quaternion.identity, purse0CoinSpawn);
+                coin2 = Instantiate(coinPrefab, purse1CoinSpawn.transform.position + MulVecs(UnityEngine.Random.insideUnitSphere, new Vector3(2.75f, 0.5f, 2.75f)), Quaternion.identity, purse1CoinSpawn);
 
                 purse0Coins.Add(coin.GetComponent<Coin>());
                 purse1Coins.Add(coin2.GetComponent<Coin>());
@@ -308,46 +288,6 @@ public class GameManager : MonoBehaviour, IPunObservable
 
         UIManager.ShowStartTurn();
         ActivePlayer.BeginTurn();
-    }
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            // We own this player: send the others our data
-            stream.SendNext(this.dices[0]);
-            stream.SendNext(this.dices[1]);
-            stream.SendNext(this.dices[2]);
-
-            stream.SendNext(this.banks[0]);
-            stream.SendNext(this.banks[1]);
-            stream.SendNext(this.banks[2]);
-            stream.SendNext(this.banks[3]);
-            stream.SendNext(this.banks[4]);
-
-            stream.SendNext(this.purses[0]);
-            stream.SendNext(this.purses[1]);
-
-            stream.SendNext(this.activePlayer);
-        }
-        else
-        {
-            // Network player, receive data
-            this.dices[0] = (int)stream.ReceiveNext();
-            this.dices[1] = (int)stream.ReceiveNext();
-            this.dices[2] = (int)stream.ReceiveNext();
-
-            this.banks[0] = (int)stream.ReceiveNext();
-            this.banks[1] = (int)stream.ReceiveNext();
-            this.banks[2] = (int)stream.ReceiveNext();
-            this.banks[3] = (int)stream.ReceiveNext();
-            this.banks[4] = (int)stream.ReceiveNext();
-
-            this.purses[0] = (int)stream.ReceiveNext();
-            this.purses[1] = (int)stream.ReceiveNext();
-
-            this.activePlayer = (int)stream.ReceiveNext();
-        }
     }
 
     public void NextTurn()
@@ -576,17 +516,9 @@ public class GameManager : MonoBehaviour, IPunObservable
         }
     }
 
-    [PunRPC]
-    public void RPC_ThrowDice(int number)
+    public void ThrowDice(int number)
     {
-        if (!PhotonNetwork.IsConnected || photonView.IsMine)
-        {
-            dice[number - 1].Throw(GetRandomDiceSpawn());
-        }
-        else
-        {
-            photonView.RPC("RPC_ThrowDice", RpcTarget.MasterClient, number);
-        }
+        dice[number - 1].Throw(GetRandomDiceSpawn());
     }
 
     public void DiceResult(int diceNumber, int result)
@@ -615,16 +547,10 @@ public class GameManager : MonoBehaviour, IPunObservable
 
     public void EndGame(Player winner, Player looser)
     {
-        RPC_GameEnded(winner, looser);
-
-        if (PhotonNetwork.IsConnected && photonView.IsMine)
-        {
-            photonView.RPC("RPC_GameEnded", RpcTarget.Others, winner, looser);
-        }
+        GameEnded(winner, looser);
     }
 
-    [PunRPC]
-    public void RPC_GameEnded(Player winner, Player looser)
+    public void GameEnded(Player winner, Player looser)
     {
         UIManager.HideLight();
         UIManager.SetWinnerLooser(winner, looser);
@@ -654,10 +580,7 @@ public class GameManager : MonoBehaviour, IPunObservable
 
     public void BackToMenu()
     {
-        if (PhotonNetwork.IsConnected)
-            PhotonNetwork.Disconnect();
-
-        LevelLoader.Instance.LoadNextLevel(0, false);
+        LevelLoader.Instance.LoadNextLevel(0);
     }
 
     public IEnumerator WaitFor(float time, Action action)
