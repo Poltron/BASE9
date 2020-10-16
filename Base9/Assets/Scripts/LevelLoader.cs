@@ -41,6 +41,14 @@ public class LevelLoader : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
-        SceneManager.LoadScene(level);
+        if (level == -1)
+            Application.Quit();
+        else
+            SceneManager.LoadScene(level);
+    }
+
+    public void QuitApplication()
+    {
+        LoadNextLevel(-1);
     }
 }

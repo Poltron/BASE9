@@ -982,7 +982,7 @@ SortingGroup:
   m_GameObject: {fileID: 444610993}
   m_Enabled: 1
   m_SortingLayerID: 72904481
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!4 &445117614 stripped
 Transform:
@@ -990,6 +990,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 593909822}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &491020069 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2624351777484267732, guid: b13634fbf77c5a34b8bdec00b9493515,
+    type: 3}
+  m_PrefabInstance: {fileID: 2624351779146637555}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144a5349d8153a443b40636661af8bdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &543580306
 Transform:
   m_ObjectHideFlags: 0
@@ -1525,7 +1537,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 85.05
+  m_fontSize: 38.75
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4811,8 +4823,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Disconnect
+      - m_Target: {fileID: 2115577327}
+        m_MethodName: StopLookingForOpponent
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13090,7 +13102,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2100483696}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 491020069}
+        m_MethodName: QuitApplication
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2100483696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15637,6 +15660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameState: {fileID: 11400000, guid: 20353e3403235dc449ec178d641dc550, type: 2}
   feedbackText: {fileID: 1835216354}
+  backButton: {fileID: 1297656056}
   minimumTimeToFindOpponent: 2
   maximumTimeToFindOpponent: 7
 --- !u!4 &2115577328

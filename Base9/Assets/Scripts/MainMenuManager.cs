@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -12,18 +13,24 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI feedbackText = default;
 
+    [Tooltip("The Back button to stop the opponent search")]
+    [SerializeField]
+    private Button backButton = default;
+
     [SerializeField]
     private float minimumTimeToFindOpponent = default;
     
     [SerializeField]
     private float maximumTimeToFindOpponent = default;
 
+    private Coroutine lookForOpponent;
+
     public void PlayOnline()
     {
         LogFeedback("Playing online");
         gameState.gameMode = GameMode.Online;
 
-        StartCoroutine(LookForOpponent());
+        lookForOpponent = StartCoroutine(LookForOpponent());
     }
 
     public void PlayLocal()
@@ -60,11 +67,18 @@ public class MainMenuManager : MonoBehaviour
         SoundManager.Instance.PlaySoundCue(SoundName.Connecting, Vector3.zero);
 
         yield return new WaitForSeconds(Random.Range(minimumTimeToFindOpponent, maximumTimeToFindOpponent));
+        
+        backButton.interactable = false;
 
         SoundManager.Instance.RemoveCue(SoundName.Connecting);
         ScreenLogs("Found an opponent !");
 
         PlayAI();
+    }
+
+    public void StopLookingForOpponent()
+    {
+        StopCoroutine(lookForOpponent);
     }
 
     /// <summary>
